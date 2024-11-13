@@ -18,8 +18,8 @@
 <Hero />
 <div class="relative z-50 h-4 w-full bg-slate-700"></div>
 <About />
-<div class="relative z-50 h-4 w-full bg-slate-800"></div>
-<Skills />
+<!-- <div class="relative z-50 h-4 w-full bg-slate-800"></div>
+<Skills /> -->
 <div class="relative z-50 h-4 w-full bg-slate-700"></div>
 <Work />
 <div class="relative z-50 h-4 w-full bg-slate-700"></div>

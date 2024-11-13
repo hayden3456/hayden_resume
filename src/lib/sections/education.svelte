@@ -4,15 +4,10 @@
 			<h2
 				class="relative z-10 mx-auto font-['Roboto_Mono'] text-xl leading-none tracking-tight text-slate-700"
 			>
-				<span class="text-slate-700/50">~/</span>EDUCATION
+				<span class="text-slate-700/50"></span>EDUCATION
 			</h2>
 		</a>
-		<p
-			class="cursor -ml-2 mb-20 block font-['Roboto_Mono'] text-lg text-slate-700/50"
-			id="cursor-3"
-		>
-			&#x2590;
-		</p>
+
 		<div
 			class="relative flex w-full flex-col items-center gap-16 text-sm text-slate-600 md:flex-row xl:gap-24"
 		>
@@ -28,11 +23,11 @@
 						>
 							<div class="mx-auto mb-4 h-12 w-10 rounded-b-full bg-[#f7c6b1] sm:mb-6"></div>
 							<h2 class="mb-4 text-center text-lg font-bold text-slate-600 sm:mb-6 sm:text-xl">
-								Universidad Panamericana
+								Colorado School of Mines
 							</h2>
 							<h3 class="">Bachelor of Engineering in</h3>
-							<h4 class="text-lg font-bold text-slate-700 sm:text-xl">Computer Science</h4>
-							<h4 class="hidden text-lg font-bold text-slate-500 sm:block">2007</h4>
+							<h4 class="text-lg font-bold text-slate-700 sm:text-xl">Chemical Engineering</h4>
+							<h4 class="hidden text-lg font-bold text-slate-500 sm:block">2024</h4>
 							<div class="mt-6 grid w-full grid-cols-3 grid-rows-2 gap-2 sm:mt-16">
 								<div class="row-span-2 ml-0 h-full w-12 rounded-full bg-slate-400"></div>
 								<div class="ml-0 h-2 w-1/2 rounded-full bg-slate-300"></div>
@@ -48,12 +43,11 @@
 				<p
 					class="mb-2 text-pretty text-2xl font-bold leading-tight tracking-tight text-slate-700 sm:text-3xl"
 				>
-					Graduated from Universidad Panamericana with a degree in Computer Science
+					Graduated from Colorado School of Mines with a degree in Chemical Engineering
 				</p>
-				<p class="mb-8 text-sm text-slate-500 sm:text-lg">Aguascalientes, Mexico, 2007</p>
+				<p class="mb-8 text-sm text-slate-500 sm:text-lg">GPA: 3.942/4.0</p>
 				<p class="hidden text-xs sm:block sm:text-sm">
-					Beyond formal education, a career in software engineering requires continuous learning and
-					self-study. I am constantly learning about engineering topics I find interesting or that
+					Beyond formal education, I am constantly learning about engineering topics I find interesting or that
 					can improve my work.
 				</p>
 			</div>

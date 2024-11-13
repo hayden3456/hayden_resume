@@ -1,7 +1,10 @@
-FROM node:21-alpine AS builder
+FROM node:18.20.4-alpine AS builder
 WORKDIR /app
 COPY package.json .
-RUN npm install
+
+# Install dependencies (using the default or latest npm version)
+RUN npm install && npm install
+
 COPY . .
 
 ARG SENDGRID_API_KEY
@@ -28,11 +31,12 @@ ENV EMAIL_TO=$EMAIL_TO
 RUN npm run build
 RUN npm prune --production
 
-FROM node:21-alpine
+FROM node:18.20.4-alpine
 WORKDIR /app
 COPY --from=builder /app/build build/
 COPY --from=builder /app/node_modules node_modules/
 COPY package.json .
+
 EXPOSE 3000
 ENV NODE_ENV=production
-CMD [ "node", "build" ]
+CMD ["node", "build"]

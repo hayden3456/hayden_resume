@@ -18,216 +18,110 @@
 	import Powershell from '$lib/icons/powershell.svelte';
 	import Jquery from '$lib/icons/jquery.svelte';
 	import C from '$lib/icons/c.svelte';
+	import MicrosoftOffice from '$lib/icons/microsoft-office.svelte';
+	import Aspen from '$lib/icons/aspen.svelte';
+	import Matlab from '$lib/icons/matlab.svelte';
+	import Polymath from '$lib/icons/polymath.svelte';
+	import Wonderware from '$lib/icons/wonderware.svelte';
+	import Comsol from '$lib/icons/comsol.svelte';
+	import Emerson from '$lib/icons/emerson.svelte';
+	import Vmg from '$lib/icons/vmg.svelte';
+	import Seeq from '$lib/icons/seeq.svelte';
 	import { onMount } from 'svelte';
 	import { activateOnScroll } from '$lib/util';
 
 	const work = [
-		{
-			from: 'Nov, 2019',
-			to: 'Present',
-			title: 'Systems Architect',
-			workPlace: '@Encora/Blick Art Materials',
-			body: [
-				'I am currently work on the design and development of backend systems for the Blick online store. This includes both cloud hosted and on-premise services using a variety of technology stacks, mainly .NET and Azure serverless.',
-				'This has allowed me to work in multiple business domains such as inventory, pricing, cart, checkout, as well as different architectural approaches such as microservices and event driven.',
-				"Observability and monitoring are a big part of my job, for which I've been using services like Azure Monitor and New Relic.",
-				'Recently we have started introducing AI in our internal processes, to allow users to access our knowledge base with natural language, enriched by our different management systems such as our Git repositories, Jira and Confluence. This has been possible with new tools like Open AI, Azure AI Studio and Pinecone.'
-			],
-			keywords: [
-				'ASP.NET Core',
-				'Azure SQL Server',
-				'Cosmos DB',
-				'Azure DevOps',
-				'Azure Service Bus',
-				'Azure Storage',
-				'Azure Monitor',
-				'Redis',
-				'Azure Durable Functions',
-				'Azure API Management',
-				'Git',
-				'Docker',
-				'Azure AI Studio',
-				'Open AI',
-				'Pinecone',
-				'New Relic',
-				'eCommerce',
-				'Microservices',
-				'Event Driven',
-				'Retail'
-			],
-			icons: [DotNet, Azure, Cosmos, AzureSql, AzureDevops, AzureFunctions, AzureAiStudio, OpenAi]
-		},
-		{
-			from: 'Feb 2018',
-			to: 'Nov 2019',
-			title: 'Fullstack Developer',
-			workPlace: '@iTexico (acquired by Improving)',
-			body: [
-				'One of my main responsibilities was developing the back-end for a money transfer mobile app. Using ASP.NET Core, I built secure, RESTful APIs and integrated with third party services to integrate payments, KYC, fraud detection, banking, etc.',
-				'On the front-end side, I worked with React to build user interfaces and libraries like Redux and MobX for state management.',
-				'I was also involved with the initial setup of CI/CD pipelines on Azure DevOps. Automated building, testing, and deployment was critical for our workflow, helping us deliver new features and updates more efficiently.'
-			],
-			keywords: [
-				'C#',
-				'ASP.NET Core',
-				'React',
-				'Azure SQL Server',
-				'Azure DevOps',
-				'Azure Service Bus',
-				'Azure Storage',
-				'Azure Application Insights',
-				'Redis',
-				'Redux',
-				'Mobx',
-				'Entity Framework Core',
-				'Hangfire',
-				'Docker',
-				'Azure Functions',
-				'Azure API Management',
-				'Remittances',
-				'KYC',
-				'Fraud Detection',
-				'Banking',
-				'Mobile Payments',
-				'Git'
-			],
-			icons: [DotNet, Typescript, Javascript, React, Redis, AzureSql, AzureDevops, Docker]
-		},
-		{
-			from: 'Nov 2012',
-			to: 'Feb 2018',
-			title: 'Software Engineer',
-			workPlace: '@Softtek',
-			body: [
-				'During my time at Softtek I was lucky to work with two great clients in the wealth management and retail sectors, where I had the chance to learn about compliance, risk management, inventory management, among other business domains.',
-				'I was in charge of the design and implementation of backend systems, with business rules that were complex and consistently changing due to evolving regulations and requirements, yet with emphasis on performance.',
-				'Most of the development work was done in C# and I experienced the transitions of different .NET products, e.g. from WCF, to MVC, to Web API, to ASP.NET Core.',
-				'In the later years I was introduced to "modern" front-end frameworks, i.e. Angular, so I gained some experience with JavaScript and Typescript. At the time state management on the front-end was rapidly changing and very opinionated, for me this meant working with Redux to manage the state of UIs that required higher complexity.'
-			],
-			keywords: [
-				'C#',
-				'ASP.NET',
-				'SQL Server',
-				'MVC',
-				'Web API',
-				'WCF',
-				'Angular',
-				'Redux',
-				'Entity Framework',
-				'Compliance',
-				'Risk Management',
-				'Inventory Management',
-				'Retail',
-				'Finance',
-				'Git'
-			],
-			icons: [DotNet, Typescript, Javascript, Angular, SqlServer, Redis, Powershell]
-		},
-		{
-			from: 'Dec 2010',
-			to: 'Jul 2014',
-			title: 'Founder and Developer',
-			workPlace: '@Tique Tecnologias de Informacion',
-			body: [
-				'This was a small consultancy company that I started with group of friends from college. We were able to sell and implement several development projects for local government agencies and businesses.',
-				'We mainly provided web presence and mobile applications for our customers, using different technologies like ASP.NET, React and Angular.'
-			],
-			keywords: [
-				'C#',
-				'ASP.NET',
-				'JavaScript',
-				'TypeScript',
-				'Angular',
-				'React',
-				'SQL Server',
-				'Entity Framework Core',
-				'Git'
-			],
-			icons: [DotNet, Azure, Typescript, Javascript, Angular, React, SqlServer]
-		},
-		{
-			from: 'Oct 2009',
-			to: 'Dec 2010',
-			title: 'Software Engineer',
-			workPlace: '@Nasoft USA',
-			body: [
-				'At Nasoft I implemented and maintained the web platform for our customers in the mortgage sector. Back then ASP.NET MVC was still a thing, and it was the main web application framework used for the platform, but we also integrated and exposed SOAP web services with WCF.',
-				"This was also during jQuery's heyday, which at the time didn't seem so bad, so we were using it in our front-end."
-			],
-			keywords: [
-				'C#',
-				'ASP.NET',
-				'SQL Server',
-				'MVC',
-				'WCF',
-				'ADO.NET',
-				'Mortgage',
-				'Real Estate',
-				'Risk Management',
-				'TFS',
-				'jQuery'
-			],
-			icons: [DotNet, Javascript, SqlServer, Jquery]
-		},
-		{
-			from: 'Nov 2008',
-			to: 'Oct 2009',
-			title: 'Developer',
-			workPlace: '@Banamex CitiGroup',
-			body: [
-				"At Banamex I worked on an internal web application for our mortgage branch's analysts to manage risk and loan approvals. Here I had the opportunity to get up close to the database and is where I gained my initial experience with SQL Server.",
-				'The application was built with ASP.NET Web Forms and vanilla JS.'
-			],
-			keywords: [
-				'C#',
-				'ASP.NET',
-				'SQL Server',
-				'ADO.NET',
-				'Banking',
-				'Finance',
-				'Mortgage',
-				'Risk Management',
-				'Compliance',
-				'SVN'
-			],
-			icons: [DotNet, Javascript, SqlServer]
-		},
-		{
-			from: 'Jul 2008',
-			to: 'Nov 2008',
-			title: 'Developer',
-			workPlace: '@Arquitectura en Sistemas Computacionales Integrales',
-			body: [
-				'At ASCI I worked for a short time, but it was fun nevertheless. My first project involved writing firmware in C for wireless network access points.',
-				'Here is where I learned about version control, unit testing, code quality, and how it is like working in a real development team in general.',
-				'Later I moved on to a web development project, where I built a web application with ASP.NET Web Forms and JavaScript which integrated with Google Maps and GPS tracking devices, at the time this was pretty new stuff.'
-			],
-			keywords: [
-				'C#',
-				'C',
-				'ASP.NET',
-				'JavaScript',
-				'Google Maps',
-				'GPS Tracking',
-				'Firmware Development',
-				'SVN'
-			],
-			icons: [DotNet, C, Javascript]
-		},
-		{
-			from: 'Sep 2005',
-			to: 'Jul 2008',
-			title: 'Developer',
-			workPlace: '@AgroClima Informatica Avanzada',
-			body: [
-				'This was my first job as a software engineer and I was pretty much the entire IT department. This was a small insurance company that specialized in agribusiness.',
-				'I got to learn about networks, Linux, web servers, databases, basic web development concepts and a lot of other stuff in between. This is when I first started writing ASP.NET web apps in C#, this was when version 2.0 had just been released.',
-				'I even did some Flash based web UIs that displayed weather forecast maps.'
-			],
-			keywords: ['C#', 'ASP.NET', 'JavaScript', 'Linux', 'Flash', 'Insurance', 'Agribusiness'],
-			icons: [DotNet, Javascript, SqlServer]
-		}
-	];
+    {
+        from: 'Fall 2024',
+        to: 'Present',
+        title: 'Undergraduate Researcher',
+        workPlace: '@The Lab of Catalysis & Applied Technology in Surface Science',
+        body: [
+            'Ran catalytic reactions with mass spectrometry analysis for the dry reforming of methane and the reverse water gas shift to assess the efficiency of various catalytic designs.',
+            'Developed synthesis procedures for catalysts and silica deposition on porous catalytic supports. Heavy literature research conducted.',
+            'Developed fully automated model in Excel for all analysis required in lab.'
+        ],
+        keywords: [
+            'Catalysis',
+            'Mass Spectrometry',
+            'Chemical Engineering',
+            'Laboratory Techniques',
+            'Excel',
+            'VBA',
+            'Data Analysis'
+        ],
+        icons: [MicrosoftOffice, Aspen, Matlab, Polymath, Comsol]
+    },
+    {
+        from: 'Summer 2024',
+        to: 'Summer 2024',
+        title: 'Chemical Engineer',
+        workPlace: '@Field Session',
+        body: [
+            'Completed nine labs within a six-week timeframe with 24-hour turnaround presentations and weekly reports combined with regular coursework and attendance.',
+            'Completed HAZOPs, oral briefings, computer simulations (Aspen Plus), and statistical analysis.'
+        ],
+        keywords: [
+            'HAZOP',
+            'Aspen Plus',
+            'Statistical Analysis',
+            'Chemical Engineering',
+            'Laboratory',
+            'Time Management',
+            'Presentation Skills'
+        ],
+        icons: [Aspen, Matlab]
+    },
+    {
+        from: 'Summer 2022',
+        to: 'Summer 2023',
+        title: 'Chemical Engineering Intern',
+        workPlace: '@DCP Midstream, Denver, CO',
+        body: [
+            'Collaborated with diverse engineering teams to enhance operational efficiency using software control systems for chemical plants.',
+            'Led the development of training simulators in Excel VBA to train new employees, simulating real-time plant control systems.',
+            'Contributed to process optimization projects and safety compliance initiatives, ensuring adherence to industry best practices.',
+            'Navigated Wonderware, DeltaV, and FoxView software for advanced operator displays.',
+            'Analyzed company P&IDs to generate thermodynamic/process simulations with VMG Symmetry Simulation Software.',
+            'Compiled large amounts of PI data, manipulated in Seeq, to create a simple visual format for easy identification of future mechanical failures (for heat exchangers).'
+        ],
+        keywords: [
+            'Process Optimization',
+            'Excel VBA',
+            'Chemical Engineering',
+            'Process Simulation',
+            'VMG Symmetry',
+            'Wonderware',
+            'DeltaV',
+            'FoxView',
+            'PI Data',
+            'Seeq',
+            'Heat Exchangers',
+            'Safety Compliance',
+            'P&IDs'
+        ],
+        icons: [MicrosoftOffice,  Seeq, Wonderware, Vmg, Emerson]
+    },
+    {
+        from: 'Jan 2022',
+        to: 'Mar 2022',
+        title: 'Math Tutor',
+        workPlace: '@Learning League, Arvada, CO',
+        body: [
+            'Prepared educational material, assessing student progress and adapting methods to improve performance, overcoming educational challenges due to the COVID-19 pandemic.'
+        ],
+        keywords: [
+            'Teaching',
+            'Mathematics',
+            'Tutoring',
+            'Education',
+            'Adaptability',
+            'COVID-19'
+        ],
+        icons: []
+    }
+];
+
 
 	onMount(() => {
 		activateOnScroll('.milestone');
@@ -240,20 +134,18 @@
 	<div class="relative mx-auto max-w-7xl px-4 md:px-6">
 		<div
 			class="parallax absolute
-			-top-24 right-48 z-0 -mx-96 h-full w-full bg-[url('/images/keyboard.webp')] bg-contain bg-no-repeat opacity-50 bg-blend-normal drop-shadow [--parallax-speed:5] sm:right-24 sm:bg-auto md:-right-[10vw] lg:opacity-100"
+			-top-24 right-48 z-0 -mx-96 h-full w-full bg-[url('/images/coffee.webp')] bg-contain bg-no-repeat opacity-50 bg-blend-normal drop-shadow [--parallax-speed:5] sm:right-24 sm:bg-auto md:-right-[10vw] lg:opacity-100"
 		></div>
 		<a id="work">
 			<h2
 				class="relative z-10 mx-auto font-['Roboto_Mono'] text-xl leading-none tracking-wide text-[#fce4b8]"
 			>
-				<span class="text-white/50">~/</span>WORK
+				WORK
 			</h2>
 		</a>
-		<p class="cursor -ml-2 mb-20 block font-['Roboto_Mono'] text-lg text-white/50" id="cursor-4">
-			&#x2590;
-		</p>
+
 		<p
-			class="relative z-20 mb-24 text-pretty pr-24 text-2xl font-medium leading-tight tracking-tight text-slate-300 drop-shadow-lg md:text-3xl lg:w-1/2"
+			class="relative z-20 mb-64 text-pretty pr-24 text-2xl font-medium leading-tight tracking-tight text-slate-300 drop-shadow-lg md:text-3xl lg:w-1/2"
 		>
 			The places I have worked at and what I got to build.
 		</p>
