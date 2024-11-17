@@ -10,9 +10,9 @@
 				Contact Information
 			</h3>
 			<div class="text-slate-400 font-large">
-				<p>Name: Kayly Sefcik</p>
-				<p>Email: kayly.sefcik [at] gmail.com</p>
-				<p>Phone Number: (72[zero]) 369-7394</p>
+				<p>Name: Hayden Constasa</p>
+				<p>Email: hjconstas [at] gmail.com</p>
+				<p>Phone Number: +1 (7[zero]8)-830-0299</p>
 			</div>
 			<div class="flex flex-col gap-3 mt-4">
 				<button

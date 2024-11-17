@@ -173,7 +173,7 @@
     <h2 class="text-5xl font-bold mb-4">AIAA Build Design Fly Competion</h2>
     <p>Currently in the process of designing a 6ft RC plane to compete in Arizona at the end of the school year with both domestic and international teams. 
       <br><br>
-      I'm helping run the 20 person team to meet all mission requirements. 
+      I'm leading the 20 person team to design and meet all mission requirements as efficiently as possible. 
     </p>
   </div>
   {#if ModelViewerComponent}
