@@ -222,7 +222,7 @@
   
   #panda {
     position: relative;
-    width: 70%;
+    width: 100%;
     height: 100vh;
     background-image: url('/images/panda1.png'), url('/images/panda2.png');
     background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
