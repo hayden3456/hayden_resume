@@ -235,7 +235,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    background-image: url('images/pipeline.png'), url('images/pig_pat.png');
+    background-image: url('/images/pipeline.png'), url('/images/pig_pat.png');
     background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
     background-position: 50% 50%, 50% 50%; /* Center both images */
     background-size: 50% auto, cover; /* Make panda1 smaller and panda2 fill the container */
