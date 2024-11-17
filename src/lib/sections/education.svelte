@@ -2,10 +2,13 @@
 	<div class="relative z-40 mx-auto max-w-7xl px-4 py-24 md:px-6">
 		<a id="education">
 			<h2
-				class="relative z-10 mx-auto font-['Roboto_Mono'] text-xl leading-none tracking-tight text-slate-700"
-			>
-				<span class="text-slate-700/50"></span>EDUCATION
-			</h2>
+          class="relative z-10 mx-auto font-['Roboto_Mono'] text-xl leading-none tracking-wide text-[#fce4b8]"
+        >
+          <span class="text-black/50"></span>Education
+          <span class="cursor -ml-2 mb-20 font-['Roboto_Mono'] text-lg text-white/50">
+            &#x2590;
+          </span>
+        </h2>
 		</a>
 
 		<div
@@ -26,8 +29,8 @@
 								Colorado School of Mines
 							</h2>
 							<h3 class="">Bachelor of Engineering in</h3>
-							<h4 class="text-lg font-bold text-slate-700 sm:text-xl">Chemical Engineering</h4>
-							<h4 class="hidden text-lg font-bold text-slate-500 sm:block">2024</h4>
+							<h4 class="text-lg font-bold text-slate-700 sm:text-xl">Electrical Engineering</h4>
+							<h4 class="hidden text-lg font-bold text-slate-500 sm:block">2025</h4>
 							<div class="mt-6 grid w-full grid-cols-3 grid-rows-2 gap-2 sm:mt-16">
 								<div class="row-span-2 ml-0 h-full w-12 rounded-full bg-slate-400"></div>
 								<div class="ml-0 h-2 w-1/2 rounded-full bg-slate-300"></div>
@@ -43,13 +46,9 @@
 				<p
 					class="mb-2 text-pretty text-2xl font-bold leading-tight tracking-tight text-slate-700 sm:text-3xl"
 				>
-					Graduated from Colorado School of Mines with a degree in Chemical Engineering
+				Bachelors Degree in Electrical Engineering and Self Chosen Focus on Integrated Circuits in 3 years. 
 				</p>
-				<p class="mb-8 text-sm text-slate-500 sm:text-lg">GPA: 3.942/4.0</p>
-				<p class="hidden text-xs sm:block sm:text-sm">
-					Beyond formal education, I am constantly learning about engineering topics I find interesting or that
-					can improve my work.
-				</p>
+				<p class="mb-8 text-sm text-slate-500 sm:text-lg">GPA: 3.35/4.0</p>
 			</div>
 		</div>
 	</div>

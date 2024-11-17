@@ -20,7 +20,7 @@
 		class="parallax absolute bottom-0 left-12 right-0 z-20 h-[60vh] rounded-tl-full bg-[#f8d8c1] [--parallax-speed:4]"
 	></div>
 	<div
-		class="parallax bg-coverbg-center absolute bottom-0 left-24 right-0 z-30 h-[45vh] rounded-tl-full bg-[#f7c6b1] bg-[url('/images/kayly_cliff1.jpg')] bg-cover opacity-70 bg-blend-multiply [--parallax-speed:2|]"
+		class="parallax bg-coverbg-center absolute bottom-0 left-24 right-0 z-30 h-[45vh] rounded-tl-full bg-[#f7c6b1] bg-[url('/images/moun2.jpg')] bg-cover opacity-70 bg-blend-multiply [--parallax-speed:2|]"
 	></div>
 	<div
 		class="parallax absolute left-0 right-0 top-[15vh] z-50 mx-auto w-fit px-4 text-left text-2xl [--parallax-speed:2] md:bottom-1/2 md:px-6 [@media_((min-height:600px)_and_(min-width:640px))]:text-4xl [@media_((min-height:800px)_and_(min-width:768px))]:text-5xl"
@@ -30,7 +30,7 @@
 			class="font-['Roboto_Mono'] font-medium leading-none tracking-tight text-slate-600 drop-shadow"
 		>
 			<span class="font-normal text-slate-500/15"></span>&nbsp;&nbsp;&nbsp;&nbsp;Nice to meet you, my name's <span
-				class="text-indigo-500/50">Kayly</span
+				class="text-indigo-500/50">Hayden</span
 			>
 			<span
 				class="cursor active font-['Roboto_Mono'] text-slate-500/30"
@@ -39,13 +39,7 @@
 		</p>
 
 
-		<p
-			class="mt-12 hidden max-w-[45rem] border-t border-slate-400/25 pt-8 text-sm leading-snug tracking-tight text-slate-600 md:text-base [@media(min-height:600px)]:block"
-		>
-			I'm a <strong>chemical engineer</strong> that enjoys building things, solving
-			problems and learning how stuff works. Thanks for stopping by and welcome to my page!
-			
-		</p>
+
 
 		<button
 			class="mt-16 flex items-center gap-1 rounded-full bg-slate-700 py-2 pl-6 pr-5 text-sm font-bold tracking-widest text-slate-300 shadow-lg shadow-slate-700/10 transition-all duration-500 ease-in-out hover:brightness-125"
@@ -68,7 +62,7 @@
 	<div
 		class="relative z-40 h-[40vh] w-full min-w-[100vh] bg-[url('/images/kaylybg1.png')] bg-cover bg-top md:mt-44 xl:h-[50vh]"
 	></div>
-	<a href="#about" aria-label="To go to about section">
+	<a href="#ikiagi" aria-label="Scroll Down">
 	<div
 		class="absolute bottom-12 left-0 right-0 z-50 mx-auto h-16 w-16 animate-bounce rounded-full bg-slate-900/20 p-4 text-slate-200 md:h-20 md:w-20"
 	>

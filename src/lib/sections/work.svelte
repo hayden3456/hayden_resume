@@ -27,100 +27,89 @@
 	import Emerson from '$lib/icons/emerson.svelte';
 	import Vmg from '$lib/icons/vmg.svelte';
 	import Seeq from '$lib/icons/seeq.svelte';
+    import Svelte from '$lib/icons/svelte.svelte';
+    import Aws from '$lib/icons/aws.svelte';
 	import { onMount } from 'svelte';
 	import { activateOnScroll } from '$lib/util';
 
 	const work = [
     {
-        from: 'Fall 2024',
-        to: 'Present',
-        title: 'Undergraduate Researcher',
-        workPlace: '@The Lab of Catalysis & Applied Technology in Surface Science',
+        from: 'May 2024',
+        to: 'June 2024',
+        title: 'Software Development Intern',
+        workPlace: '@CACI, CO',
         body: [
-            'Ran catalytic reactions with mass spectrometry analysis for the dry reforming of methane and the reverse water gas shift to assess the efficiency of various catalytic designs.',
-            'Developed synthesis procedures for catalysts and silica deposition on porous catalytic supports. Heavy literature research conducted.',
-            'Developed fully automated model in Excel for all analysis required in lab.'
+            'Worked on the SAFFIRE which provides satellite GIS insights for DoD partners.',
+            'Collaborated with a team to improve satellite data utility.'
         ],
         keywords: [
-            'Catalysis',
-            'Mass Spectrometry',
-            'Chemical Engineering',
-            'Laboratory Techniques',
-            'Excel',
-            'VBA',
-            'Data Analysis'
+            'Software Development',
+            'GIS',
+            'Satellite Systems',
+            'DoD',
+            'Team Collaboration'
         ],
-        icons: [MicrosoftOffice, Aspen, Matlab, Polymath, Comsol]
+        icons: [Svelte,Docker,Javascript,Powershell,Aws]
     },
     {
-        from: 'Summer 2024',
-        to: 'Summer 2024',
-        title: 'Chemical Engineer',
-        workPlace: '@Field Session',
+        from: 'June 2023',
+        to: 'Jan 2024',
+        title: 'Co-Founder',
+        workPlace: '@Protogenesis, CO',
         body: [
-            'Completed nine labs within a six-week timeframe with 24-hour turnaround presentations and weekly reports combined with regular coursework and attendance.',
-            'Completed HAZOPs, oral briefings, computer simulations (Aspen Plus), and statistical analysis.'
+            'Co-founded an engineering firm focusing on developing MVPs for small businesses.',
+            'Created automated tools to streamline operations and gained full-stack web development experience.',
+            'Mentored engineering students employed at the firm.'
         ],
         keywords: [
-            'HAZOP',
-            'Aspen Plus',
-            'Statistical Analysis',
-            'Chemical Engineering',
-            'Laboratory',
-            'Time Management',
-            'Presentation Skills'
+            'Entrepreneurship',
+            'Product Development',
+            'Automation',
+            'Web Development',
+            'Leadership'
         ],
-        icons: [Aspen, Matlab]
+        icons: [MicrosoftOffice,C,OpenAi,Javascript,Svelte,Aws]
     },
     {
-        from: 'Summer 2022',
-        to: 'Summer 2023',
-        title: 'Chemical Engineering Intern',
-        workPlace: '@DCP Midstream, Denver, CO',
+        from: 'Oct 2022',
+        to: 'July 2023',
+        title: 'Co-Proprietor',
+        workPlace: '@Upstream Vee, CO',
         body: [
-            'Collaborated with diverse engineering teams to enhance operational efficiency using software control systems for chemical plants.',
-            'Led the development of training simulators in Excel VBA to train new employees, simulating real-time plant control systems.',
-            'Contributed to process optimization projects and safety compliance initiatives, ensuring adherence to industry best practices.',
-            'Navigated Wonderware, DeltaV, and FoxView software for advanced operator displays.',
-            'Analyzed company P&IDs to generate thermodynamic/process simulations with VMG Symmetry Simulation Software.',
-            'Compiled large amounts of PI data, manipulated in Seeq, to create a simple visual format for easy identification of future mechanical failures (for heat exchangers).'
+            'Developed affordable solutions for monitoring oil and gas pipelines.',
+            'Collaborated with Chevron and leading to securing $200k in seed funding.',
+            'Led design iteration and testing of MVP for field applications.'
         ],
         keywords: [
-            'Process Optimization',
-            'Excel VBA',
-            'Chemical Engineering',
-            'Process Simulation',
-            'VMG Symmetry',
-            'Wonderware',
-            'DeltaV',
-            'FoxView',
-            'PI Data',
-            'Seeq',
-            'Heat Exchangers',
-            'Safety Compliance',
-            'P&IDs'
+            'Pipeline Monitoring',
+            'Innovation',
+            'Entrepreneurship',
+            'Funding',
+            'Collaboration'
         ],
-        icons: [MicrosoftOffice,  Seeq, Wonderware, Vmg, Emerson]
+        icons: []
     },
     {
-        from: 'Jan 2022',
-        to: 'Mar 2022',
-        title: 'Math Tutor',
-        workPlace: '@Learning League, Arvada, CO',
+        from: 'June 2018',
+        to: 'Feb 2023',
+        title: 'Freelance Certified Drone Operator',
+        workPlace: '@Self-Employed, IL - CO',
         body: [
-            'Prepared educational material, assessing student progress and adapting methods to improve performance, overcoming educational challenges due to the COVID-19 pandemic.'
+            'Filmed marketing videos for real estate, construction, and other industries.',
+            'Built and maintained a fleet of drones for commercial projects.',
+            'Provided tailored drone solutions to meet diverse client needs.'
         ],
         keywords: [
-            'Teaching',
-            'Mathematics',
-            'Tutoring',
-            'Education',
-            'Adaptability',
-            'COVID-19'
+            'Drone Operations',
+            'FAA Licensed',
+            'Video Production',
+            'Client Relations',
+            'Fleet Management'
         ],
         icons: []
     }
 ];
+
 
 
 	onMount(() => {
@@ -129,7 +118,7 @@
 </script>
 
 <div
-	class="left-0 -mt-2 w-full overflow-hidden border-t-8 border-slate-700 bg-slate-800 pb-12 pt-24 md:py-24"
+	class="left-0 -mt-2 w-full overflow-hidden border-t-8 border-slate-700 bg-slate-800 pb- pt-24 md:py-24"
 >
 	<div class="relative mx-auto max-w-7xl px-4 md:px-6">
 		<div
@@ -137,20 +126,24 @@
 			-top-24 right-48 z-0 -mx-96 h-full w-full bg-[url('/images/coffee.webp')] bg-contain bg-no-repeat opacity-50 bg-blend-normal drop-shadow [--parallax-speed:5] sm:right-24 sm:bg-auto md:-right-[10vw] lg:opacity-100"
 		></div>
 		<a id="work">
-			<h2
-				class="relative z-10 mx-auto font-['Roboto_Mono'] text-xl leading-none tracking-wide text-[#fce4b8]"
-			>
-				WORK
-			</h2>
+            <h2
+            class="relative z-10 mx-auto font-['Roboto_Mono'] text-xl leading-none tracking-wide text-[#fce4b8]"
+          >
+            <span class="text-white/50"></span>Resume
+            <span class="cursor -ml-2 mb-20 font-['Roboto_Mono'] text-lg text-white/50">
+              &#x2590;
+            </span>
+          </h2>
+        <p 
+        class="mb-16 pr-24 text-2xl font-medium leading-tight tracking-tight text-slate-300 md:text-3xl lg:w-1/2"
+    >
+        My name is <span class="font-bold">Hayden Constas</span>. I'm an electrical engineer with a background in entrepreneurship. As I search for my Ikiagi, heres the journey I've been on so far. 
+    </p>
+    
 		</a>
 
-		<p
-			class="relative z-20 mb-64 text-pretty pr-24 text-2xl font-medium leading-tight tracking-tight text-slate-300 drop-shadow-lg md:text-3xl lg:w-1/2"
-		>
-			The places I have worked at and what I got to build.
-		</p>
 		<div
-			class="relative mx-auto space-y-12 overflow-hidden via-90% pb-4 sm:pt-8 sm:before:absolute sm:before:inset-0 sm:before:left-[1px] sm:before:h-full sm:before:w-[1px] sm:before:-translate-x-px sm:before:bg-gradient-to-b sm:before:from-white/25 sm:before:via-white/25 sm:before:to-transparent"
+			class="relative mx-auto space-y-12 overflow-hidden via-90% pb-4 sm:pt-8 sm:before:absolute sm:before:inset-0 sm:before:left-[1px] sm:before:h-full sm:before:w-[1px] sm:before:-translate-x-px sm:before:bg-gradient-to-b sm:before:from-white/25 sm:before:via-white/25 sm:before:to-transparent mt-36"
 		>
 			{#each work as w, i}
 				<Milestone

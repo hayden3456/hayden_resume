@@ -4,9 +4,11 @@
 	import { fade } from 'svelte/transition';
 	import Hero from '$lib/sections/hero.svelte';
 	import About from '$lib/sections/about.svelte';
+	import Ikiagi from '$lib/sections/ikiagi.svelte';
 	import Skills from '$lib/sections/skills.svelte';
 	import { activateOnScroll, focus, preventDefault, self, trapFocus } from '$lib/util';
 	import Work from '$lib/sections/work.svelte';
+	import Project from '$lib/sections/projects.svelte';
 	import Education from '$lib/sections/education.svelte';
 	import ContactModal from '$lib/contact-modal.svelte';
 
@@ -17,11 +19,11 @@
 
 <Hero />
 <div class="relative z-50 h-4 w-full bg-slate-700"></div>
-<About />
-<!-- <div class="relative z-50 h-4 w-full bg-slate-800"></div>
-<Skills /> -->
-<div class="relative z-50 h-4 w-full bg-slate-700"></div>
+<Ikiagi />
+<div class="relative z-50 h-4 w-full bg-slate-800"></div>
 <Work />
+<div class="relative z-50 h-4 w-full bg-slate-700"></div>
+<Project/>
 <div class="relative z-50 h-4 w-full bg-slate-700"></div>
 <Education />
 
