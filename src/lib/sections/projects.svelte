@@ -35,6 +35,7 @@
     const parallaxElem1 = document.querySelector("#parallax");
     const parallaxElem2 = document.querySelector("#panda");
     const parallaxElem3 = document.querySelector("#pipe");
+    const parallaxElem4 = document.querySelector("#board");
   
     // Add event listener for mousemove
     function handleParallax(e) {
@@ -46,6 +47,9 @@
       }
       if (parallaxElem3) {
         applyParallax(e, parallaxElem3);
+      }
+      if (parallaxElem4) {
+        applyParallax(e, parallaxElem4);
       }
     }
   
@@ -107,8 +111,8 @@
   
   <div transition:fly="{{ x: -400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
     <div>
-      <h2 class="text-5xl font-bold mb-4">Broking Aircraft Sales</h2>
-      <p>Brokored for an old VTFF (Vertical Takeoff, Forward Flight) 
+      <h2 class="text-5xl font-bold mb-4">Brokered Aircraft Sales</h2>
+      <p>Brokered for an old VTFF (Vertical Takeoff, Forward Flight) 
         aircraft design to be sold to OEM aircraft manufacturers. 
         Got the deal down the line as far as getting in front of the DoD Innovation Unit. 
         <br><br>
@@ -147,13 +151,58 @@
     </div>
 </div>
 
+<div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
+  <div>
+      <h2 class="text-5xl font-bold mb-4">Baby Monitor</h2>
+      <p>Me and our team created a device that detected when a baby's diaper needed changing and would notify the parents. The IoT device strapped to the side of a crib.<br><br>
+      While never making out of the protype phase it was my first crash course into combining disciplines from biology to web dev to hardware.</p>
+  </div>
+  <div id="panda" class = "text-center"></div>
+</div>
+
   <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
+    <div id="board" class = "text-center"></div>
     <div>
-        <h2 class="text-5xl font-bold mb-4">Baby Monitor</h2>
-        <p>Me and our team created a device that detected when a baby's diaper needed changeing and would notify the parents. The IoT device strapped to the side of a crib.<br><br>
-        While never making out of the protype phase it was my first crash cource into combing disiplines from biology to web dev to hardware.</p>
+        <h2 class="text-5xl font-bold mb-4">Power Supply Board</h2>
+        <p>Used Eagle design software to create a power supply board for a PCB design class.</p>
     </div>
-    <div id="panda" class = "text-center"></div>
+</div>
+
+<div transition:fly="{{ x: -400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
+  <div>
+    <h2 class="text-5xl font-bold mb-4">AIAA Build Design Fly Competion</h2>
+    <p>Currently in the process of designing a 6ft RC plane to compete in Arizona at the end of the school year with both domestic and international teams. 
+      <br><br>
+      I'm helping run the 20 person team to meet all mission requirements. 
+    </p>
+  </div>
+  {#if ModelViewerComponent}
+  <model-viewer
+    class="model"
+    id="reveal"
+    loading="eager"
+    camera-controls
+    touch-action="pan-y"
+    auto-rotate
+    poster="plane/poster.webp"
+    tone-mapping="aces"
+    src="aiaa/aiaa.glb"
+    shadow-intensity="1"
+    alt="A 3D model of a shishkebab"
+    camera-orbit="-39.36deg 71.26deg 3.314m" 
+    field-of-view="30deg">
+  </model-viewer>
+{/if}
+
+</div>
+
+
+<div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
+  <div ><img src="\images\turn.gif" alt="robot"></div>
+  <div>
+      <h2 class="text-5xl font-bold mb-4">Robot Creation</h2>
+      <p>Designed and created a robot to use Open CV on a Raspberry Pi and a PID controller an an Arduino Uno, to navigate a maze of ArUco markers.</p>
+  </div>
 </div>
 
 <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
@@ -161,7 +210,7 @@
       <h2 class="text-5xl font-bold mb-4">Custom Shirts</h2>
       <p>In the effort to get my engineering firm off the ground, we created custom shirts to become cashflow positive. 
         <br><br>
-        While nothing techinical, I learned what building a brand ment to people. </p>
+        While nothing technical, I learned what building a brand meant to people. </p>
   </div>
 <div class = "carousel">
   <Carousel/>
@@ -239,6 +288,17 @@
     background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
     background-position: 50% 50%, 50% 50%; /* Center both images */
     background-size: 50% auto, cover; /* Make panda1 smaller and panda2 fill the container */
+    transform: scale(0.7);
+  }
+  
+  #board {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('/images/board.png'), url('/images/board_design.png');
+    background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
+    background-position: 50% 50%, 50% 50%; /* Center both images */
+    background-size: 80% auto, cover; /* Make panda1 smaller and panda2 fill the container */
     transform: scale(0.7);
   }
   

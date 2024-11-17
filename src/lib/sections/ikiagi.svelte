@@ -23,7 +23,7 @@ let passionText = "What you love"; // Default text
 // Update the text based on the scroll progress
 $: {
     if (progress > 0.5 && progress < 0.8) {
-      passionText = "Going out of the box<br>Helping others grow<br>Learning from people<br>Hacking together solutions<br>Tacticle Empithy";
+      passionText = "Going Out of The Box<br>Helping Others Grow<br>Learning From People<br>Hacking Together Solutions<br>Tacticle Empithy";
     }
     else if (progress > 0.8) {
         passionText = " ";
@@ -131,6 +131,8 @@ $: {
   
   <style>
     /* Style the sections */
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
     section {
       background-color: transparent;
       color: white;
@@ -173,6 +175,7 @@ $: {
     padding: 10px;
     transition: opacity 0.5s ease;
     background-clip: padding-box; /* Ensure the background color respects the opacity */
+    z-index: -1;
 }
 
 .circle-text {
@@ -184,6 +187,8 @@ $: {
     text-align: center;
     width: 90%; /* Optional: Adjust width to constrain text within the circle */
     word-wrap: break-word;
+    font-family: 'Montserrat', sans-serif;
+
 }
 /* Individual colors for each circle */
 .passion {
