@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import Window from '$lib/window.svelte';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
@@ -12,18 +12,33 @@
 	import Education from '$lib/sections/education.svelte';
 	import ContactModal from '$lib/contact-modal.svelte';
 
+	let showIkiagi = true;
+
 	onMount(() => {
+		// Check the viewport width and set `showIkiagi` to false if on mobile
+		const updateShowIkiagi = () => {
+			showIkiagi = window.innerWidth > 768; // Adjust breakpoint as needed
+		};
+
+		updateShowIkiagi();
+		window.addEventListener('resize', updateShowIkiagi);
+
+		// Cleanup the event listener
+		return () => window.removeEventListener('resize', updateShowIkiagi);
+
 		activateOnScroll('.cursor');
 	});
 </script>
 
 <Hero />
 <div class="relative z-50 h-4 w-full bg-slate-700"></div>
-<Ikiagi />
-<div class="relative z-50 h-4 w-full bg-slate-800"></div>
+{#if showIkiagi}
+	<Ikiagi />
+	<div class="relative z-50 h-4 w-full bg-slate-800"></div>
+{/if}
 <Work />
 <div class="relative z-50 h-4 w-full bg-slate-700"></div>
-<Project/>
+<Project />
 <div class="relative z-50 h-4 w-full bg-slate-700"></div>
 <Education />
 

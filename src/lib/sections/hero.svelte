@@ -14,7 +14,7 @@
 		class="parallax absolute bottom-0 left-0 right-0 z-0 h-full overflow-hidden bg-[#fcedd1] bg-[url('/images/stars.webp')] bg-no-repeat pl-24 opacity-15 bg-blend-multiply [--parallax-speed:8]"
 	></div>
 	<div
-		class="parallax absolute bottom-0 left-0 right-0 z-10 h-full overflow-hidden rounded-tl-full bg-[#fae4c9] bg-[url('/images/kayly_cliff.jpg')] bg-cover bg-top pl-24 opacity-15 bg-blend-multiply [--parallax-speed:6]"
+		class="parallax absolute bottom-0 left-0 right-0 z-10 h-full overflow-hidden rounded-tl-full bg-[#fae4c9] bg-[url('/images/moun1.jpg')] bg-cover bg-top pl-24 opacity-15 bg-blend-multiply [--parallax-speed:6]"
 	></div>
 	<div
 		class="parallax absolute bottom-0 left-12 right-0 z-20 h-[60vh] rounded-tl-full bg-[#f8d8c1] [--parallax-speed:4]"
@@ -62,7 +62,7 @@
 	<div
 		class="relative z-40 h-[40vh] w-full min-w-[100vh] bg-cover bg-top md:mt-44 xl:h-[50vh]"
 	></div>
-	<a href="#ikiagi" aria-label="Scroll Down">
+	<a href="#work" aria-label="Scroll Down">
 	<div
 		class="absolute bottom-12 left-0 right-0 z-50 mx-auto h-16 w-16 animate-bounce rounded-full bg-slate-900/20 p-4 text-slate-200 md:h-20 md:w-20"
 	>
