@@ -60,7 +60,7 @@
 		</button>
 	</div>
 	<div
-		class="relative z-40 h-[40vh] w-full min-w-[100vh] bg-[url('/images/kaylybg1.png')] bg-cover bg-top md:mt-44 xl:h-[50vh]"
+		class="relative z-40 h-[40vh] w-full min-w-[100vh] bg-cover bg-top md:mt-44 xl:h-[50vh]"
 	></div>
 	<a href="#ikiagi" aria-label="Scroll Down">
 	<div
