@@ -8,7 +8,7 @@
 // Update the text based on the scroll progress
 $: {
     if (progress > 0.56 && progress < 0.8) {
-        missionText = "Quality of Life <br>Energy<br>Saftey<br>Security";
+        missionText = "Quality of Life <br>Energy<br>Safety<br>Security";
     }
     else if (progress > 0.8) {
         missionText = " ";

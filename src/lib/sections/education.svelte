@@ -48,7 +48,7 @@
 				>
 				Bachelors Degree in Electrical Engineering and Self Chosen Focus on Integrated Circuits in 3 years. 
 				</p>
-				<p class="mb-8 text-sm text-slate-500 sm:text-lg">GPA: 3.35/4.0</p>
+				<p class="mb-8 text-sm text-slate-500 sm:text-lg">GPA: 3.41/4.0</p>
 			</div>
 		</div>
 	</div>
