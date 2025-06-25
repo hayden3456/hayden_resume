@@ -4,6 +4,7 @@
     fly,
   } from 'svelte/transition';
   import Carousel from "$lib/Carousel.svelte"
+  import PlaneAnimation from '$lib/plane-animation.svelte';
   
     import { onMount } from 'svelte';
     import { activateOnScroll } from '$lib/util';
@@ -64,7 +65,7 @@
   </script>
   
   <div
-    class="left-0 -mt-2 w-full overflow-hidden border-t-8 border-slate-700 bg-slate-800 pb-12 pt-24 md:py-24"
+    class="left-0 -mt-2 w-full  border-t-8 border-slate-700 bg-slate-800 pb-12 pt-24 md:py-24"
   >
     <div class="relative mx-auto max-w-7xl px-4 md:px-6">
       <div
@@ -86,12 +87,17 @@
       <p
         class="relative z-20 mb-24 text-pretty pr-24 text-2xl font-medium leading-tight tracking-tight text-slate-300 drop-shadow-lg md:text-3xl lg:w-1/2"
       >
-        The projects I've built with more information on request. 
+        A few I've built with more information on request. 
       </p>
+      
+      <div class="w-screen -mx-40 md:-mx-40">
+        <PlaneAnimation />
+      </div>
+      
       <div
         class="relative mx-auto space-y-12 overflow-hidden via-90% pb-4 sm:pt-8 text-slate-300"
       >
-      
+
       <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
         <div id="parallax" class = "text-center"></div>
         <div>

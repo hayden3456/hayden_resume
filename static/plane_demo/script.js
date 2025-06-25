@@ -129,7 +129,7 @@ class Scene
         var edges = new THREE.EdgesGeometry(child.geometry);
         let line = new THREE.LineSegments(edges);
         line.material.depthTest = false;
-        line.material.opacity = 0.5;
+        line.material.opacity = 0.8;
         line.material.transparent = true;
         line.material.color.setHex(0xffffff);
         line.layers.set(1);
