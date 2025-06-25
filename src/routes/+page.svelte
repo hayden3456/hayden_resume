@@ -32,10 +32,10 @@
 
 <Hero />
 <div class="relative z-50 h-4 w-full bg-slate-700"></div>
-{#if showIkiagi}
+<!-- {#if showIkiagi}
 	<Ikiagi />
 	<div class="relative z-50 h-4 w-full bg-slate-800"></div>
-{/if}
+{/if} -->
 <Work />
 <div class="relative z-50 h-4 w-full bg-slate-700"></div>
 <Project />

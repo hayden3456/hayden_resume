@@ -89,7 +89,7 @@
         The projects I've built with more information on request. 
       </p>
       <div
-        class="relative mx-auto space-y-12 overflow-hidden via-90% pb-4 sm:pt-8 sm:before:absolute sm:before:inset-0 sm:before:left-[1px] sm:before:h-full sm:before:w-[1px] sm:before:-translate-x-px sm:before:bg-gradient-to-b sm:before:from-white/25 sm:before:via-white/25 sm:before:to-transparent text-slate-300"
+        class="relative mx-auto space-y-12 overflow-hidden via-90% pb-4 sm:pt-8 text-slate-300"
       >
       
       <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
@@ -106,42 +106,36 @@
         </div>
     </div>
   
-    
-  
-  
-  <div transition:fly="{{ x: -400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
-    <div>
-      <h2 class="text-5xl font-bold mb-4">Brokered Aircraft Sales</h2>
-      <p>Brokered for an old VTFF (Vertical Takeoff, Forward Flight) 
-        aircraft design to be sold to OEM aircraft manufacturers. 
-        Got the deal down the line as far as getting in front of the DoD Innovation Unit. 
-        <br><br>
-        Had to prepare the old files and gather the designs in a cohesive story told to potential buyers. 
-        For more information visit: 
-      </p>
-      <a class = "text-blue-300" href="https://www.youtube.com/watch?v=TN_yvkcoihA">https://www.youtube.com/watch?v=TN_yvkcoihA</a>
+    <div transition:fly="{{ x: -400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
+      <div>
+        <h2 class="text-5xl font-bold mb-4">AIAA Build Design Fly Competion</h2>
+        <p>Currently in the process of designing a 6ft RC plane to compete in Arizona at the end of the school year with both domestic and international teams. 
+          <br><br>
+          I'm leading the 20 person team to design and meet all mission requirements as efficiently as possible. 
+        </p>
+      </div>
+      {#if ModelViewerComponent}
+      <model-viewer
+        class="model"
+        id="reveal"
+        loading="eager"
+        camera-controls
+        touch-action="pan-y"
+        auto-rotate
+        poster="plane/poster.webp"
+        tone-mapping="aces"
+        src="aiaa/aiaa.glb"
+        shadow-intensity="1"
+        alt="A 3D model of a shishkebab"
+        camera-orbit="-39.36deg 71.26deg 3.314m" 
+        field-of-view="30deg"
+        min-camera-orbit="auto auto 2m"
+        max-camera-orbit="auto auto 4m">
+      </model-viewer>
+    {/if}
     </div>
-    {#if ModelViewerComponent}
-    <model-viewer
-      class="model"
-      id="reveal"
-      loading="eager"
-      camera-controls
-      touch-action="pan-y"
-      auto-rotate
-      poster="plane/poster.webp"
-      tone-mapping="aces"
-      src="plane/1_nomad_2_full_assy-SOLID_01 v1.glb"
-      shadow-intensity="1"
-      alt="A 3D model of a shishkebab"
-      camera-target="-100.9m -1e-11m -1446m" 
-      camera-orbit="326.4deg 165.5deg 33100m" 
-      field-of-view="30deg">
-    </model-viewer>
-  {/if}
   
-  </div>
-
+  
   <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
     <div id="pipe" class = "text-center"></div>
     <div>
@@ -168,13 +162,18 @@
     </div>
 </div>
 
+
 <div transition:fly="{{ x: -400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
   <div>
-    <h2 class="text-5xl font-bold mb-4">AIAA Build Design Fly Competion</h2>
-    <p>Currently in the process of designing a 6ft RC plane to compete in Arizona at the end of the school year with both domestic and international teams. 
+    <h2 class="text-5xl font-bold mb-4">Brokered Aircraft Sales</h2>
+    <p>Brokered for an old VTFF (Vertical Takeoff, Forward Flight) 
+      aircraft design to be sold to OEM aircraft manufacturers. 
+      Got the deal down the line as far as getting in front of the DoD Innovation Unit. 
       <br><br>
-      I'm leading the 20 person team to design and meet all mission requirements as efficiently as possible. 
+      Had to prepare the old files and gather the designs in a cohesive story told to potential buyers. 
+      For more information visit: 
     </p>
+    <a class = "text-blue-300" href="https://www.youtube.com/watch?v=TN_yvkcoihA">https://www.youtube.com/watch?v=TN_yvkcoihA</a>
   </div>
   {#if ModelViewerComponent}
   <model-viewer
@@ -186,15 +185,17 @@
     auto-rotate
     poster="plane/poster.webp"
     tone-mapping="aces"
-    src="aiaa/aiaa.glb"
+    src="plane/1_nomad_2_full_assy-SOLID_01 v1.glb"
     shadow-intensity="1"
     alt="A 3D model of a shishkebab"
-    camera-orbit="-39.36deg 71.26deg 3.314m" 
+    camera-target="-100.9m -1e-11m -1446m" 
+    camera-orbit="326.4deg 165.5deg 33100m" 
     field-of-view="30deg">
   </model-viewer>
 {/if}
 
 </div>
+
 
 
 <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
