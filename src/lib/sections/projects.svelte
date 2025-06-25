@@ -128,9 +128,7 @@
         shadow-intensity="1"
         alt="A 3D model of a shishkebab"
         camera-orbit="-39.36deg 71.26deg 3.314m" 
-        field-of-view="30deg"
-        min-camera-orbit="auto auto 2m"
-        max-camera-orbit="auto auto 4m">
+        field-of-view="30deg">
       </model-viewer>
     {/if}
     </div>
