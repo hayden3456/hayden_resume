@@ -6,6 +6,15 @@
 	let canvasContainer;
 	let scene;
 	let isLoaded = false;
+	let gliderPart; // Variable to store the specific glider part
+	let sparPart1; // Variable to store the 3-4_spar_-_48-2 part
+	let sparPart2; // Variable to store the 3-4_spar_-_48-1 part
+	let sparPart3; // Variable to store the 3-4_spar-5 part
+	let sparPart4; // Variable to store the 3-4_spar-4 part
+	let sparWireframe1; // Variable to store the wireframe line for spar part 1
+	let sparWireframe2; // Variable to store the wireframe line for spar part 2
+	let sparWireframe3; // Variable to store the wireframe line for spar part 3
+	let sparWireframe4; // Variable to store the wireframe line for spar part 4
 
 	onMount(async () => {
 		if (!browser) return;
@@ -104,6 +113,20 @@
 					line.material.color.setHex(0xffffff);
 					line.layers.set(1);
 					child.add(line);
+					
+					// Store references to wireframe lines for spar parts
+					if (child.name === "Root|V2_Assem_(Glider)|3-4_spar_-_48-2|3-4_spar_-_48-2_-_Part") {
+						sparWireframe1 = line;
+					}
+					if (child.name === "Root|V2_Assem_(Glider)|3-4_spar_-_48-1|3-4_spar_-_48-1_-_Part") {
+						sparWireframe2 = line;
+					}
+					if (child.name === "Root|V2_Assem_(Glider)|3-4_spar-5|3-4_spar-5_-_Part") {
+						sparWireframe3 = line;
+					}
+					if (child.name === "Root|V2_Assem_(Glider)|3-4_spar-4|3-4_spar-4_-_Part") {
+						sparWireframe4 = line;
+					}
 				}
 			});
 			this.modelGroup.add(model);
@@ -159,6 +182,36 @@
 			object.traverse(function (child) {
 				let mat = new window.THREE.MeshPhongMaterial({ color: 0x171511, specular: 0xD0CBC7, shininess: 5, flatShading: true });
 				child.material = mat;
+				
+				// Find the specific glider part by name
+				if (child.name === "Root|V2_Assem_(Glider)|Glider_V6-1|Loft7|Loft7_-_Part") {
+					gliderPart = child;
+					console.log("Found glider part:", child.name);
+				}
+				
+				// Find the spar parts by name
+				if (child.name === "Root|V2_Assem_(Glider)|3-4_spar_-_48-2|3-4_spar_-_48-2_-_Part") {
+					sparPart1 = child;
+					console.log("Found spar part 1:", child.name);
+				}
+				if (child.name === "Root|V2_Assem_(Glider)|3-4_spar_-_48-1|3-4_spar_-_48-1_-_Part") {
+					sparPart2 = child;
+					console.log("Found spar part 2:", child.name);
+				}
+				if (child.name === "Root|V2_Assem_(Glider)|3-4_spar-5|3-4_spar-5_-_Part") {
+					sparPart3 = child;
+					console.log("Found spar part 3:", child.name);
+				}
+				if (child.name === "Root|V2_Assem_(Glider)|3-4_spar-4|3-4_spar-4_-_Part") {
+					sparPart4 = child;
+					console.log("Found spar part 4:", child.name);
+				}
+				
+				// Hide the Surface-Knit1 part completely
+				if (child.name === "Root|V2_Assem_(Glider)|Glider_V6-1|Surface-Knit1|Surface-Knit1_-_Part") {
+					child.visible = false;
+					console.log("Hidden Surface-Knit1 part:", child.name);
+				}
 			});
 
 			setupAnimation(object);
@@ -185,8 +238,16 @@
 
 		let tau = Math.PI * 2;
 
-		window.gsap.set(plane.rotation, { y: tau * -.25 });
-		window.gsap.set(plane.position, { x: 80, y: -32, z: 20 });
+		window.gsap.set(plane.rotation, { x: 0.440, y: 0.390, z: -0.180});
+		window.gsap.set(plane.position, { x: 0, y: 200, z: 150 }); // Start off-screen
+
+		// Set initial position of glider part relative to plane
+		if (gliderPart) {
+			// Position the glider where it should be attached to the plane
+			// Adjust these values to position the glider correctly on the plane
+			gliderPart.position.set(0, 0.2, -0.15); // x: center, y: slightly above, z: behind center
+			gliderPart.rotation.set(-0.3, 0, 0); // Reset rotation to align with plane
+		}
 
 		scene.render();
 
@@ -303,11 +364,13 @@
 		});
 
 		let tl = new window.gsap.timeline({
-			onUpdate: scene.render,
+			onUpdate: () => {
+				scene.render();
+			},
 			scrollTrigger: {
 				trigger: ".content",
 				scrub: true,
-				start: "top top",
+				start: "top bottom",
 				end: "bottom bottom"
 			},
 			defaults: { duration: sectionDuration, ease: 'power2.inOut' }
@@ -315,18 +378,60 @@
 
 		let delay = 0;
 
+		// Entrance animation - plane flies in from off-screen
+		tl.to(plane.position, { x: -60, y: -32, z: 50, duration: 1.5, ease: 'power2.out' }, delay);
+		tl.to(plane.rotation, { x: 0.370, y: 0.490, z: -0.530, duration: 1.5, ease: 'power2.out' }, delay);
+		
+		delay += 1.5; // Add extra delay for entrance
+
 		tl.to('.scroll-cta', { duration: 0.25, opacity: 0 }, delay);
-		tl.to(plane.position, { x: -10, ease: 'power1.in' }, delay);
+        tl.to(plane.rotation, { x: tau * .25, y: 0, z: tau * 0.03, ease: 'power1.inOut' }, delay);
+		tl.to(plane.position, { x: -10, ease: 'power1.in', y: 0, z: 0 }, delay);
 
 		delay += sectionDuration;
 
-		tl.to(plane.rotation, { x: tau * .25, y: 0, z: -tau * 0.05, ease: 'power1.inOut' }, delay);
+		tl.to(plane.rotation, { x: tau * .25, y: 0, z: -tau * 0.1, ease: 'power1.inOut' }, delay);
 		tl.to(plane.position, { x: -40, y: 0, z: -60, ease: 'power1.inOut' }, delay);
 
 		delay += sectionDuration;
 
 		tl.to(plane.rotation, { x: tau * .25, y: 0, z: tau * 0.05, ease: 'power3.inOut' }, delay);
 		tl.to(plane.position, { x: 40, y: 0, z: -60, ease: 'power2.inOut' }, delay);
+
+		// Add glider detachment animation
+		if (gliderPart) {
+			// Set glider to starting position first
+			tl.to(gliderPart.position, { 
+				x: 0, 
+				y: 0.2, 
+				z: -0.15,
+				duration: 0.1,
+				ease: 'power2.out'
+			}, delay );
+			tl.to(gliderPart.rotation, { 
+				x: -0.3, 
+				y: 0, 
+				z: 0,
+				duration: 0.1,
+				ease: 'power2.out'
+			}, delay );
+			
+			// Animate glider flying off to the right and up
+			tl.to(gliderPart.position, { 
+				x: -3, 
+				y: -1.8, 
+				z: 4.85, 
+				ease: 'power2.out' 
+			}, delay );
+			
+			// Add rotation to make it look like it's flying away
+			tl.to(gliderPart.rotation, { 
+				x: -0.6, 
+				y: -0.2, 
+				z: 0.0, 
+				ease: 'power2.out' 
+			}, delay );
+		}
 
 		delay += sectionDuration;
 
@@ -336,18 +441,160 @@
 		delay += sectionDuration;
 
 		tl.to(plane.rotation, { x: 0, z: 0, y: tau * .25 }, delay);
-		tl.to(plane.position, { x: 0, y: -10, z: 50 }, delay);
+		tl.to(plane.position, { x: 5, y: -10, z: 72 }, delay);
+
+		// Reset glider back to starting position instantly
+		if (gliderPart) {
+			tl.to(gliderPart.position, { 
+				x: 0, 
+				y: 0.2, 
+				z: -0.15,
+				duration: 0.1,
+				ease: 'power2.out'
+			}, delay);
+			tl.to(gliderPart.rotation, { 
+				x: -0.3, 
+				y: 0, 
+				z: 0,
+				duration: 0.1,
+				ease: 'power2.out'
+			}, delay);
+		}
+
+        		// Add glider detachment animation
+		if (gliderPart) {
+			// Animate glider flying off to the right and up
+			tl.to(gliderPart.position, { 
+				x: -0.25, 
+				y: -0.3, 
+				z: 0.35, 
+				ease: 'power2.out' 
+			}, delay );
+			
+			// Add rotation to make it look like it's flying away
+			tl.to(gliderPart.rotation, { 
+				x: -1.2, 
+				y: -0.8, 
+				z: -0.3, 
+				ease: 'power2.out' 
+			}, delay );
+		}
+        tl.killTweensOf(gliderPart.position, delay);
+        tl.killTweensOf(gliderPart.rotation, delay);
 
 		delay += sectionDuration;
-		delay += sectionDuration;
+
+        if (gliderPart) {
+			// COMMENTED OUT: This animation conflicts with the reset
+			// Animate glider flying off to the right and up
+			// tl.to(gliderPart.position, { 
+			// 	x: -2.25, 
+			// 	y: -1.3, 
+			// 	z: 0.35, 
+			// 	ease: 'power1.out' 
+			// }, delay);
+			
+			// Add rotation to make it look like it's flying away
+			// tl.to(gliderPart.rotation, { 
+			// 	x: -1.2, 
+			// 	y: -0.8, 
+			// 	z: -0.3, 
+			// 	ease: 'power1.out' 
+			// }, delay);
+
+		}
+
+        		// Reset spar parts to white color at the start
+		if (sparWireframe1 && sparWireframe1.material) {
+			tl.call(() => {
+				sparWireframe1.material.color.setHex(0xffffff);
+			}, null, null, delay);
+		}
+		if (sparWireframe2 && sparWireframe2.material) {
+			tl.call(() => {
+				sparWireframe2.material.color.setHex(0xffffff);
+			}, null, null, delay);
+		}
+		if (sparWireframe3 && sparWireframe3.material) {
+			tl.call(() => {
+				sparWireframe3.material.color.setHex(0xffffff);
+			}, null, null, delay);
+		}
+		if (sparWireframe4 && sparWireframe4.material) {
+			tl.call(() => {
+				sparWireframe4.material.color.setHex(0xffffff);
+			}, null, null, delay); 
+		}
+
+        // Reset glider to original position
+        if (gliderPart) {
+			tl.to(gliderPart.position, { 
+				x: 0, 
+				y: 0.2, 
+				z: -0.15,
+				duration: 0.1,
+				ease: 'power2.out'
+			}, delay );
+			tl.to(gliderPart.rotation, { 
+				x: -0.3, 
+				y: 0, 
+				z: 0,
+				duration: 0.1,
+				ease: 'power2.out'
+			}, delay );
+		}
 
 		tl.to(plane.rotation, { x: tau * 0.25, y: tau * .5, z: 0, ease: 'power4.inOut' }, delay);
-		tl.to(plane.position, { z: 30, ease: 'power4.inOut' }, delay);
+		tl.to(plane.position, { z: 60, y :10, ease: 'power4.inOut' }, delay);
+
+		// Make spar parts turn red
+		if (sparWireframe1 && sparWireframe1.material) {
+			tl.call(() => {
+				sparWireframe1.material.color.setHex(0xff0000);
+			}, null, null, delay);
+		}
+		if (sparWireframe2 && sparWireframe2.material) {
+			tl.call(() => {
+				sparWireframe2.material.color.setHex(0xff0000);
+			}, null, null, delay);
+		}
+		if (sparWireframe3 && sparWireframe3.material) {
+			tl.call(() => {
+				sparWireframe3.material.color.setHex(0xff0000);
+			}, null, null, delay);
+		}
+		if (sparWireframe4 && sparWireframe4.material) {
+			tl.call(() => {
+				sparWireframe4.material.color.setHex(0xff0000);
+			}, null, null, delay);
+		}
 
 		delay += sectionDuration;
 
 		tl.to(plane.rotation, { x: tau * 0.25, y: tau * .5, z: 0, ease: 'power4.inOut' }, delay);
 		tl.to(plane.position, { z: 60, x: 30, ease: 'power4.inOut' }, delay);
+
+		// Return spar parts to normal color
+		if (sparWireframe1 && sparWireframe1.material) {
+			tl.call(() => {
+				sparWireframe1.material.color.setHex(0xffffff);
+			}, null, null, delay);
+		}
+		if (sparWireframe2 && sparWireframe2.material) {
+			tl.call(() => {
+				sparWireframe2.material.color.setHex(0xffffff);
+			}, null, null, delay);
+		}
+		if (sparWireframe3 && sparWireframe3.material) {
+			tl.call(() => {
+				sparWireframe3.material.color.setHex(0xffffff);
+			}, null, null, delay);
+		}
+		if (sparWireframe4 && sparWireframe4.material) {
+			tl.call(() => {
+				sparWireframe4.material.color.setHex(0xffffff);
+			}, null, null, delay);
+		}
 
 		delay += sectionDuration;
 
@@ -375,30 +622,30 @@
 		<div class="loading" class:hidden={isLoaded}>Loading</div>
 		<div class="trigger"></div>
 		<div class="section">
-			<h1>Airplanes.</h1>
-			<h3>The beginners guide.</h3>
-			<p>You've probably forgotten what these are.</p>
+			<h3>American Association of Aeronautics and Astronautics RC Competition.</h3>
+			<h3>Overview</h3>
+			<p>We built a 6ft rc plane and glider from the ground up for the AIAA competion. It consisted of 3 main missions:</p>
 			<div class="scroll-cta">Scroll</div>
 		</div>
 		
 		<div class="section right">
-			<h2>They're kinda like buses...</h2>
+			<h2>1- Flying laps under time pressure</h2>
 		</div>
 		
 		<div class="ground-container">
 			<div class="parallax ground"></div>
-			<div class="section right">
-				<h2>..except they leave the ground.</h2>
-				<p>Saaay what!?.</p>
+			<div class="section right optimize-section">
+				<h2>2- Optimize Speed and Weight Capacity</h2>
+				<p>Ability to carry extra payloads</p>
 			</div>
 
 			<div class="section">
-				<h2>They fly through the sky.</h2>
-				<p>For realsies!</p>
+				<h2>3- Deploy an Autonomous Glider</h2>
+				<p>The glider must land at a specific target</p>
 			</div>
 			
 			<div class="section right">
-				<h2>Defying all known physical laws.</h2>
+				<h2>Bonus 4- Passing all inspection tests </h2>
 				<p>It's actual magic!</p>
 			</div>
 			<div class="parallax clouds"></div>
@@ -415,8 +662,9 @@
 				<p>Lets get into the nitty gritty...</p>
 			</div>
 			<div class="section dark length">
-				<h2>Length.</h2>
-				<p>Long.</p>
+				<h2>Glider</h2>
+				<p>Momentary switch triggered on release.</p>
+                <p>GPS enabled, Ardupilot Autopilot, Sub 250 Grams</p>
 			</div>
 			<div class="section dark wingspan">
 				<h2>Wing Span.</h2>
@@ -454,7 +702,11 @@
 	}
 
 	:global(.plane-animation svg) {
-		z-index: 100;
+		z-index: 30;
+	}
+    :global(.optimize-section) {
+		z-index: 50 !important;
+        position: relative
 	}
 
 	:root {
@@ -508,7 +760,6 @@
 
 	.canvas-container :global(canvas) {
 		position: fixed;
-		z-index: 10;
 		top: 0;
 		left: 0;
 		z-index: 2;
@@ -555,6 +806,17 @@
 	
 	.content .section.right {
 		text-align: right;
+	}
+	
+	.content .section.optimize-section {
+		z-index: 50 !important;
+        position: relative
+	}
+	
+	.content .section.optimize-section h2,
+	.content .section.optimize-section p {
+		z-index: 51 !important;
+        position: relative
 	}
 	
 	.content .blueprint {
