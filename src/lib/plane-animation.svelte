@@ -393,7 +393,7 @@
 				x: -3, 
 				y: -1.8, 
 				z: 4.85, 
-				ease: 'power2.out' 
+				ease: 'power2.in' 
 			}, delay );
 			
 			// Add rotation to make it look like it's flying away
@@ -401,7 +401,7 @@
 				x: -0.6, 
 				y: -0.2, 
 				z: 0.0, 
-				ease: 'power2.out' 
+				ease: 'power2.in' 
 			}, delay );
 		}
 
@@ -421,14 +421,14 @@
 				x: 0, 
 				y: 0.2, 
 				z: -0.15,
-				duration: 0.1,
+				duration: 1,
 				ease: 'power2.out'
 			}, delay);
 			tl.to(gliderPart.rotation, { 
 				x: -0.3, 
 				y: 0, 
 				z: 0,
-				duration: 0.1,
+				duration: 1,
 				ease: 'power2.out'
 			}, delay);
 		}
@@ -663,10 +663,10 @@
         </div>
 		<div class="loading" class:hidden={isLoaded}>Loading</div>
 		<div class="trigger"></div>
-		<div class="section" style="height: 50px; padding: 10px;">
+		<div class="section" style="height: 50px; padding: 70px;">
 			<div class="divider"></div>
 		</div>
-		<div class="section ">
+		<div class="section">
 			<h3>American Association of Aeronautics and Astronautics RC Competition.</h3>
 			<h3>Overview</h3>
 			<p>We built a 6ft rc plane and glider from the ground up for the AIAA competion. It consisted of 3 main missions:</p>
@@ -790,7 +790,7 @@
 		margin: 0;
 		min-height: 100%;
 		min-width: 100%;
-		font-family: "Libre Baskerville", serif;
+		font-family: "Inter", sans-serif;
 		background-color: var(--color-background);
 		font-weight: 400;
 		font-size: var(--font-size-normal);

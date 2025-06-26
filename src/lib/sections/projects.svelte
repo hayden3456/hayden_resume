@@ -70,7 +70,7 @@
     <div class="relative mx-auto max-w-7xl px-4 md:px-6">
       <div
         class="parallax absolute
-        -top-24 right-48 z-0 h-full w-full bg-[url('/images/keyboard.webp')] bg-contain bg-no-repeat opacity-50 bg-blend-normal drop-shadow [--parallax-speed:5] sm:right-24 sm:bg-auto md:-right-[10vw] lg:opacity-100"
+        -top-24 right-48 z-0 min-h-screen h-full w-full bg-[url('/images/keyboard.webp')] bg-contain bg-no-repeat opacity-50 bg-blend-normal drop-shadow [--parallax-speed:5] sm:right-24 sm:bg-auto md:-right-[10vw] lg:opacity-100"
       ></div>
       <div>
       <a id="projects">
@@ -89,11 +89,13 @@
       >
         A few I've built with more information on request. 
       </p>
-      
-      <div class="w-screen -mx-40 md:-mx-40">
-        <PlaneAnimation />
-      </div>
-      
+    </div>
+    
+    <div class="w-full">
+      <PlaneAnimation />
+    </div>
+    
+    <div class="relative mx-auto max-w-7xl px-4 md:px-6">
       <div
         class="relative mx-auto space-y-12 overflow-hidden via-90% pb-4 sm:pt-8 text-slate-300"
       >
