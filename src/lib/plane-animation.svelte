@@ -15,6 +15,10 @@
 	let sparWireframe2; // Variable to store the wireframe line for spar part 2
 	let sparWireframe3; // Variable to store the wireframe line for spar part 3
 	let sparWireframe4; // Variable to store the wireframe line for spar part 4
+	let smartBottle3; // Variable to store the smart_bottle-3 part
+	let smartBottle4; // Variable to store the smart_bottle-4 part
+	let smartBottle3Wireframe; // Variable to store the wireframe line for smart bottle 3
+	let smartBottle4Wireframe; // Variable to store the wireframe line for smart bottle 4
 
 	onMount(async () => {
 		if (!browser) return;
@@ -127,6 +131,13 @@
 					if (child.name === "Root|V2_Assem_(Glider)|3-4_spar-4|3-4_spar-4_-_Part") {
 						sparWireframe4 = line;
 					}
+					// Store references to wireframe lines for smart bottle parts
+					if (child.name === "Root|V2_Assem_(Glider)|smart_bottle-3|smart_bottle-3_-_Part") {
+						smartBottle3Wireframe = line;
+					}
+					if (child.name === "Root|V2_Assem_(Glider)|MirrorComponent1|smart_bottle-4|smart_bottle-4_-_Part") {
+						smartBottle4Wireframe = line;
+					}
 				}
 			});
 			this.modelGroup.add(model);
@@ -173,8 +184,6 @@
 		window.gsap.registerPlugin(window.ScrollTrigger);
 		window.gsap.registerPlugin(window.DrawSVGPlugin);
 		window.gsap.set('#line-length', { drawSVG: 0 });
-		window.gsap.set('#line-wingspan', { drawSVG: 0 });
-		window.gsap.set('#circle-phalange', { drawSVG: 0 });
 
 		var object;
 
@@ -211,6 +220,16 @@
 				if (child.name === "Root|V2_Assem_(Glider)|Glider_V6-1|Surface-Knit1|Surface-Knit1_-_Part") {
 					child.visible = false;
 					console.log("Hidden Surface-Knit1 part:", child.name);
+				}
+				
+				// Find the smart bottle parts by name
+				if (child.name === "Root|V2_Assem_(Glider)|smart_bottle-3|smart_bottle-3_-_Part") {
+					smartBottle3 = child;
+					console.log("Found smart bottle 3:", child.name);
+				}
+				if (child.name === "Root|V2_Assem_(Glider)|MirrorComponent1|smart_bottle-4|smart_bottle-4_-_Part") {
+					smartBottle4 = child;
+					console.log("Found smart bottle 4:", child.name);
 				}
 			});
 
@@ -310,25 +329,6 @@
 			}
 		});
 
-		window.gsap.to('#line-wingspan', {
-			drawSVG: 100,
-			scrollTrigger: {
-				trigger: ".wingspan",
-				scrub: true,
-				start: "top 25%",
-				end: "bottom 50%"
-			}
-		});
-
-		window.gsap.to('#circle-phalange', {
-			drawSVG: 100,
-			scrollTrigger: {
-				trigger: ".phalange",
-				scrub: true,
-				start: "top 50%",
-				end: "bottom 100%"
-			}
-		});
 
 		window.gsap.to('#line-length', {
 			opacity: 0,
@@ -341,27 +341,8 @@
 			}
 		});
 
-		window.gsap.to('#line-wingspan', {
-			opacity: 0,
-			drawSVG: 0,
-			scrollTrigger: {
-				trigger: ".wingspan",
-				scrub: true,
-				start: "top top",
-				end: "bottom top"
-			}
-		});
+	
 
-		window.gsap.to('#circle-phalange', {
-			opacity: 0,
-			drawSVG: 0,
-			scrollTrigger: {
-				trigger: ".phalange",
-				scrub: true,
-				start: "top top",
-				end: "bottom top"
-			}
-		});
 
 		let tl = new window.gsap.timeline({
 			onUpdate: () => {
@@ -569,10 +550,32 @@
 			}, null, null, delay);
 		}
 
+
 		delay += sectionDuration;
 
-		tl.to(plane.rotation, { x: tau * 0.25, y: tau * .5, z: 0, ease: 'power4.inOut' }, delay);
+		tl.to(plane.rotation, { x: tau * 0.25, y: tau * .5, z: 1.7, ease: 'power4.inOut' }, delay);
 		tl.to(plane.position, { z: 60, x: 30, ease: 'power4.inOut' }, delay);
+
+        
+		// Animate smart bottle parts moving
+		if (smartBottle3) {
+			tl.to(smartBottle3.position, { 
+				x: smartBottle3.position.x + 0, 
+				y: smartBottle3.position.y -0.6 , 
+				z: smartBottle3.position.z + 0,
+				duration: 0.5,
+				ease: 'power2.out'
+			}, delay);
+		}
+		if (smartBottle4) {
+			tl.to(smartBottle4.position, { 
+				x: smartBottle4.position.x + 0, 
+				y: smartBottle4.position.y - 0.6, 
+				z: smartBottle4.position.z + 0,
+				duration: 0.5,
+				ease: 'power2.out'
+			}, delay);
+		}
 
 		// Return spar parts to normal color
 		if (sparWireframe1 && sparWireframe1.material) {
@@ -596,10 +599,32 @@
 			}, null, null, delay);
 		}
 
+	
 		delay += sectionDuration;
 
-		tl.to(plane.rotation, { x: tau * 0.35, y: tau * .75, z: tau * 0.6, ease: 'power4.inOut' }, delay);
+		tl.to(plane.rotation, { x: tau * .35, y: tau * .75, z: tau * 0.6, ease: 'power4.inOut' }, delay);
 		tl.to(plane.position, { z: 100, x: 20, y: 0, ease: 'power4.inOut' }, delay);
+
+	// Return smart bottle parts to original position
+		if (smartBottle3) {
+			tl.to(smartBottle3.position, { 
+				x: smartBottle3.position.x + 0, 
+				y: smartBottle3.position.y + 0, 
+				z: smartBottle3.position.z + 0,
+				duration: 0.5,
+				ease: 'power2.in'
+			}, delay);
+		}
+		if (smartBottle4) {
+			tl.to(smartBottle4.position, { 
+				x: smartBottle4.position.x - 0, 
+				y: smartBottle4.position.y + 0, 
+				z: smartBottle4.position.z - 0,
+				duration: 0.5,
+				ease: 'power2.in'
+			}, delay);
+		}
+
 
 		delay += sectionDuration;
 
@@ -610,22 +635,50 @@
 
 		tl.to(plane.rotation, { duration: sectionDuration, x: -tau * 0.05, y: tau, z: -tau * 0.1, ease: 'none' }, delay);
 		tl.to(plane.position, { duration: sectionDuration, x: 0, y: 30, z: 320, ease: 'power1.in' }, delay);
+        if (gliderPart) {
+			tl.to(gliderPart.position, { 
+				x: gliderPart.position.x - 0.8, 
+				y: gliderPart.position.y - 1.2, 
+				z: gliderPart.position.z + 0.5,
+				duration: 0.5,
+				ease: 'power2.out'
+			}, delay);
+			
+			// Add rotation to make it look like it's falling away
+			tl.to(gliderPart.rotation, { 
+				x: gliderPart.rotation.x - 0.4, 
+				y: gliderPart.rotation.y - 0.2, 
+				z: gliderPart.rotation.z + 0.1,
+				duration: 0.5,
+				ease: 'power2.out'
+			}, delay);
+		}
 
 		tl.to(scene.light.position, { duration: sectionDuration, x: 0, y: 0, z: 0 }, delay);
 	}
 </script>
 
 <div class="plane-animation">
+
 	<div class="canvas-container" bind:this={canvasContainer}></div>
 	
 	<div class="content">
+        <div class="custom-shape-divider-top-1750914341">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+            </svg>
+        </div>
 		<div class="loading" class:hidden={isLoaded}>Loading</div>
 		<div class="trigger"></div>
-		<div class="section">
+		<div class="section" style="height: 50px; padding: 10px;">
+			<div class="divider"></div>
+		</div>
+		<div class="section ">
 			<h3>American Association of Aeronautics and Astronautics RC Competition.</h3>
 			<h3>Overview</h3>
 			<p>We built a 6ft rc plane and glider from the ground up for the AIAA competion. It consisted of 3 main missions:</p>
-			<div class="scroll-cta">Scroll</div>
 		</div>
 		
 		<div class="section right">
@@ -646,7 +699,7 @@
 			
 			<div class="section right">
 				<h2>Bonus 4- Passing all inspection tests </h2>
-				<p>It's actual magic!</p>
+				<p></p>
 			</div>
 			<div class="parallax clouds"></div>
 		</div>
@@ -654,39 +707,34 @@
 		<div class="blueprint">
 			<svg width="100%" height="100%" viewBox="0 0 100 100">
 				<line id="line-length" x1="10" y1="80" x2="90" y2="80" stroke-width="0.5"></line>
-				<path id="line-wingspan" d="M10 50, L40 35, M60 35 L90 50" stroke-width="0.5"></path>
-				<circle id="circle-phalange" cx="60" cy="60" r="15" fill="transparent" stroke-width="0.5"></circle>
 			</svg>
 			<div class="section dark">
 				<h2>The facts and figures.</h2>
 				<p>Lets get into the nitty gritty...</p>
 			</div>
 			<div class="section dark length">
-				<h2>Glider</h2>
+				<h2>Glider.</h2>
 				<p>Momentary switch triggered on release.</p>
                 <p>GPS enabled, Ardupilot Autopilot, Sub 250 Grams</p>
 			</div>
 			<div class="section dark wingspan">
-				<h2>Wing Span.</h2>
-				<p>I dunno, longer than a cat probably.</p>
+				<h2>Wings.</h2>
+				<p>Carbon fiber spars and balsa ribs provide strength and lightness.</p>
 			</div>
 			<div class="section dark phalange">
-				<h2>Left Phalange</h2>
-				<p>Missing</p>
+				<h2>Removable Payload</h2>
+				<p>To simulate removable fuel tanks.</p>
 			</div>
 			<div class="section dark">
-				<h2>Engines</h2>
-				<p>Turbine funtime</p>
+				<h2>All Missions Accomplished</h2>
+				<p>A lot of failing and learning along the way.</p>
 			</div>
 		</div>
 		<div class="sunset">
 			<div class="section"></div>
 			<div class="section end">
-				<h2>Fin.</h2>
-				<ul class="credits">
-					<li>Plane model by <a href="https://poly.google.com/view/8ciDd9k8wha" target="_blank">Google</a></li>
-					<li>Animated using <a href="https://greensock.com/scrolltrigger/" target="_blank">GSAP ScrollTrigger</a></li>
-				</ul>
+				<h3>I'll keep the rest of the projects mentioned here brief, but please don't hesitate to reach out and ask. I love to talk about all my adventures.</h3>
+				
 			</div>
 		</div>
 	</div>
@@ -818,6 +866,27 @@
 		z-index: 51 !important;
         position: relative
 	}
+
+    .content .custom-shape-divider-top-1750914341 {
+    position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .content .custom-shape-divider-top-1750914341 svg {
+            position: relative;
+            display: block;
+            width: calc(125% + 1.3px);
+            height: 135px;
+        }
+
+        .content .custom-shape-divider-top-1750914341 .shape-fill {
+            fill: #1E293B;
+        }
+
 	
 	.content .blueprint {
 		position: relative;

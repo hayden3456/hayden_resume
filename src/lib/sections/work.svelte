@@ -137,7 +137,7 @@
         <p 
         class="mb-16 pr-24 text-2xl font-medium leading-tight tracking-tight text-slate-300 md:text-3xl lg:w-1/2"
     >
-        My name is <span class="font-bold">Hayden Constas</span>. I'm an electrical engineer with a background in entrepreneurship. As I search for my Ikiagi, heres the journey I've been on so far. 
+        My name is <span class="font-bold">Hayden Constas</span>. I'm an electrical engineer with a background in entrepreneurship. I've learned a lot the hard way, and am always looking forward to the next challege. Here's the journey I've been on so far. 
     </p>
     
 		</a>

@@ -70,7 +70,7 @@
     <div class="relative mx-auto max-w-7xl px-4 md:px-6">
       <div
         class="parallax absolute
-        -top-24 right-48 z-0 -mx-96 h-full w-full bg-[url('/images/keyboard.webp')] bg-contain bg-no-repeat opacity-50 bg-blend-normal drop-shadow [--parallax-speed:5] sm:right-24 sm:bg-auto md:-right-[10vw] lg:opacity-100"
+        -top-24 right-48 z-0 h-full w-full bg-[url('/images/keyboard.webp')] bg-contain bg-no-repeat opacity-50 bg-blend-normal drop-shadow [--parallax-speed:5] sm:right-24 sm:bg-auto md:-right-[10vw] lg:opacity-100"
       ></div>
       <div>
       <a id="projects">
@@ -85,7 +85,7 @@
       </a>
     </div>
       <p
-        class="relative z-20 mb-24 text-pretty pr-24 text-2xl font-medium leading-tight tracking-tight text-slate-300 drop-shadow-lg md:text-3xl lg:w-1/2"
+        class="relative z-20 mb-64 text-pretty pr-24 text-2xl font-medium leading-tight tracking-tight text-slate-300 drop-shadow-lg md:text-3xl lg:w-1/2"
       >
         A few I've built with more information on request. 
       </p>
@@ -112,33 +112,17 @@
         </div>
     </div>
   
-    <div transition:fly="{{ x: -400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
+    <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
       <div>
-        <h2 class="text-5xl font-bold mb-4">AIAA Build Design Fly Competion</h2>
-        <p>Currently in the process of designing a 6ft RC plane to compete in Arizona at the end of the school year with both domestic and international teams. 
-          <br><br>
-          I'm leading the 20 person team to design and meet all mission requirements as efficiently as possible. 
-        </p>
+          <h2 class="text-5xl font-bold mb-4">Custom Shirts</h2>
+          <p>In the effort to get my engineering firm off the ground, we created custom shirts to become cashflow positive. 
+            <br><br>
+            While nothing technical, I learned what building a brand meant to people. </p>
       </div>
-      {#if ModelViewerComponent}
-      <model-viewer
-        class="model"
-        id="reveal"
-        loading="eager"
-        camera-controls
-        touch-action="pan-y"
-        auto-rotate
-        poster="plane/poster.webp"
-        tone-mapping="aces"
-        src="aiaa/aiaa.glb"
-        shadow-intensity="1"
-        alt="A 3D model of a shishkebab"
-        camera-orbit="-39.36deg 71.26deg 3.314m" 
-        field-of-view="30deg">
-      </model-viewer>
-    {/if}
+    <div class = "carousel">
+      <Carousel/>
     </div>
-  
+    </div>
   
   <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
     <div id="pipe" class = "text-center"></div>
@@ -210,18 +194,6 @@
   </div>
 </div>
 
-<div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
-  <div>
-      <h2 class="text-5xl font-bold mb-4">Custom Shirts</h2>
-      <p>In the effort to get my engineering firm off the ground, we created custom shirts to become cashflow positive. 
-        <br><br>
-        While nothing technical, I learned what building a brand meant to people. </p>
-  </div>
-<div class = "carousel">
-  <Carousel/>
-</div>
-</div>
-
   </div>
   </div>
   </div>
@@ -257,6 +229,24 @@
       opacity: 0;
     }
   }
+
+  .custom-shape-divider-top-1750914341 {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1750914341 svg {
+    position: relative;
+    display: block;
+    width: calc(125% + 1.3px);
+    height: 135px;
+}
+
+.custom-shape-divider-top-1750914341 .shape-fill {
+    fill: #1E293B;
+}
 
   /* .carousel{
     height: 700px;
