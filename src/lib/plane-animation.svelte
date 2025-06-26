@@ -20,6 +20,21 @@
 	let smartBottle3Wireframe; // Variable to store the wireframe line for smart bottle 3
 	let smartBottle4Wireframe; // Variable to store the wireframe line for smart bottle 4
 
+	// Function to detect mobile devices
+	function isMobile() {
+		if (!browser) return false;
+		return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+	}
+
+	// Function to get z-offset for mobile devices
+	function getZOffset(baseZ) {
+		if (isMobile()) {
+			// For mobile, bring objects closer to camera (higher z values)
+			return baseZ + 180;
+		}
+		return baseZ;
+	}
+
 	onMount(async () => {
 		if (!browser) return;
 
@@ -251,7 +266,7 @@
 		let tau = Math.PI * 2;
 
 		window.gsap.set(plane.rotation, { x: 0.440, y: 0.390, z: -0.180});
-		window.gsap.set(plane.position, { x: 0, y: 200, z: 150 }); // Start off-screen
+		window.gsap.set(plane.position, { x: 0, y: 200, z: getZOffset(150) }); // Start off-screen
 
 		// Set initial position of glider part relative to plane
 		if (gliderPart) {
@@ -351,24 +366,24 @@
 		let delay = 0;
 
 		// Entrance animation - plane flies in from off-screen
-		tl.to(plane.position, { x: -60, y: -32, z: 50, duration: 1.5, ease: 'power2.out' }, delay);
+		tl.to(plane.position, { x: -60, y: -32, z: getZOffset(50), duration: 1.5, ease: 'power2.out' }, delay);
 		tl.to(plane.rotation, { x: 0.370, y: 0.490, z: -0.530, duration: 1.5, ease: 'power2.out' }, delay);
 		
 		delay += 1.5; // Add extra delay for entrance
 
 		tl.to('.scroll-cta', { duration: 0.25, opacity: 0 }, delay);
         tl.to(plane.rotation, { x: tau * .25, y: 0, z: tau * 0.03, ease: 'power1.inOut' }, delay);
-		tl.to(plane.position, { x: -10, ease: 'power1.in', y: 0, z: 0 }, delay);
+		tl.to(plane.position, { x: -10, ease: 'power1.in', y: 0, z: getZOffset(0) }, delay);
 
 		delay += sectionDuration;
 
 		tl.to(plane.rotation, { x: tau * .25, y: 0, z: -tau * 0.1, ease: 'power1.inOut' }, delay);
-		tl.to(plane.position, { x: -40, y: 0, z: -60, ease: 'power1.inOut' }, delay);
+		tl.to(plane.position, { x: -40, y: 0, z: getZOffset(-60) }, delay);
 
 		delay += sectionDuration;
 
 		tl.to(plane.rotation, { x: tau * .25, y: 0, z: tau * 0.05, ease: 'power3.inOut' }, delay);
-		tl.to(plane.position, { x: 40, y: 0, z: -60, ease: 'power2.inOut' }, delay);
+		tl.to(plane.position, { x: 40, y: 0, z: getZOffset(-60) }, delay);
 
 		// Add glider detachment animation
 		if (gliderPart) {
@@ -408,12 +423,12 @@
 		delay += sectionDuration;
 
 		tl.to(plane.rotation, { x: tau * .2, y: 0, z: -tau * 0.1, ease: 'power3.inOut' }, delay);
-		tl.to(plane.position, { x: -40, y: 0, z: -30, ease: 'power2.inOut' }, delay);
+		tl.to(plane.position, { x: -40, y: 0, z: getZOffset(-30) }, delay);
 
 		delay += sectionDuration;
 
 		tl.to(plane.rotation, { x: 0, z: 0, y: tau * .25 }, delay);
-		tl.to(plane.position, { x: 5, y: -10, z: 72 }, delay);
+		tl.to(plane.position, { x: 5, y: -10, z: getZOffset(72) }, delay);
 
 		// Reset glider back to starting position instantly
 		if (gliderPart) {
@@ -517,7 +532,7 @@
 		}
 
 		tl.to(plane.rotation, { x: tau * 0.25, y: tau * .5, z: 0, ease: 'power4.inOut' }, delay);
-		tl.to(plane.position, { z: 60, y :10, ease: 'power4.inOut' }, delay);
+		tl.to(plane.position, { z: getZOffset(60), y :10, ease: 'power4.inOut' }, delay);
 
 		// Make spar parts turn red
 		if (sparWireframe1 && sparWireframe1.material) {
@@ -545,7 +560,7 @@
 		delay += sectionDuration;
 
 		tl.to(plane.rotation, { x: tau * 0.25, y: tau * .5, z: 1.7, ease: 'power4.inOut' }, delay);
-		tl.to(plane.position, { z: 60, x: 30, ease: 'power4.inOut' }, delay);
+		tl.to(plane.position, { z: getZOffset(60), x: 30, ease: 'power4.inOut' }, delay);
 
         
 		// Animate smart bottle parts moving
@@ -594,7 +609,7 @@
 		delay += sectionDuration;
 
 		tl.to(plane.rotation, { x: tau * .35, y: tau * .75, z: tau * 0.6, ease: 'power4.inOut' }, delay);
-		tl.to(plane.position, { z: 100, x: 20, y: 0, ease: 'power4.inOut' }, delay);
+		tl.to(plane.position, { z: getZOffset(100), x: 20, y: 0, ease: 'power4.inOut' }, delay);
 
 	// Return smart bottle parts to original position
 		if (smartBottle3) {
@@ -620,12 +635,12 @@
 		delay += sectionDuration;
 
 		tl.to(plane.rotation, { x: tau * 0.15, y: tau * .85, z: -tau * 0, ease: 'power1.in' }, delay);
-		tl.to(plane.position, { z: -150, x: 0, y: 0, ease: 'power1.inOut' }, delay);
+		tl.to(plane.position, { z: getZOffset(-150), x: 0, y: 0, ease: 'power1.inOut' }, delay);
 
 		delay += sectionDuration;
 
 		tl.to(plane.rotation, { duration: sectionDuration, x: -tau * 0.05, y: tau, z: -tau * 0.1, ease: 'none' }, delay);
-		tl.to(plane.position, { duration: sectionDuration, x: 0, y: 30, z: 320, ease: 'power1.in' }, delay);
+		tl.to(plane.position, { duration: sectionDuration, x: 0, y: 30, z: getZOffset(320), ease: 'power1.in' }, delay);
         if (gliderPart) {
 			tl.to(gliderPart.position, { 
 				x: gliderPart.position.x - 0.8, 
