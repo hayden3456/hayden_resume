@@ -828,11 +828,12 @@
 		height: 100%;
 	}
 	
+	
 	.content .section {
 		position: relative;
 		padding: var(--padding);
 		--pad2: calc(var(--padding) * 2);
-		width: calc(100vw - var(--pad2));
+		
 		height: calc(100vh - var(--pad2));
 		margin: 0 auto;
 		z-index: 2;
