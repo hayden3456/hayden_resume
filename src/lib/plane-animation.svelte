@@ -43,17 +43,12 @@
 		
 		// Load GSAP
 		if (!window.gsap) {
-			await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.1/gsap.min.js');
+			await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js');
 		}
 		
 		// Load ScrollTrigger
 		if (!window.ScrollTrigger) {
-			await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.1/ScrollTrigger.min.js');
-		}
-		
-		// Load DrawSVG Plugin
-		if (!window.DrawSVGPlugin) {
-			await loadScript('https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/DrawSVGPlugin3.min.js');
+			await loadScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js');
 		}
 	}
 
@@ -182,8 +177,6 @@
 
 	function loadModel() {
 		window.gsap.registerPlugin(window.ScrollTrigger);
-		window.gsap.registerPlugin(window.DrawSVGPlugin);
-		window.gsap.set('#line-length', { drawSVG: 0 });
 
 		var object;
 
@@ -320,7 +313,7 @@
 		});
 
 		window.gsap.to('#line-length', {
-			drawSVG: 100,
+			strokeDashoffset: 0,
 			scrollTrigger: {
 				trigger: ".length",
 				scrub: true,
@@ -329,10 +322,8 @@
 			}
 		});
 
-
 		window.gsap.to('#line-length', {
 			opacity: 0,
-			drawSVG: 0,
 			scrollTrigger: {
 				trigger: ".length",
 				scrub: true,
@@ -706,7 +697,7 @@
 		
 		<div class="blueprint">
 			<svg width="100%" height="100%" viewBox="0 0 100 100">
-				<line id="line-length" x1="10" y1="80" x2="90" y2="80" stroke-width="0.5"></line>
+				<line id="line-length" x1="10" y1="95" x2="90" y2="95" stroke-width="0.5" class="drawing-line"></line>
 			</svg>
 			<div class="section dark">
 				<h2>The facts and figures.</h2>
@@ -988,5 +979,11 @@
 	.loading.hidden {
 		opacity: 0;
 		pointer-events: none;
+	}
+
+	.drawing-line {
+		stroke-dasharray: 80;
+		stroke-dashoffset: 80;
+		transition: stroke-dashoffset 0.5s ease;
 	}
 </style>
