@@ -30,7 +30,7 @@
 			class="font-['Roboto_Mono'] font-medium leading-none tracking-tight text-slate-600 drop-shadow"
 		>
 			<span class="font-normal text-slate-500/15"></span>&nbsp;&nbsp;&nbsp;&nbsp;Nice to meet you, my name's <span
-				class="text-indigo-500/50">Hayden</span
+				class="text-slate-700">Hayden</span
 			>
 			<span
 				class="cursor active font-['Roboto_Mono'] text-slate-500/30"
@@ -38,14 +38,26 @@
 			>
 		</p>
 
-
-
-
-		<button
-			class="mt-16 flex items-center gap-1 rounded-full bg-slate-700 py-2 pl-6 pr-5 text-sm font-bold tracking-widest text-slate-300 shadow-lg shadow-slate-700/10 transition-all duration-500 ease-in-out hover:brightness-125"
-			onclick={() => modal.visible.set(true)}
-			>CONTACT ME
-			<svg
+		<div class="mt-16 flex items-center gap-4">
+			<button
+				class="flex items-center gap-1 rounded-full bg-slate-700 py-2 pl-6 pr-5 text-sm font-bold tracking-widest text-slate-300 shadow-lg shadow-slate-700/10 transition-all duration-500 ease-in-out hover:brightness-125"
+				onclick={() => modal.visible.set(true)}
+				>CONTACT ME
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="3"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg
+				>
+			</button>
+			<a href="/coorstek" class="flex items-center gap-1 rounded-full bg-slate-700 py-2 pl-6 pr-5 text-sm font-bold tracking-widest text-slate-300 shadow-lg shadow-slate-700/10 transition-all duration-500 ease-in-out hover:brightness-125">If you're Josh from CoorsTek, click here :)
+				<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="20"
 				height="20"
@@ -56,8 +68,8 @@
 				stroke-linecap="round"
 				stroke-linejoin="round"
 				class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg
-			>
-		</button>
+			></a>
+		</div>
 	</div>
 	<div
 		class="relative z-40 h-[40vh] w-full min-w-[100vh] bg-cover bg-top md:mt-44 xl:h-[50vh]"

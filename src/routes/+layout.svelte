@@ -77,9 +77,9 @@
 				<ol class="flex flex-col gap-2 font-medium leading-loose tracking-tight">
 					<li><button onclick={toggleModal}>Contact Me</button></li>
 					<!-- <li><a href="#skills">SKILLS</a></li> -->
-					<li><a href="#work">Work</a></li>
-					<li><a href="#projects">Projects</a></li>
-					<li><a href="#education">Education</a></li>
+					<li><a href="/#work">Work</a></li>
+					<li><a href="/#projects">Projects</a></li>
+					<li><a href="/#education">Education</a></li>
 				</ol>
 			</li>
 			<li>

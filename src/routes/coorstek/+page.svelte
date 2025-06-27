@@ -1,11 +1,6 @@
 <script>
     import { onMount } from 'svelte';
 
-    let linesvg;
-    let motionSVG;
-    let tractor;
-    let motionPath;
-
     onMount(() => {
       const gsapScript = document.createElement('script');
       gsapScript.src = 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js';
@@ -13,54 +8,15 @@
         const scrollTriggerScript = document.createElement('script');
         scrollTriggerScript.src = 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.js';
         scrollTriggerScript.onload = () => {
-          const motionPathScript = document.createElement('script');
-          motionPathScript.src = 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.js';
-          motionPathScript.onload = () => {
-            const gsap = window.gsap;
-            gsap.registerPlugin(window.ScrollTrigger, window.MotionPathPlugin);
+          const gsap = window.gsap;
+          gsap.registerPlugin(window.ScrollTrigger);
 
-            // Initial setup
-            gsap.set(linesvg, { opacity: 1 });
-            gsap.set(motionSVG, { scale: 0.7, autoAlpha: 1 });
-            gsap.set(tractor, { transformOrigin: "50% 50%" });
-
-            let rotateTo = gsap.quickTo(tractor, "rotation");
-            let prevDirection = 0;
-
-            // Main animation with controlled speed
-            gsap.to(motionSVG, {
-              scrollTrigger: {
-                trigger: motionPath,
-                start: "top center",
-                end: () => "+=" + motionPath.getBoundingClientRect().height,
-                scrub: 1.5, // Increased scrub value for slower movement
-                markers: true,
-                onUpdate: self => {
-                  if (prevDirection !== self.direction) {
-                    rotateTo(self.direction === 1 ? 0 : -180);
-                    prevDirection = self.direction;
-                  }
-                }
-              },
-              ease: "none", // Use linear easing for consistent speed
-              immediateRender: true,
-              motionPath: {
-                path: motionPath,
-                align: motionPath,
-                alignOrigin: [0.5, 0.5],
-                autoRotate: 90,
-                useRadians: false,
-              }
-            });
-
-            // Progress bar animation
-            gsap.to('progress', {
-              value: 100,
-              ease: 'none',
-              scrollTrigger: { scrub: 0.3 }
-            });
-          };
-          document.body.appendChild(motionPathScript);
+          // Progress bar animation
+          gsap.to('progress', {
+            value: 100,
+            ease: 'none',
+            scrollTrigger: { scrub: 0.3 }
+          });
         };
         document.body.appendChild(scrollTriggerScript);
       };
@@ -258,7 +214,7 @@
     }
 
     /* Make the ball more visible */
-    #tractor circle {
+    #ball circle {
       filter: drop-shadow(0 0 10px rgba(71, 85, 105, 0.8));
     }
 
@@ -466,8 +422,8 @@
     <section class="hero-section">
       <h1>Systems Analyst - Integrations Specialist</h1>
       <p class="hero-description">
-        Welcome to my custom website showcasing how I meet all the qualifications for the Systems Analyst - Integrations Specialist position. 
-        Scroll through to see my experience and capabilities in action! 🚀
+        Thank you for taking the time vist my page showcasing how I meet the qualifications for the Systems Analyst position at CoorsTek. 
+        Please scroll through to see my experiences as they relate to the job! 🚀
       </p>
     </section>
 
@@ -625,11 +581,11 @@
       <div class="text-content">
         <h2>SOAP/REST APIs</h2>
         <p>"Proven experience with SOAP/REST APIs and working with JSON/XML data formats. Skilled in API development, testing, and integration."</p>
-        <p class="personal-text">Having built full stack applications I've built and integrated REST APIs. Here is one example of a REST FastAPI I built for a agentic sales tool that goes through a mongoDB data base with 130M documents to return custom leads to the user.</p>
+        <p class="personal-text">Having built full stack applications I've built and integrated REST APIs. Here is one example of a REST FastAPI I built for a full stack agentic sales tool that returns custom leads to the user.</p>
       </div>
       <div >
         <iframe 
-          src="/src/lib/api_demo.svelte" 
+          src="/api_demo.html" 
           class="w-full h-full rounded-lg border-0"
           style="width: 100%; height: 500px;"
           title="API Documentation Demo"
@@ -700,44 +656,19 @@
         I'm excited to bring my integration expertise and passion for learning to CoorsTek. 
         Let's build amazing solutions together! 🌟
       </p>
+      <div style="margin-top: 2rem; text-align: center;">
+        <a href="/" class="back-button" style="
+          display: inline-block;
+          padding: 0.75rem 1.5rem;
+          background-color: #6b7280;
+          color: white;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 500;
+          transition: background-color 0.2s ease;">
+          ← Back to Main Page
+        </a>
+      </div>
     </section>
   </div>
-  
-  <svg 
-    bind:this={linesvg}
-    id="linesvg" 
-    opacity="0" 
-    xmlns="http://www.w3.org/2000/svg" 
-    xmlns:xlink="http://www.w3.org/1999/xlink" 
-    x="0px" 
-    y="0px" 
-    viewBox="0 0 869 12000" 
-    xml:space="preserve"
-  >
-    <defs>
-      <linearGradient id="pathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" style="stop-color:#475569;stop-opacity:1" />
-        <stop offset="20%" style="stop-color:#64748b;stop-opacity:1" />
-        <stop offset="40%" style="stop-color:#94a3b8;stop-opacity:1" />
-        <stop offset="60%" style="stop-color:#cbd5e1;stop-opacity:1" />
-        <stop offset="80%" style="stop-color:#e2e8f0;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#f1f5f9;stop-opacity:1" />
-      </linearGradient>
-    </defs>
-    <style type="text/css">
-      .st0{fill:none;stroke:url(#pathGradient);stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-    </style>
-    <path 
-      bind:this={motionPath}
-      id="motionPath" 
-      class="st0" 
-      d="M390,800.24 L390,1350.24 450,1350.24 450,2162.192 390,2162.192 390,3297.072 L835,3697.072 L835,4824.816 L10,4824.816 L10,6000 L835,6000 L835,7200 L10,7200 L10,8400 L835,8400 L835,9600 L10,9600 L10,10800 L835,10800 L835,12000 L10,12000" 
-    />
-    
-      <g bind:this={motionSVG} id="motionSVG">
-      <g bind:this={tractor} id="tractor">
-        <circle cx="25" cy="25" r="20" fill="url(#pathGradient)" />
-      </g>
-    </g>
-  </svg>
   
