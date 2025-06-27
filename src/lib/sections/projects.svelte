@@ -5,22 +5,14 @@
   } from 'svelte/transition';
   import Carousel from "$lib/Carousel.svelte"
   import PlaneAnimation from '$lib/plane-animation.svelte';
+  import AircraftViewer from '$lib/aircraft-viewer.svelte';
   
     import { onMount } from 'svelte';
     import { activateOnScroll } from '$lib/util';
-    let ModelViewerComponent;
-  
-  
-    onMount(async () => {
-      if (typeof window !== 'undefined') {
-        await import('@google/model-viewer');
-        ModelViewerComponent = true;
-      }
-    });
-  
+
     onMount(() => {
     // Function to handle parallax effect for an element
-    function applyParallax(e, elem) {
+    function applyParallax(e: MouseEvent, elem: HTMLElement) {
       const _w = window.innerWidth / 2;
       const _h = window.innerHeight / 2;
       const _mouseX = e.clientX;
@@ -39,18 +31,18 @@
     const parallaxElem4 = document.querySelector("#board");
   
     // Add event listener for mousemove
-    function handleParallax(e) {
+    function handleParallax(e: MouseEvent) {
       if (parallaxElem1) {
-        applyParallax(e, parallaxElem1);
+        applyParallax(e, parallaxElem1 as HTMLElement);
       }
       if (parallaxElem2) {
-        applyParallax(e, parallaxElem2);
+        applyParallax(e, parallaxElem2 as HTMLElement);
       }
       if (parallaxElem3) {
-        applyParallax(e, parallaxElem3);
+        applyParallax(e, parallaxElem3 as HTMLElement);
       }
       if (parallaxElem4) {
-        applyParallax(e, parallaxElem4);
+        applyParallax(e, parallaxElem4 as HTMLElement);
       }
     }
   
@@ -154,7 +146,7 @@
 
 
 <div transition:fly="{{ x: -400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
-  <div>
+  <div class="w-2/5">
     <h2 class="text-5xl font-bold mb-4">Brokered Aircraft Sales</h2>
     <p>Brokered for an old VTFF (Vertical Takeoff, Forward Flight) 
       aircraft design to be sold to OEM aircraft manufacturers. 
@@ -165,25 +157,9 @@
     </p>
     <a class = "text-blue-300" href="https://www.youtube.com/watch?v=TN_yvkcoihA">https://www.youtube.com/watch?v=TN_yvkcoihA</a>
   </div>
-  {#if ModelViewerComponent}
-  <model-viewer
-    class="model"
-    id="reveal"
-    loading="eager"
-    camera-controls
-    touch-action="pan-y"
-    auto-rotate
-    poster="plane/poster.webp"
-    tone-mapping="aces"
-    src="plane/1_nomad_2_full_assy-SOLID_01 v1.glb"
-    shadow-intensity="1"
-    alt="A 3D model of a shishkebab"
-    camera-target="-100.9m -1e-11m -1446m" 
-    camera-orbit="326.4deg 165.5deg 33100m" 
-    field-of-view="30deg">
-  </model-viewer>
-{/if}
-
+  <div class="text-center w-3/5">
+    <AircraftViewer />
+  </div>
 </div>
 
 

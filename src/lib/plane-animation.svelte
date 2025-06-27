@@ -30,7 +30,7 @@
 	function getZOffset(baseZ) {
 		if (isMobile()) {
 			// For mobile, bring objects closer to camera (higher z values)
-			return baseZ + 9;
+			return baseZ + 10;
 		}
 		return baseZ;
 	}
