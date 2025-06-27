@@ -24,6 +24,10 @@
     });
   </script>
   
+  <svelte:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </svelte:head>
+  
   <style>
     progress {
       position: fixed;
@@ -219,10 +223,15 @@
     }
 
     @media (max-width: 768px) {
+      section {
+        padding: 2rem 1rem;
+        min-height: auto;
+      }
+
       .qualification-section,
       .qualification-section-reverse {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
       }
       
       .text-content {
@@ -232,13 +241,51 @@
       }
       
       .image-placeholder {
-        height: 300px;
+        height: 250px;
         order: 2;
+      }
+
+      h1 {
+        font-size: 2.5rem !important;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+      }
+
+      h2 {
+        font-size: 2rem !important;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1rem !important;
+        line-height: 1.5;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      .hero-description {
+        font-size: 1rem !important;
+        line-height: 1.5;
+        padding: 0 1rem;
+      }
+
+      .personal-text {
+        font-size: 1.1rem !important;
+        line-height: 1.4;
+        margin-top: 1rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      .job-description-section {
+        padding: 1rem;
       }
 
       .job-card {
         padding: 1.5rem;
-        margin: 0 1rem;
+        margin: 0;
+        border-radius: 10px;
       }
 
       .job-header h2 {
@@ -248,27 +295,83 @@
       .job-title {
         font-size: 1.4rem;
         letter-spacing: 1px;
+        word-wrap: break-word;
       }
 
       .job-overview p {
         font-size: 1rem;
+        line-height: 1.5;
       }
 
       .job-section h3 {
         font-size: 1.3rem;
+        line-height: 1.3;
       }
 
       .job-section li {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         padding: 0.4rem 0 0.4rem 1.2rem;
+        line-height: 1.4;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
       }
 
       .job-section p {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
+        line-height: 1.4;
       }
 
       .job-note {
-        font-size: 0.8rem !important;
+        font-size: 0.85rem !important;
+        line-height: 1.4;
+      }
+
+      /* Fix video and iframe responsiveness */
+      video, iframe {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 300px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Progress bar mobile fix */
+      progress {
+        height: 10px;
+      }
+    }
+
+    /* Additional mobile styles for very small screens */
+    @media (max-width: 480px) {
+      section {
+        padding: 1.5rem 0.75rem;
+      }
+
+      h1 {
+        font-size: 2rem !important;
+      }
+
+      h2 {
+        font-size: 1.7rem !important;
+      }
+
+      .personal-text {
+        font-size: 1rem !important;
+      }
+
+      .job-card {
+        padding: 1rem;
+      }
+
+      .job-header h2 {
+        font-size: 1.7rem;
+      }
+
+      .job-title {
+        font-size: 1.2rem;
       }
     }
 
