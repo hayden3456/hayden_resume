@@ -1,119 +1,70 @@
 <script>
     import { onMount } from 'svelte';
-    import { gsap } from 'gsap';
 
     let linesvg;
     let motionSVG;
     let tractor;
     let motionPath;
 
-    onMount(async () => {
-      // Import GSAP plugins dynamically
-      const { MotionPathPlugin } = await import('gsap/MotionPathPlugin');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      
-      // Register GSAP plugins
-      gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
+    onMount(() => {
+      const gsapScript = document.createElement('script');
+      gsapScript.src = 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js';
+      gsapScript.onload = () => {
+        const scrollTriggerScript = document.createElement('script');
+        scrollTriggerScript.src = 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.js';
+        scrollTriggerScript.onload = () => {
+          const motionPathScript = document.createElement('script');
+          motionPathScript.src = 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.js';
+          motionPathScript.onload = () => {
+            const gsap = window.gsap;
+            gsap.registerPlugin(window.ScrollTrigger, window.MotionPathPlugin);
 
-      // Helper function for path easing
-      function pathEase(path, config = {}) {
-        let axis = config.axis || "y";
-        let precision = config.precision || 1;
-        let rawPath = MotionPathPlugin.cacheRawPathMeasurements(
-          MotionPathPlugin.getRawPath(gsap.utils.toArray(path)[0]), 
-          Math.round(precision * 12)
-        );
-        let useX = axis === "x";
-        let start = rawPath[0][useX ? 0 : 1];
-        let end = rawPath[rawPath.length - 1][rawPath[rawPath.length-1].length - (useX ? 2 : 1)];
-        let range = end - start;
-        let l = Math.round(precision * 200);
-        let inc = 1 / l;
-        let positions = [0];
-        let a = [0];
-        let minIndex = 0;
-        let smooth = [0];
-        let minChange = (1 / l) * 0.6;
-        let smoothRange = config.smooth === true ? 7 : Math.round(config.smooth) || 0;
-        let fullSmoothRange = smoothRange * 2;
+            // Initial setup
+            gsap.set(linesvg, { opacity: 1 });
+            gsap.set(motionSVG, { scale: 0.7, autoAlpha: 1 });
+            gsap.set(tractor, { transformOrigin: "50% 50%" });
 
-        let getClosest = p => {
-          while (positions[minIndex] <= p && minIndex++ < l) { }
-          a.push((p - positions[minIndex-1]) / (positions[minIndex] - positions[minIndex - 1]) * inc + minIndex * inc);
-          smoothRange && a.length > smoothRange && (a[a.length - 1] - a[a.length - 2] < minChange) && smooth.push(a.length - smoothRange);
+            let rotateTo = gsap.quickTo(tractor, "rotation");
+            let prevDirection = 0;
+
+            // Main animation with controlled speed
+            gsap.to(motionSVG, {
+              scrollTrigger: {
+                trigger: motionPath,
+                start: "top center",
+                end: () => "+=" + motionPath.getBoundingClientRect().height,
+                scrub: 1.5, // Increased scrub value for slower movement
+                markers: true,
+                onUpdate: self => {
+                  if (prevDirection !== self.direction) {
+                    rotateTo(self.direction === 1 ? 0 : -180);
+                    prevDirection = self.direction;
+                  }
+                }
+              },
+              ease: "none", // Use linear easing for consistent speed
+              immediateRender: true,
+              motionPath: {
+                path: motionPath,
+                align: motionPath,
+                alignOrigin: [0.5, 0.5],
+                autoRotate: 90,
+                useRadians: false,
+              }
+            });
+
+            // Progress bar animation
+            gsap.to('progress', {
+              value: 100,
+              ease: 'none',
+              scrollTrigger: { scrub: 0.3 }
+            });
+          };
+          document.body.appendChild(motionPathScript);
         };
-
-        let i = 1;
-        for (; i < l; i++) {
-          positions[i] = (MotionPathPlugin.getPositionOnPath(rawPath, i / l)[axis] - start) / range;
-        }
-        positions[l] = 1;
-        for (i = 0; i < l; i++) {
-          getClosest(i / l);
-        }
-        a.push(1);
-
-        if (smoothRange) {
-          smooth.push(l-fullSmoothRange+1);
-          smooth.forEach(i => {
-            let start = a[i];
-            let j = Math.min(i + fullSmoothRange, l);
-            let inc = (a[j] - start) / (j - i);
-            let c = 1;
-            i++;
-            for (; i < j; i++) {
-              a[i] = start + inc * c++;
-            }
-          });
-        }
-        l = a.length-1;
-        return p => {
-          let i = p * l;
-          let s = a[i | 0];
-          return i ? s + (a[Math.ceil(i)] - s) * (i % 1) : 0;
-        };
-      }
-
-      // Initial setup
-      gsap.set(linesvg, { opacity: 1 });
-      gsap.set(motionSVG, { scale: 0.7, autoAlpha: 1 });
-      gsap.set(tractor, { transformOrigin: "50% 50%" });
-
-      let rotateTo = gsap.quickTo(tractor, "rotation");
-      let prevDirection = 0;
-
-      // Main animation with controlled speed
-      gsap.to(motionSVG, {
-        scrollTrigger: {
-          trigger: motionPath,
-          start: "top center",
-          end: () => "+=" + motionPath.getBoundingClientRect().height,
-          scrub: 1.5, // Increased scrub value for slower movement
-          markers: true,
-          onUpdate: self => {
-            if (prevDirection !== self.direction) {
-              rotateTo(self.direction === 1 ? 0 : -180);
-              prevDirection = self.direction;
-            }
-          }
-        },
-        ease: "none", // Use linear easing for consistent speed
-        immediateRender: true,
-        motionPath: {
-          path: motionPath,
-          align: motionPath,
-          alignOrigin: [0.5, 0.5],
-          autoRotate: 90,
-          useRadians: false,
-        }
-      });
-
-      // Progress bar animation
-      gsap.to('progress', {
-        value: 100,
-        ease: 'none',
-        scrollTrigger: { scrub: 0.3 }
-      });
+        document.body.appendChild(scrollTriggerScript);
+      };
+      document.body.appendChild(gsapScript);
     });
   </script>
   
