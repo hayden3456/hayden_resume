@@ -525,7 +525,7 @@
     <section class="hero-section">
       <h1>Systems Analyst - Integrations Specialist</h1>
       <p class="hero-description">
-        Thank you for taking the time vist my page showcasing how I meet the qualifications for the Systems Analyst position at CoorsTek. 
+        Thank you for taking the time to visit my page showcasing how I meet the qualifications for the Systems Analyst position at CoorsTek. 
         Please scroll through to see my experiences as they relate to the job! 🚀
       </p>
     </section>
@@ -660,7 +660,7 @@
       <div class="text-content">
         <h2>Communication & Teamwork</h2>
         <p>"Strong communication and teamwork skills. Experience collaborating with cross-functional teams and stakeholders to deliver successful integration solutions."</p>
-        <p class="personal-text">I love working with teams and bridging the gap between the technical and non-technical. That's where real creativity happens, because there's no certain answer. Here I am running a entreponuership workshop at Mines</p>
+        <p class="personal-text">I love working with teams and bridging the gap between the technical and non-technical. That's where real creativity happens, because there's no certain answer. Here I am running an entrepreneurship workshop at Mines</p>
       </div>
       <div >
         <img src="/images/me.gif" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
@@ -672,7 +672,7 @@
       <div class="text-content">
         <h2>Analytical & Problem-Solving</h2>
         <p>"Excellent analytical and problem-solving skills with meticulous attention to detail. Proven ability to troubleshoot complex integration issues."</p>
-        <p class="personal-text">My work in the phisical world has made it clear, there aren't error codes when a wire is missing. I've learned to be creative which pays dividends in challenging integration issues. </p>
+        <p class="personal-text">My work in the physical world has made it clear, there aren't error codes when a wire is missing. I've learned to be creative which pays dividends in challenging integration issues. </p>
       </div>
       <div >
         <img src="/images/circuits.jpg" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
