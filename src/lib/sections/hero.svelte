@@ -18,7 +18,7 @@
 			}
 			
 			// Check if user is in Texas
-			if (data.countryCode === 'US' && data.region === 'TX' || data.region === 'IL') {
+			if (data.countryCode === 'US' && (data.region === 'TX' || data.region === 'IL' || data.region === 'PA')) {
 				showShieldAIButton = true;
 			}
 		} catch (error) {

@@ -156,7 +156,10 @@
 		});
 		
 		manager.onProgress = (item, loaded, total) => console.log(item, loaded, total);
-		manager.onError = (url) => console.error('Error loading:', url);
+		manager.onError = (url) => {
+			console.error('Error loading:', url);
+			console.error('Full error details:', arguments);
+		};
 
 		// Try to load the OBJ file
 		var loader = new window.THREE.OBJLoader(manager);
@@ -164,28 +167,17 @@
 			console.log('OBJ model loaded:', obj);
 			scene = new AircraftViewer();
 			scene.addModel(obj);
-		}, undefined, function (error) {
+		}, function (progress) {
+			console.log('Loading progress:', progress);
+		}, function (error) {
 			console.error('Error loading OBJ model:', error);
-			// Create a simple cube as fallback
-			console.log('Creating fallback cube');
-			scene = new AircraftViewer();
-			const geometry = new window.THREE.BoxGeometry(1, 1, 1);
-			const material = new window.THREE.MeshPhongMaterial({ color: 0x00ff00 });
-			const cube = new window.THREE.Mesh(geometry, material);
-			scene.addModel(cube);
+			console.error('Error details:', {
+				message: error.message,
+				stack: error.stack,
+				type: error.type
+			});
+			// Don't create fallback cube - just log the error
 		});
-		
-		// Add a timeout fallback in case loading takes too long
-		setTimeout(() => {
-			if (!scene) {
-				console.log('Loading timeout - creating fallback cube');
-				scene = new AircraftViewer();
-				const geometry = new window.THREE.BoxGeometry(1, 1, 1);
-				const material = new window.THREE.MeshPhongMaterial({ color: 0xff0000 });
-				const cube = new window.THREE.Mesh(geometry, material);
-				scene.addModel(cube);
-			}
-		}, 5000); // 5 second timeout
 	}
 </script>
 
