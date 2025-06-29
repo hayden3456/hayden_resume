@@ -5,7 +5,7 @@
   } from 'svelte/transition';
   import Carousel from "$lib/Carousel.svelte"
   import PlaneAnimation from '$lib/plane-animation.svelte';
-  import AircraftViewer from '$lib/aircraft-viewer.svelte';
+  import VtolViewer from '$lib/vtol-viewer.svelte';
   
     import { onMount } from 'svelte';
     import { activateOnScroll } from '$lib/util';
@@ -158,7 +158,7 @@
     <a class = "text-blue-300" href="https://www.youtube.com/watch?v=TN_yvkcoihA">https://www.youtube.com/watch?v=TN_yvkcoihA</a>
   </div>
   <div class="text-center w-3/5">
-    <AircraftViewer />
+    <VtolViewer/>
   </div>
 </div>
 

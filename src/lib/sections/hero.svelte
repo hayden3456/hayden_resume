@@ -1,8 +1,37 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { onMount } from 'svelte';
 
 	let modal: { visible: Writable<boolean> } = getContext('modal');
+	let showCoorsTekButton = false;
+	let showShieldAIButton = false;
+
+	async function checkUserLocation() {
+		try {
+			const response = await fetch('http://ip-api.com/json/');
+			const data = await response.json();
+			
+			// Check if user is in Colorado or Illinois
+			if (data.countryCode === 'US' && (data.region === 'CO')) {
+				showCoorsTekButton = true;
+			}
+			
+			// Check if user is in Texas
+			if (data.countryCode === 'US' && data.region === 'TX' || data.region === 'IL') {
+				showShieldAIButton = true;
+			}
+		} catch (error) {
+			console.error('Error fetching location:', error);
+			// Fallback: show buttons if geolocation fails (for development/testing)
+			showCoorsTekButton = true;
+			showShieldAIButton = true;
+		}
+	}
+
+	onMount(() => {
+		checkUserLocation();
+	});
 </script>
 
 <div
@@ -56,19 +85,36 @@
 					class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg
 				>
 			</button>
-			<a href="/coorstek" class="flex items-center gap-1 rounded-full bg-slate-700 py-2 pl-6 pr-5 text-sm font-bold tracking-widest text-slate-300 shadow-lg shadow-slate-700/10 transition-all duration-500 ease-in-out hover:brightness-125">If you're Josh from CoorsTek, click here :)
-				<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="20"
-				height="20"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="3"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg
-			></a>
+			{#if showCoorsTekButton}
+				<a href="/coorstek" class="flex items-center gap-1 rounded-full bg-slate-700 py-2 pl-6 pr-5 text-sm font-bold tracking-widest text-slate-300 shadow-lg shadow-slate-700/10 transition-all duration-500 ease-in-out hover:brightness-125">If you're Josh from CoorsTek, click here :)
+					<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="3"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg
+				></a>
+			{/if}
+			{#if showShieldAIButton}
+				<a href="/shieldai" class="flex items-center gap-1 rounded-full bg-slate-700 py-2 pl-6 pr-5 text-sm font-bold tracking-widest text-slate-300 shadow-lg shadow-slate-700/10 transition-all duration-500 ease-in-out hover:brightness-125">If you're from ShieldAI, click here :)
+					<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="3"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg
+				></a>
+			{/if}
 		</div>
 	</div>
 	<div

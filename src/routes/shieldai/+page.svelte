@@ -1,4 +1,5 @@
 <script>
+    import RcViewer from '$lib/rc-viewer.svelte';
     import { onMount } from 'svelte';
 
     onMount(() => {
@@ -375,6 +376,18 @@
       }
     }
 
+    #board {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('/images/board.png'), url('/images/board_design.png');
+    background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
+    background-position: 50% 50%, 50% 50%; /* Center both images */
+    background-size: 80% auto, cover; /* Make panda1 smaller and panda2 fill the container */
+    transform: scale(0.7);
+  }
+  
+
     .job-description-section {
       padding: 2rem 5vw;
       display: flex;
@@ -523,9 +536,9 @@
   <div class="min-h-screen bg-gradient-to-b from-[#fcedd1] via-[#fae4c9] via-[#f8d8c1] via-[#f7c6b1] to-slate-800">
     <!-- Hero Section -->
     <section class="hero-section">
-      <h1>Systems Analyst - Integrations Specialist</h1>
+      <h1>Electrical Test & Rapid Prototype Engineer</h1>
       <p class="hero-description">
-        Thank you for taking the time to visit my page showcasing how I meet the qualifications for the Systems Analyst position at CoorsTek. 
+        Thank you for taking the time to visit my page showcasing how I meet the qualifications for the Electrical Test & Rapid Prototype Engineer position at Shield AI. 
         Please scroll through to see my experiences as they relate to the job! 🚀
       </p>
     </section>
@@ -535,173 +548,68 @@
       <div class="job-card">
         <div class="job-header">
           <h2>Job Description</h2>
-          <div class="job-title">Systems Analyst - Integrations Specialist</div>
+          <div class="job-title">Electrical Test & Rapid Prototype Engineer</div>
         </div>
         
         <div class="job-overview">
-          <p>We're looking for a System Analyst who can grow into owning our integrations. In this role, you'll design, build, test, and deploy connections between our core business systems—starting with support in our current ERP and moving on to integrations in our new ERP and other applications. You'll work with Boomi (training provided) alongside APIs (SOAP/REST), data formats like JSON and XML, and SQL for data queries. We also need someone who's curious about Agentic AI and ready to explore how AI-driven automation can improve our processes.</p>
+          <p>As an Electrical Engineer on our Hardware Test team, you’ll have the opportunity to design and automate test systems that validate everything from power electronics to RF communications. You'll work hands-on with PCB design, Python scripting, and advanced environmental testing (HASS, ESS, HALT) to ensure the highest standards of reliability. If you're passionate about building rock-solid hardware and thrive in a fast-paced, multidisciplinary environment, this role is for you.</p>
         </div>
 
         <div class="job-section">
-          <h3>Responsibilities</h3>
+          <h3>What you'll do</h3>
           <ul>
-            <li>Build, test, and deploy integrations between corporate applications using Boomi.</li>
-            <li>Create and maintain API connections (SOAP/REST) and data mappings (JSON/XML).</li>
-            <li>Write and optimize SQL queries to validate, transform, and troubleshoot data flows.</li>
-            <li>Translate business needs into clear technical steps for integration work.</li>
-            <li>Troubleshoot and fix data-flow issues to keep systems in sync.</li>
-            <li>Document all integration steps for hand-offs and future updates.</li>
-            <li>Keep up with new Boomi features and best practices.</li>
-            <li>Work closely with internal teams and external partners to launch integrations smoothly.</li>
-            <li>Follow data security and compliance guidelines at every stage.</li>
+            <li>Design and own test systems for critical UAV components and subsystems, from concept to validation.</li>
+            <li>Work across multiple EE disciplines, including power electronics, RF, communications, and system integration.</li>
+            <li>Develop PCBs to interface between test stands and the device-under-test (DUT).</li>
+            <li>Build custom test fixtures integrating relays, PLCs, PCBAs, and harnessing for automated and high-fidelity testing.</li>
+            <li>Automate test sequences using Python, ensuring repeatability, efficiency, and scalability.</li>
+            <li>Collaborate in cross-functional design reviews, advocating for testability improvements that streamline hardware validation.</li>
+            <li>Adapt and innovate in a fast-moving, high-stakes environment, where your work directly impacts mission success.</li>
           </ul>
         </div>
 
         <div class="job-section">
-          <h3>Qualifications</h3>
+          <h3>Required Qualifications</h3>
           <ul>
-            <li>Growth mindset with curiosity driven desire to learn new technologies.</li>
-            <li>Knowledge of Agentic AI concepts or a strong willingness to learn how AI agents can drive automation.</li>
-            <li>Clear, organized documentation habits.</li>
-            <li>Understanding of the software development lifecycle and change-management basics (required).</li>
-            <li>Ability to manage multiple tasks, work independently, and collaborate cross-functionally.</li>
-            <li>Strong communication and teamwork skills.</li>
-            <li>Excellent analytical and problem-solving skills, with meticulous attention to detail.</li>
-            <li>Proven experience with SOAP/REST APIs and working with JSON/XML data formats.</li>
-            <li>Familiarity with or eagerness to learn integrations for Workday, Salesforce, Coupa, QAD, SAP, and Apriso.</li>
-            <li>Experience (or coursework) in an ERP system such as SAP (preferred).</li>
-            <li>Proficient in SQL—able to write complex queries, joins, and basic performance tuning.</li>
-            <li>Hands-on experience or strong interest in Boomi (your work here will help you grow).</li>
+            <li>B.S. in Electrical Engineering or equivalent hands-on experience OR you are an undergraduate, graduate or PhD student expected to graduate in 2025.</li>
+            <li>Strong foundation in electrical, mechanical, and software engineering principles.</li>
+            <li>Experience in multidisciplinary hardware projects—through internships, jobs, clubs, personal projects, or research.</li>
+            <li>A track record of ownership, innovation, and delivering results in complex technical environments.</li>
+            <li>A team-first mindset, holding yourself and others to high standards, while being adaptable and solution-oriented.</li>
+            <li>A track record of working hard, being a trustworthy teammate, and being kind to others.</li>
+          </ul>
+        </div>
+
+        <div class="job-section">
+          <h3>Preferred Qualifications</h3>
+          <ul>
+            <li>Proficiency in Python or other scripting languages for automation.</li>
+            <li>Experience with PCB design tools (Altium, KiCAD, Eagle, etc.).</li>
+            <li>Familiarity with CAD tools (SolidWorks, NX, CATIA) for mechanical fixture design.</li>
+            <li>Ability to problem-solve under pressure and pivot quickly in a dynamic, fast-paced engineering environment.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Growth Mindset -->
+    <!-- Electrical Engineering Foundation -->
     <section class="qualification-section">
       <div class="text-content">
-        <h2>Growth Mindset</h2>
-        <p>"Growth mindset with curiosity-driven desire to learn new technologies. Continuously expanding skillset and staying current with industry trends and best practices."</p>
-        <p class="personal-text">This is possibly my strongest attribute. This image is one example out of my whole life showing the team at an engineering firm I built late at night. Each new project required me to learn from serverless architectures to infant microbiomes. </p>
+        <h2>Electrical Engineering Foundation</h2>
+        <p>"B.S. in Electrical Engineering" + "Strong foundation in electrical, mechanical, and software engineering principles."</p>
+        <p class="personal-text">My EE degree from Colorado School of Mines along with my entrepreneurial projects have led to me creating across the engineering fields from SaaS websites to joysticks for CAT scan technicians. </p>
       </div>
       <div class="image-placeholder">
-        <img src="/images/pg_working.jpg" alt="Learning & Growth" class="w-full h-full object-cover rounded-lg" />
+        <img src="/images/circuits.jpg" alt="PCB Design Project" class="w-full h-full object-cover rounded-lg" />
       </div>
     </section>
 
-    <!-- AI Concepts -->
+    <!-- Multidisciplinary Hardware Projects -->
     <section class="qualification-section-reverse">
       <div class="text-content">
-        <h2>Agentic AI Concepts</h2>
-        <p>"Knowledge of Agentic AI concepts and strong willingness to learn how AI agents can drive automation. Excited to explore AI-powered integration solutions."</p>
-        <p class="personal-text">Agentic systems are going to be huge. I've done my far share of projects such as making King Soopers shopping lists off their sales API. To the left is an email bot that both scrapped the internet for the right leads for me and indicated a custom outreach campaign. </p>
-      </div>
-      <div>
-        <video 
-          src="/video/email_demo.mp4" 
-          class="rounded-2xl w-full h-full object-cover"
-          autoplay 
-          muted 
-          loop
-          playsinline
-          style="width: 100%; height: 500px;"
-        ></video>
-      </div>
-    </section>
-
-    <!-- Documentation -->
-    <section class="qualification-section">
-      <div class="text-content">
-        <h2>Documentation Excellence</h2>
-        <p>"Clear, organized documentation habits. Experience creating technical specifications, user guides, and integration documentation for maintainable solutions."</p>
-        <p class="personal-text">I believe great documentation is the foundation of maintainable systems. One trait I find helpful is always putting complex logic into a visual format. It helps me trace back my thoughts, and explain the system to a new person. </p>
-      </div>
-      <div class="image-placeholder">
-        <iframe 
-          width="768" 
-          height="432" 
-          src="https://miro.com/app/live-embed/uXjVKl9ynqA=/?embedMode=view_only_without_ui&moveToViewport=-6318,-3527,13565,6773&embedId=708113086286" 
-          frameborder="0" 
-          scrolling="no" 
-          allow="fullscreen; clipboard-read; clipboard-write" 
-          allowfullscreen
-          title="Documentation and Process Flow Diagram"
-        ></iframe>
-      </div>
-    </section>
-
-    <!-- SDLC Understanding -->
-    <section class="qualification-section-reverse">
-      <div class="text-content">
-        <h2>Software Development Lifecycle</h2>
-        <p>"Understanding of the software development lifecycle and change-management basics. Experience with agile methodologies and version control systems."</p>
-        <p class="personal-text">I've worked with agile teams setting up a CI/CD pipeline in my software development internship. Having shot myself in the foot with version control I deeply understand the value it brings.</p>
-      </div>
-      
-      <div class="" style="transform: scale(0.8); transform-origin: center;">
-        <img src="/images/smiling_with_board.jpg" alt="Fast Development Cycle" class="w-full h-full object-cover rounded-lg" />
-      </div>
-    </section>
-
-    <!-- Task Management -->
-    <section class="qualification-section">
-      <div class="text-content">
-        <h2>Project Management</h2>
-        <p>"Ability to manage multiple tasks, work independently, and collaborate cross-functionally. Proven track record of delivering projects on time and within scope."</p>
-        <p class="personal-text">Having worked at a few companies, I've gotten the chance to experience more management styles than some do in a whole career. I've seen what works and where miscommunication happens. To the right is a high level Gantt chart for a 9 month long RC plane project.</p>
-      </div>
-      <div >
-        <img src="/images/gant.png" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
-      </div>
-    </section>
-
-    <!-- Communication Skills -->
-    <section class="qualification-section-reverse">
-      <div class="text-content">
-        <h2>Communication & Teamwork</h2>
-        <p>"Strong communication and teamwork skills. Experience collaborating with cross-functional teams and stakeholders to deliver successful integration solutions."</p>
-        <p class="personal-text">I love working with teams and bridging the gap between the technical and non-technical. That's where real creativity happens, because there's no certain answer. Here I am running an entrepreneurship workshop at Mines</p>
-      </div>
-      <div >
-        <img src="/images/me.gif" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
-      </div>
-    </section>
-
-    <!-- Analytical Skills -->
-    <section class="qualification-section">
-      <div class="text-content">
-        <h2>Analytical & Problem-Solving</h2>
-        <p>"Excellent analytical and problem-solving skills with meticulous attention to detail. Proven ability to troubleshoot complex integration issues."</p>
-        <p class="personal-text">My work in the physical world has made it clear, there aren't error codes when a wire is missing. I've learned to be creative which pays dividends in challenging integration issues. </p>
-      </div>
-      <div >
-        <img src="/images/circuits.jpg" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
-      </div>
-    </section>
-
-    <!-- API Experience -->
-    <section class="qualification-section-reverse">
-      <div class="text-content">
-        <h2>SOAP/REST APIs</h2>
-        <p>"Proven experience with SOAP/REST APIs and working with JSON/XML data formats. Skilled in API development, testing, and integration."</p>
-        <p class="personal-text">Having built full stack applications I've built and integrated REST APIs. Here is one example of a REST FastAPI I built for a full stack agentic sales tool that returns custom leads to the user.</p>
-      </div>
-      <div >
-        <iframe 
-          src="/api_demo.html" 
-          class="w-full h-full rounded-lg border-0"
-          style="width: 100%; height: 500px;"
-          title="API Documentation Demo"
-        ></iframe>
-      </div>
-    </section>
-
-    <!-- Integration Platforms -->
-    <section class="qualification-section">
-      <div class="text-content">
-        <h2>Integration Platforms</h2>
-        <p>"Familiarity and eagerness to learn integrations for Workday, Salesforce, Coupa, QAD, SAP, and Apriso. Ready to adapt to new integration technologies."</p>
-        <p class="personal-text">I'm excited to work with enterprise integration platforms and learn new technologies. I include this video to show how I went from knowing nothing about aerodynamics to being able to help design a whole system that integrated together.</p>
+        <h2>Multidisciplinary Hardware Projects</h2>
+        <p>"Experience in multidisciplinary hardware projects—through internships, jobs, clubs, personal projects, or research."</p>
+        <p class="personal-text">I include this video to show how I went from knowing nothing about aerodynamics to being able to help design a whole system that integrated together. It's exciting working with those who've mastered whole worlds you didn't know existed. </p>
       </div>
       <div>
         <video 
@@ -716,48 +624,106 @@
       </div>
     </section>
 
-    <!-- ERP Experience -->
-    <section class="qualification-section-reverse">
-      <div class="text-content">
-        <h2>ERP System Experience</h2>
-        <p>"Experience and coursework in ERP systems including SAP (preferred), with understanding of enterprise resource planning workflows and processes."</p>
-        <p class="personal-text">I've studied ERP systems and understand their importance in enterprise operations. I'm confident in my ability to learn the SAP system inside and out very quickly.</p>
-      </div>
-      <div >
-        <img src="/images/learning.gif" alt="Learning & Growth" style="width: 60%; height: 100%; object-fit: cover; border-radius: 8px;" />
-      </div>
-    </section>
-
-    <!-- SQL Proficiency -->
+    <!-- Innovation & Ownership -->
     <section class="qualification-section">
-      <div class="text-content">
-        <h2 style="color: white;">SQL Expertise</h2>
-        <p style="color: white;">"Proficient in SQL with ability to write complex queries, joins, and basic performance tuning. Experienced in database optimization and data manipulation."</p>
-        <p class="personal-text" style="color: white;">I've worked with SQL databases for a few years now for my own projects. And have seen what enterprise database systems are capable of in my internship.</p>
+        <div class="text-content">
+            <h2>Innovation & Ownership</h2>
+            <p>"Track record of ownership, innovation, and delivering results in complex technical environments. Experience taking projects from concept through validation and deployment."</p>
+            <p class="personal-text">Having started my fair share of projects and seen them through to completion, I've seen how cheap ideas are and how difficult execution is. This Gantt chart shows one tool I've used to manage projects ensuring they get done. </p>
+        </div>
+        <div class="">
+            <img src="/images/gant.png" alt="Project Management" class="w-full h-full object-cover rounded-lg" />
+        </div>
+        </section>
+
+    
+    <!-- Team Collaboration -->
+    <section class="qualification-section-reverse">
+        <div class="text-content">
+          <h2>Team-First Mindset</h2>
+          <p>"Team-first mindset, holding yourself and others to high standards while being adaptable and solution-oriented. Experience working as a trustworthy teammate in high-stakes environments."</p>
+          <p class="personal-text">My team at the engineering firm I co-founded would spend some late nights banging our heads on those endless engineering problems. We worked hard, started at the ceiling to dream, and grew together. I'd trust those people with my life.</p>
+        </div>
+        <div class="image-placeholder">
+          <img src="/images/pg_working.jpg" alt="Team Collaboration" class="w-full h-full object-cover rounded-lg" />
+        </div>
+      </section>
+
+          <!-- Trustworthy Teammate -->
+    <section class="qualification-section">
+        <div class="text-content">
+          <h2>Trustworthy Teammate</h2>
+          <p>"A track record of working hard, being a trustworthy teammate, and being kind to others."</p>
+          <p class="personal-text">All the good I've put out there I've gotten back ten fold. This picture is from an entrepreneurship club meeting I organized and that group has certainly given me back a lot of enjoyment and help in life. 
+        </p>
+        </div>
+        <div class="image-placeholder">
+          <img src="/images/me.gif" alt="Power Electronics Design" class="w-full h-full object-cover rounded-lg" />
+        </div>
+      </section>
+
+      
+    <!-- Python Automation -->
+    <section class="qualification-section-reverse">
+        <div class="text-content">
+          <h2>Python Test Automation</h2>
+          <p>"Proficiency in Python or other scripting languages for automation."</p>
+          <p class="personal-text">I've used python from little scripts to visualize a big spreadsheet to advanced backend systems. Here is one example of a RESTful FastAPI I built for a full stack LLM agentic sales tool that searches through embedded data to find custom leads to the user.</p>
+        </div>
+        <div>
+          <iframe 
+            src="/api_demo.html" 
+            class="w-full h-full rounded-lg border-0"
+            style="width: 100%; height: 500px;"
+            title="Python Automation Demo"
+          ></iframe>
+        </div>
+      </section>
+
+    <!-- PCB Design & Test Fixtures -->
+    <section class="qualification-section">
+      <div class="text-content" style="color: white;">
+        <h2 style="color: white;">PCB Design</h2>
+        <p style="color: white;">"Experience with PCB design tools (Altium, KiCAD, Eagle, etc.)."</p>
+        <p class="personal-text" style="color: white;">I've designed and built custom PCBs mostly using Eagle. Here's one example of a power supply board I designed. </p>
       </div>
-      <div >
-        <img src="/images/mongoDB.png" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
+      <div class="min-h-[500px]">
+        <div id="board" class = "text-center"></div>
       </div>
     </section>
 
-    <!-- Boomi Experience -->
+
+        <!-- CAD & Mechanical Design -->
+        <section class="qualification-section-reverse">
+            <div class="text-content" style="color: white;">
+              <h2 style="color: white;">CAD Tools & Fixture Design</h2>
+              <p style="color: white;">"Familiarity with CAD tools (SolidWorks, NX, CATIA) for mechanical fixture design."</p>
+              <p class="personal-text" style="color: white;">Having designed physical products from stool sensors to (rc) planes, I've gotten comfortable with CAD tools such as Solidworks and Fusion 360.</p>
+            </div>
+            <div class="">
+                <RcViewer/>
+            </div>
+          </section>
+
+
+    <!-- Problem-Solving Under Pressure -->
     <section class="qualification-section-reverse">
-      <div class="text-content">
-        <h2 style="color: white;">Boomi Integration Platform</h2>
-        <p style="color: white;">"Hands-on experience and strong interest in Boomi integration platform. My work here demonstrates my growth and capabilities in enterprise integration solutions."</p>
-        <p class="personal-text" style="color: white;">While I haven't directly used Boomi yet, I'm excited to learn this enterprise integration platform. My experience with similar workflow automation tools like Zapier and my own projects has given me a strong foundation in integration concepts.</p>
+    <div class="text-content" style="color: white;">
+        <h2 style="color: white;">Problem-Solving Under Pressure</h2>
+        <p style="color: white;">"Ability to problem-solve under pressure and pivot quickly in a dynamic, fast-paced engineering environment."</p>
+        <p class="personal-text"style="color: white;">Real-world hardware debugging doesn't come with the nice error codes I get in web development. I've learned to think creatively and systematically when troubleshooting complex electrical systems, especially when deadlines are tight and stakes are high.</p>
       </div>
-      <div >
-        <img src="/images/boomi.png" alt="Learning & Growth" style="width: 60%; height: 100%; object-fit: cover; border-radius: 8px;" />
+      <div class="" style="transform: scale(0.8); transform-origin: center;">
+        <img src="/images/smiling_with_board.jpg" alt="Fast Development Cycle" class="w-full h-full object-cover rounded-lg" />
       </div>
     </section>
+
 
     <!-- Conclusion -->
     <section class="hero-section">
-      <h2 style="color: white;">Ready to Contribute!</h2>
+      <h2 style="color: white;">Ready to Protect & Serve!</h2>
       <p class="hero-description" style="color: white;">
-        I'm excited to bring my integration expertise and passion for learning to CoorsTek. 
-        Let's build amazing solutions together! 🌟
+        I'm excited to bring my electrical engineering expertise and passion to Shield AI. 
       </p>
       <div style="margin-top: 2rem; text-align: center;">
         <a href="/" class="back-button" style="
