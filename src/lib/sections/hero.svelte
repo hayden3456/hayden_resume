@@ -86,7 +86,7 @@
 				>
 			</button>
 			{#if showCoorsTekButton}
-				<a href="/coorstek" class="flex items-center gap-1 rounded-full bg-slate-700 py-2 pl-6 pr-5 text-sm font-bold tracking-widest text-slate-300 shadow-lg shadow-slate-700/10 transition-all duration-500 ease-in-out hover:brightness-125">If you're from CoorsTek, click here :)
+				<a href="/coorstek" class="flex items-center gap-1 rounded-full bg-slate-700 py-2 pl-6 pr-5 text-sm font-bold tracking-widest text-slate-300 shadow-lg shadow-slate-700/10 transition-all duration-500 ease-in-out hover:brightness-125">If you're Joshua from CoorsTek, click here :)
 					<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="20"
