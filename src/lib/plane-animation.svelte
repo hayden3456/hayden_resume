@@ -739,8 +739,8 @@
 		<div class="sunset">
 			<div class="section"></div>
 			<div class="section end">
-				<h3>I'll keep the rest of the projects mentioned here brief, but please don't hesitate to reach out and ask. I love to talk about all my adventures.</h3>
-				
+				<h3>Please feel free to reach out with any questions you have with about the project.</h3>
+				<!-- I'll keep the rest of the projects mentioned here brief, but please don't hesitate to reach out and ask. I love to talk about all my adventures. -->
 			</div>
 		</div>
 	</div>

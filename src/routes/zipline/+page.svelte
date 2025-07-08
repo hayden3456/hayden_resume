@@ -1,6 +1,4 @@
 <script>
-    import RcViewer from '$lib/rc-viewer.svelte';
-    import PlaneAnimation from '$lib/plane-animation.svelte';
     import { onMount } from 'svelte';
 
     onMount(() => {
@@ -31,46 +29,6 @@
   </svelte:head>
   
   <style>
-    /* Set Inter as the default font for all text */
-    body,
-    .container,
-    section,
-    .text-content,
-    .image-placeholder,
-    .job-card,
-    .job-header,
-    .job-title,
-    .job-overview,
-    .job-section,
-    .job-section h3,
-    .job-section ul,
-    .job-section li,
-    .job-section p,
-    .personal-text,
-    h1, h2, h3, h4, h5, h6 {
-      font-family: "Inter", sans-serif !important;
-    }
-
-    /* Keep the robotic look for these: */
-    .hero-description,
-    code, pre {
-      font-family: "Courier New", monospace !important;
-    }
-
-    /* Remove or override previous font-family settings */
-    h1, h2, h3, h4, h5, h6 {
-      font-family: "Inter", sans-serif !important;
-    }
-    .job-title,
-    .job-overview p,
-    .job-section li,
-    .job-section p {
-      font-family: "Inter", sans-serif !important;
-    }
-    .personal-text {
-      font-family: "Inter", sans-serif !important;
-    }
-
     progress {
       position: fixed;
       top: 0;
@@ -417,18 +375,6 @@
       }
     }
 
-    #board {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background-image: url('/images/board.png'), url('/images/board_design.png');
-    background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
-    background-position: 50% 50%, 50% 50%; /* Center both images */
-    background-size: 80% auto, cover; /* Make panda1 smaller and panda2 fill the container */
-    transform: scale(0.7);
-  }
-  
-
     .job-description-section {
       padding: 2rem 5vw;
       display: flex;
@@ -577,10 +523,10 @@
   <div class="min-h-screen bg-gradient-to-b from-[#fcedd1] via-[#fae4c9] via-[#f8d8c1] via-[#f7c6b1] to-slate-800">
     <!-- Hero Section -->
     <section class="hero-section">
-      <h1>Electrical Test & Rapid Prototype Engineer</h1>
+      <h1>Controls & Dynamics Intern</h1>
       <p class="hero-description">
-        Thank you for taking the time to visit my page showcasing how I meet the qualifications for the Electrical Test & Rapid Prototype Engineer position at Shield AI. 
-        Please scroll through to see my experiences as they relate to the job! 🚀
+        Thank you for considering my application for the Controls & Dynamics Internship position at Zipline. 
+        I'm excited about the opportunity to contribute to Zipline's mission of transforming logistics and healthcare access through autonomous delivery drones. 🚀
       </p>
     </section>
 
@@ -588,71 +534,51 @@
     <section class="job-description-section">
       <div class="job-card">
         <div class="job-header">
-          <h2>Job Description</h2>
-          <div class="job-title">Electrical Test & Rapid Prototype Engineer</div>
+          <h2>About Zipline</h2>
+          <div class="job-title">Controls & Dynamics Intern (Fall 2025)</div>
         </div>
         
         <div class="job-overview">
-          <p>As an Electrical Engineer on our Hardware Test team, you’ll have the opportunity to design and automate test systems that validate everything from power electronics to RF communications. You'll work hands-on with PCB design, Python scripting, and advanced environmental testing (HASS, ESS, HALT) to ensure the highest standards of reliability. If you're passionate about building rock-solid hardware and thrive in a fast-paced, multidisciplinary environment, this role is for you.</p>
+          <p>Zipline is on a mission to transform the way goods move by building the first instant logistics system that serves all humans equally. Through expertise in robotics and autonomy, Zipline designs, manufactures, and operates a fleet of autonomous delivery drones serving tens of millions worldwide.</p>
         </div>
 
         <div class="job-section">
-          <h3>What you'll do</h3>
+          <h3>About the GNC Team</h3>
+          <p>The Guidance, Navigation, and Controls (GNC) team is crucial to Zipline's success, developing and maintaining critical flight software systems that enable autonomous missions - from takeoff through delivery to safe landing. We create innovative solutions for robust autonomous flight in increasingly challenging conditions.</p>
+        </div>
+
+        <div class="job-section">
+          <h3>Responsibilities</h3>
           <ul>
-            <li>Design and own test systems for critical UAV components and subsystems, from concept to validation.</li>
-            <li>Work across multiple EE disciplines, including power electronics, RF, communications, and system integration.</li>
-            <li>Develop PCBs to interface between test stands and the device-under-test (DUT).</li>
-            <li>Build custom test fixtures integrating relays, PLCs, PCBAs, and harnessing for automated and high-fidelity testing.</li>
-            <li>Automate test sequences using Python, ensuring repeatability, efficiency, and scalability.</li>
-            <li>Collaborate in cross-functional design reviews, advocating for testability improvements that streamline hardware validation.</li>
-            <li>Adapt and innovate in a fast-moving, high-stakes environment, where your work directly impacts mission success.</li>
+            <li>Design, implement, test, and release innovative flight algorithms</li>
+            <li>Create tools and tests using theoretical guarantees and simulations</li>
+            <li>Analyze flight data to assess changes and identify improvements</li>
+            <li>Design onboard integrity tests for system performance monitoring</li>
+            <li>Present key results to the broader engineering team</li>
           </ul>
         </div>
 
         <div class="job-section">
           <h3>Required Qualifications</h3>
           <ul>
-            <li>B.S. in Electrical Engineering or equivalent hands-on experience OR you are an undergraduate, graduate or PhD student expected to graduate in 2025.</li>
-            <li>Strong foundation in electrical, mechanical, and software engineering principles.</li>
-            <li>Experience in multidisciplinary hardware projects—through internships, jobs, clubs, personal projects, or research.</li>
-            <li>A track record of ownership, innovation, and delivering results in complex technical environments.</li>
-            <li>A team-first mindset, holding yourself and others to high standards, while being adaptable and solution-oriented.</li>
-            <li>A track record of working hard, being a trustworthy teammate, and being kind to others.</li>
-          </ul>
-        </div>
-
-        <div class="job-section">
-          <h3>Preferred Qualifications</h3>
-          <ul>
-            <li>Proficiency in Python or other scripting languages for automation.</li>
-            <li>Experience with PCB design tools (Altium, KiCAD, Eagle, etc.).</li>
-            <li>Familiarity with CAD tools (SolidWorks, NX, CATIA) for mechanical fixture design.</li>
-            <li>Ability to problem-solve under pressure and pivot quickly in a dynamic, fast-paced engineering environment.</li>
+            <li>Strong applied mathematics skills</li>
+            <li>Experience with both simulations and hardware</li>
+            <li>Previous controls solutions development experience</li>
+            <li>Knowledge in precision navigation, dynamic modeling, or control analysis</li>
+            <li>Software engineering skills in C/C++ and technical computing</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Electrical Engineering Foundation -->
+    <!-- Applied Mathematics -->
     <section class="qualification-section">
       <div class="text-content">
-        <h2>Electrical Engineering Foundation</h2>
-        <p>"B.S. in Electrical Engineering" + "Strong foundation in electrical, mechanical, and software engineering principles."</p>
-        <p class="personal-text">My EE degree from Colorado School of Mines along with my entrepreneurial projects have led to me creating across the engineering fields from SaaS websites to joysticks for CAT scan technicians. </p>
+        <h2>Applied Mathematics Excellence</h2>
+        <p>"Your applied math skills stand out even among aerospace engineers."</p>
+        <p class="personal-text">Through my aerospace engineering coursework and research, I've developed strong mathematical foundations in control theory, dynamic systems, and optimization. I've applied these skills in projects ranging from aircraft stability analysis to optimal trajectory planning.</p>
       </div>
       <div class="image-placeholder">
-        <img src="/images/circuits.jpg" alt="PCB Design Project" class="w-full h-full object-cover rounded-lg" />
-      </div>
-    </section>
-
-    <!-- Multidisciplinary Hardware Projects -->
-    <section class="qualification-section-reverse">
-      <div class="text-content">
-        <h2>Multidisciplinary Hardware Projects</h2>
-        <p>"Experience in multidisciplinary hardware projects—through internships, jobs, clubs, personal projects, or research."</p>
-        <p class="personal-text">I include this video to show how I went from knowing nothing about aerodynamics to being able to help design a whole system that integrated together. It's exciting working with those who've mastered whole worlds you didn't know existed. </p>
-      </div>
-      <div>
         <video 
           src="/video/glider.mp4" 
           class="rounded-2xl w-full h-full object-cover"
@@ -665,124 +591,82 @@
       </div>
     </section>
 
-    <!-- Innovation & Ownership -->
-    <section class="qualification-section">
-        <div class="text-content">
-            <h2>Innovation & Ownership</h2>
-            <p>"Track record of ownership, innovation, and delivering results in complex technical environments. Experience taking projects from concept through validation and deployment."</p>
-            <p class="personal-text">Having started my fair share of projects and seen them through to completion, I've seen how cheap ideas are and how difficult execution is. This Gantt chart shows one tool I've used to manage projects ensuring they get done. </p>
-        </div>
-        <div class="">
-            <img src="/images/gant.png" alt="Project Management" class="w-full h-full object-cover rounded-lg" />
-        </div>
-        </section>
-
-    
-    <!-- Team Collaboration -->
+    <!-- Simulation & Hardware -->
     <section class="qualification-section-reverse">
-        <div class="text-content">
-          <h2>Team-First Mindset</h2>
-          <p>"Team-first mindset, holding yourself and others to high standards while being adaptable and solution-oriented. Experience working as a trustworthy teammate in high-stakes environments."</p>
-          <p class="personal-text">My team at the engineering firm I co-founded would spend some late nights banging our heads on those endless engineering problems. We worked hard, started at the ceiling to dream, and grew together. I'd trust those people with my life.</p>
-        </div>
-        <div class="image-placeholder">
-          <img src="/images/pg_working.jpg" alt="Team Collaboration" class="w-full h-full object-cover rounded-lg" />
-        </div>
-      </section>
+      <div class="text-content">
+        <h2>Simulation & Hardware Experience</h2>
+        <p>"You think simulations and working with hardware are both fun."</p>
+        <p class="personal-text">I've gained hands-on experience with both simulation tools (MATLAB Simulink, Gazebo) and hardware implementation. My work on autonomous RC aircraft involved extensive simulation validation before real-world testing.</p>
+      </div>
+      <div class="image-placeholder">
+        <img src="/images/circuits.jpg" alt="Hardware Experience" class="w-full h-full object-cover rounded-lg" />
+      </div>
+    </section>
 
-          <!-- Trustworthy Teammate -->
-    <section class="qualification-section">
-        <div class="text-content">
-          <h2>Trustworthy Teammate</h2>
-          <p>"A track record of working hard, being a trustworthy teammate, and being kind to others."</p>
-          <p class="personal-text">All the good I've put out there I've gotten back ten fold. This picture is from an entrepreneurship club meeting I organized and that group has certainly given me back a lot of enjoyment and help in life. 
-        </p>
-        </div>
-        <div class="image-placeholder">
-          <img src="/images/me.gif" alt="Power Electronics Design" class="w-full h-full object-cover rounded-lg" />
-        </div>
-      </section>
-
-      
-    <!-- Python Automation -->
-    <section class="qualification-section-reverse">
-        <div class="text-content">
-          <h2>Python Test Automation</h2>
-          <p>"Proficiency in Python or other scripting languages for automation."</p>
-          <p class="personal-text">I've used python from little scripts to visualize a big spreadsheet to advanced backend systems. Here is one example of a RESTful FastAPI I built for a full stack LLM agentic sales tool that searches through embedded data to find custom leads to the user.</p>
-        </div>
-        <div>
-          <iframe 
-            src="/api_demo.html" 
-            class="w-full h-full rounded-lg border-0"
-            style="width: 100%; height: 500px;"
-            title="Python Automation Demo"
-          ></iframe>
-        </div>
-      </section>
-
-    <!-- PCB Design & Test Fixtures -->
+    <!-- Controls Solutions -->
     <section class="qualification-section">
       <div class="text-content">
-        <h2 >PCB Design</h2>
-        <p >"Experience with PCB design tools (Altium, KiCAD, Eagle, etc.)."</p>
-        <p class="personal-text" >I've designed and built custom PCBs mostly using Eagle. Here's one example of a power supply board I designed. </p>
+        <h2>Controls Development</h2>
+        <p>"You have owned and developed controls solutions for a team project, thesis, or competition"</p>
+        <p class="personal-text">Led the development of control systems for our senior design project - an autonomous VTOL aircraft. Implemented and tuned PID controllers for attitude stabilization and waypoint tracking.</p>
       </div>
-      <div class="min-h-[500px]">
-        <div id="board" class = "text-center"></div>
+      <div class="image-placeholder">
+        <iframe 
+          width="768" 
+          height="432" 
+          src="https://miro.com/app/live-embed/uXjVKl9ynqA=/?embedMode=view_only_without_ui&moveToViewport=-6318,-3527,13565,6773&embedId=708113086286" 
+          frameborder="0" 
+          scrolling="no" 
+          allow="fullscreen; clipboard-read; clipboard-write" 
+          allowfullscreen
+          title="Control System Design"
+        ></iframe>
       </div>
     </section>
 
-
-        <!-- CAD & Mechanical Design -->
-        <section class="qualification-section-reverse">
-            <div class="text-content" >
-              <h2 >CAD Tools & Fixture Design</h2>
-              <p >"Familiarity with CAD tools (SolidWorks, NX, CATIA) for mechanical fixture design."</p>
-              <p class="personal-text" >Having designed physical products from stool sensors to (rc) planes, I've gotten comfortable with CAD tools such as Solidworks and Fusion 360.</p>
-            </div>
-            <div class="">
-                <RcViewer/>
-            </div>
-          </section>
-
-
-    <!-- Problem-Solving Under Pressure -->
+    <!-- Technical Expertise -->
     <section class="qualification-section-reverse">
-    <div class="text-content" >
-        <h2 >Problem-Solving Under Pressure</h2>
-        <p >"Ability to problem-solve under pressure and pivot quickly in a dynamic, fast-paced engineering environment."</p>
-        <p class="personal-text">Real-world hardware debugging doesn't come with the nice error codes I get in web development. I've learned to think creatively and systematically when troubleshooting complex electrical systems, especially when deadlines are tight and stakes are high.</p>
+      <div class="text-content">
+        <h2>Navigation & Dynamic Modeling</h2>
+        <p>"Exposure in precision integrated inertial navigation, dynamic modeling of complex systems, linear control analysis, or optimal control with uncertainty."</p>
+        <p class="personal-text">Through coursework and projects, I've gained experience in state estimation, Kalman filtering, and dynamic modeling of aircraft systems. I understand the challenges of robust control design under uncertainty.</p>
       </div>
-      <div class="" style="transform: scale(0.8); transform-origin: center;">
-        <img src="/images/smiling_with_board.jpg" alt="Fast Development Cycle" class="w-full h-full object-cover rounded-lg" />
+      <div class="image-placeholder">
+        <img src="/images/gant.png" alt="Project Planning" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
       </div>
     </section>
 
+    <!-- Software Engineering -->
+    <section class="qualification-section">
+      <div class="text-content">
+        <h2>Software Engineering Skills</h2>
+        <p>"Software engineering skills, preferably with both embedded software (C, C++) and technical computing (MATLAB, python, Julia, etc.). Experience with Github and working in a multi-developer environment."</p>
+        <p class="personal-text">Proficient in C++ for embedded systems and Python/MATLAB for control system design and analysis. Experienced with version control and collaborative development using Git/GitHub.</p>
+      </div>
+      <div class="image-placeholder">
+        <img src="/images/cicd.png" alt="Software Development" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
+      </div>
+    </section>
+
+    <!-- Conclusion -->
     <section class="hero-section">
-      <h2 >One More Project To Highlight</h2>
+      <h2 style="color: white;">Ready to Contribute to Zipline's Mission!</h2>
+      <p class="hero-description" style="color: white;">
+        I'm excited about the opportunity to join Zipline's GNC team and contribute to developing robust autonomous flight systems that will help serve communities worldwide. Let's work together to transform the future of logistics! 🌟
+      </p>
+      <div style="margin-top: 2rem; text-align: center;">
+        <a href="/" class="back-button" style="
+          display: inline-block;
+          padding: 0.75rem 1.5rem;
+          background-color: #6b7280;
+          color: white;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 500;
+          transition: background-color 0.2s ease;">
+          ← Back to Main Page
+        </a>
+      </div>
     </section>
-    <PlaneAnimation/>
-
-        <!-- Conclusion -->
-        <section class="hero-section">
-          <h2 >Ready to Protect & Serve!</h2>
-          <p class="hero-description" >
-            I'm excited to bring my electrical engineering expertise and passion to Shield AI. 
-          </p>
-          <div style="margin-top: 2rem; text-align: center;">
-            <a href="/" class="back-button" style="
-              display: inline-block;
-              padding: 0.75rem 1.5rem;
-              background-color: #6b7280;
-              color: white;
-              text-decoration: none;
-              border-radius: 8px;
-              font-weight: 500;
-              transition: background-color 0.2s ease;">
-              ← Back to Main Page
-            </a>
-          </div>
-        </section>
   </div>
   
