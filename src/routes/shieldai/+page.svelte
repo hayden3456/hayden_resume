@@ -766,9 +766,9 @@
 
         <!-- Conclusion -->
         <section class="hero-section">
-          <h2 >Ready to Protect & Serve!</h2>
+          <h2 >I'm excited to talk soon!</h2>
           <p class="hero-description" >
-            I'm excited to bring my electrical engineering expertise and passion to Shield AI. 
+            If you would like, you can see my general showcase on my main page.   
           </p>
           <div style="margin-top: 2rem; text-align: center;">
             <a href="/" class="back-button" style="
