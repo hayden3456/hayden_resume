@@ -682,9 +682,9 @@
 			<div class="divider"></div>
 		</div>
 		<div class="section">
-			<h3>American Association of Aeronautics and Astronautics RC Competition.</h3>
-			<h3>Overview</h3>
-			<p>We built a 6ft rc plane and glider from the ground up for the AIAA competion. It consisted of 3 main missions:</p>
+			<h3><b>American Association of Aeronautics and Astronautics RC Competition.</b></h3>
+			<h3><b>Overview</b></h3>
+			<p><b>We built a 6ft rc plane and glider from the ground up for the AIAA competion. It consisted of 3 main missions:</b></p>
 		</div>
 		
 		<div class="section right">
