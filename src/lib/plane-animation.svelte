@@ -676,7 +676,7 @@
                 <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
             </svg>
         </div>
-		<div class="loading" class:hidden={isLoaded}>✈️ Loading plane...</div>
+		<div class="loading" class:hidden={isLoaded} style="font-size: 2.2rem;">✈️ Loading plane...</div>
 		<div class="trigger"></div>
 		<div class="section" style="height: 50px; padding: 70px;">
 			<div class="divider"></div>
@@ -988,7 +988,7 @@
 		color: #666;
 		z-index: 10;
 		pointer-events: none;
-		animation: planeLoadingPath 3s ease-out infinite;
+		animation: planeLoadingPath 3s ease-out forwards;
 	}
 	
 	.loading.hidden {
@@ -1010,24 +1010,25 @@
 			opacity: 0.7;
 		}
 		25% {
-			top: 20vh;
+			top: 30vh;
 			left: 35%;
 			opacity: 1;
 		}
 		50% {
-			top: 40vh;
+			top: 50vh;
 			left: 30%;
 			opacity: 1;
 		}
 		75% {
-			top: 20vh;
+			top: 70vh;
 			left: 35%;
 			opacity: 1;
 		}
 		100% {
-			top: -20vh;
+			top: 100vh;
 			left: 45%;
 			opacity: 0.7;
 		}
 	}
+	
 </style>
