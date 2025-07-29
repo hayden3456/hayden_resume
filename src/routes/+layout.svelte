@@ -66,7 +66,7 @@
 	class="left-0 -mt-2 w-full overflow-hidden bg-gradient-to-b from-slate-900 to-slate-900 py-24"
 >
 	<div class="relative mx-auto max-w-7xl px-4 md:px-6">
-		<a href="#top" class="mb-2 block text-base font-bold tracking-tight text-slate-400">
+		<a href="/" class="mb-2 block text-base font-bold tracking-tight text-slate-400">
 			Hayden Constas</a
 		>
 		<ul
