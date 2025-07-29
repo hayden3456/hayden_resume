@@ -245,6 +245,10 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
     .value-card:hover {
@@ -255,6 +259,7 @@
     .value-icon {
       width: 375px;
       height: 375px;
+      max-width: 100%;
       background: linear-gradient(135deg, #475569, #64748b);
       border-radius: 20px;
       display: flex;
@@ -271,6 +276,7 @@
     .value-icon img {
       height: 350px;
       max-width: 350px;
+      width: 100%;
       object-fit: cover;
       border-radius: 15px;
       background: transparent;
@@ -479,6 +485,16 @@
       .value-card {
         padding: 2rem;
       }
+
+      .value-icon {
+        width: 300px;
+        height: 300px;
+      }
+
+      .value-icon img {
+        height: 280px;
+        max-width: 280px;
+      }
     }
 
     @media (max-width: 768px) {
@@ -500,25 +516,52 @@
         padding: 3rem 0;
       }
 
+      .section-content {
+        padding: 0 1rem;
+      }
+
       .value-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .value-card {
+        padding: 1.5rem;
+        margin: 0;
+      }
+
+      .value-icon {
+        width: 250px;
+        height: 250px;
+        margin: 0 auto 1.5rem;
+      }
+
+      .value-icon img {
+        height: 230px;
+        max-width: 230px;
+      }
+
+      .timeline {
+        margin: 2rem 0;
       }
 
       .timeline::before {
-        left: 2rem;
+        display: none;
       }
 
       .timeline-item {
         flex-direction: column !important;
-        margin-left: 3rem;
+        margin-left: 0;
+        margin-bottom: 2rem;
       }
 
       .timeline-content {
         margin: 0;
+        padding: 1.5rem;
       }
 
       .timeline-dot {
-        left: 2rem;
+        display: none;
       }
 
       .projects-grid {
@@ -528,6 +571,68 @@
       .contact-info {
         flex-direction: column;
         align-items: center;
+        gap: 1rem;
+      }
+
+      .contact-item {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 3rem 0.5rem;
+      }
+
+      .section-content {
+        padding: 0 0.5rem;
+      }
+
+      .value-card {
+        padding: 1rem;
+      }
+
+      .value-icon {
+        width: 200px;
+        height: 200px;
+      }
+
+      .value-icon img {
+        height: 180px;
+        max-width: 180px;
+      }
+
+      .timeline-item {
+        margin-left: 1.5rem;
+      }
+
+      .timeline::before {
+        display: none;
+      }
+
+      .timeline-dot {
+        display: none;
+      }
+
+      .timeline-content {
+        padding: 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .section-subtitle {
+        font-size: 1rem;
       }
     }
 
@@ -570,7 +675,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-      <div class="hero-content fade-in">
+      <div class="hero-content fade-in" style="margin-top: 8rem;">
         <h1>My Case for Benford Capital Partners</h1>
         <p class="hero-subtitle">
           Hello Benjamin, in transparency, I'm reaching out to propose a fall/winter internship with 
@@ -729,7 +834,7 @@
           <div class="timeline-item fade-in">
             <div class="timeline-content" style="text-align: center;">
               <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin: 1.5rem 0;">
-                <img src="/images/bcp.png" alt="Benford Capital Partners" style="height: 60px; width: auto; object-fit: contain;" />
+                <img src="/images/bcp.png" alt="Benford Capital Partners" style="height: 60px; width: auto; max-width: 200px; object-fit: contain;" />
                 <span style="font-size: 3rem; color: #299686; font-weight: 300;">?</span>
               </div>
             </div>
@@ -825,7 +930,7 @@
             <div class="value-icon">
                 <img src="/images/learning.gif" alt="Market Research & Analysis" />
             </div>
-            <h3>Techical Opportunities</h3>
+            <h3>Technical Opportunities</h3>
             <p>
               I'm always keeping an ear to the ground to what's happening in the tech world.
               I will be able to use that to sort through the noise and find new opportunities as the worlds changes.
