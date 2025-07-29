@@ -840,7 +840,7 @@
     <section id="contact" class="contact-section section">
       <div class="section-content">
         <div class="section-header fade-in">
-          <h2 class="section-title" style="color: white;">Let's Discuss How I Can Add Value</h2>
+          <h2 class="section-title" style="color: white;">Contact Info</h2>
           <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">
     I would like to think of this internship as a mini MBA for me, and would love the chance to work with your lean team. 
     Please reach out if you are open to talking more about how I can help at Benford Capital Partners. 
