@@ -259,6 +259,7 @@
 		let plane = scene.modelGroup;
 
 		window.gsap.fromTo('canvas', { x: "50%", autoAlpha: 0 }, { duration: 1, x: "0%", autoAlpha: 1 });
+		window.gsap.to('.loading', { autoAlpha: 0 });
 		window.gsap.to('.scroll-cta', { opacity: 1 });
 		window.gsap.set('svg', { autoAlpha: 1 });
 
@@ -266,13 +267,6 @@
 
 		window.gsap.set(plane.rotation, { x: 0.440, y: 0.390, z: -0.180});
 		window.gsap.set(plane.position, { x: 0, y: 200, z: getZOffset(150) }); // Start off-screen
-
-		// Set initial position of loading text to follow the plane's starting position
-		window.gsap.set('.loading', { 
-			x: window.innerWidth * 0.6, // Start from right side like the plane
-			y: window.innerHeight * 0.3, // Upper portion of screen
-			autoAlpha: 1 
-		});
 
 		// Set initial position of glider part relative to plane
 		if (gliderPart) {
@@ -375,18 +369,8 @@
 		tl.to(plane.position, { x: -60, y: -32, z: getZOffset(50), duration: 1.5, ease: 'power2.out' }, delay);
 		tl.to(plane.rotation, { x: 0.370, y: 0.490, z: -0.530, duration: 1.5, ease: 'power2.out' }, delay);
 		
-		// Animate loading text to follow the plane's entrance
-		tl.to('.loading', { 
-			x: window.innerWidth * 0.35, 
-			y: window.innerHeight * 0.45, 
-			duration: 1.5, 
-			ease: 'power2.out' 
-		}, delay);
-		
 		delay += 1.5; // Add extra delay for entrance
 
-		// Fade out loading text as plane settles into position
-		tl.to('.loading', { autoAlpha: 0, duration: 0.5 }, delay);
 		tl.to('.scroll-cta', { duration: 0.25, opacity: 0 }, delay);
         tl.to(plane.rotation, { x: tau * .25, y: 0, z: tau * 0.03, ease: 'power1.inOut' }, delay);
 		tl.to(plane.position, { x: -10, ease: 'power1.in', y: 0, z: getZOffset(0) }, delay);
@@ -692,7 +676,7 @@
                 <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
             </svg>
         </div>
-		<div class="loading" class:hidden={isLoaded}>Loading</div>
+		<div class="loading" class:hidden={isLoaded}>✈️ Loading plane...</div>
 		<div class="trigger"></div>
 		<div class="section" style="height: 50px; padding: 70px;">
 			<div class="divider"></div>
@@ -997,25 +981,53 @@
 	
 	.content .loading {
 		position: absolute;
-		top: 0;
-		left: 0;
-		font-size: var(--font-size-medium);
-		transition: opacity 0.3s ease;
-		pointer-events: none;
+		top: -20vh;
+		left: 50%;
+		transform: translateX(-50%);
+		font-size: var(--font-size-normal);
+		color: #666;
 		z-index: 10;
-		color: #333;
-		font-weight: 600;
-		transform-origin: center center;
+		pointer-events: none;
+		animation: planeLoadingPath 3s ease-out infinite;
 	}
 	
 	.loading.hidden {
 		opacity: 0;
 		pointer-events: none;
+		animation-play-state: paused;
 	}
 
 	.drawing-line {
 		stroke-dasharray: 80;
 		stroke-dashoffset: 80;
 		transition: stroke-dashoffset 0.5s ease;
+	}
+
+	@keyframes planeLoadingPath {
+		0% {
+			top: -20vh;
+			left: 45%;
+			opacity: 0.7;
+		}
+		25% {
+			top: 20vh;
+			left: 35%;
+			opacity: 1;
+		}
+		50% {
+			top: 40vh;
+			left: 30%;
+			opacity: 1;
+		}
+		75% {
+			top: 20vh;
+			left: 35%;
+			opacity: 1;
+		}
+		100% {
+			top: -20vh;
+			left: 45%;
+			opacity: 0.7;
+		}
 	}
 </style>
