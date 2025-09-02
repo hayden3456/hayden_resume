@@ -591,7 +591,7 @@
         <div class="text-content">
           <h2 style="color: white;">Caring & Kind Team Player</h2>
           <p style="color: white;">"You are caring and kind: other people do better when they work with you."</p>
-          <p class="personal-text" style="color: white;">I believe the best technical work happens when people feel supported and empowered. Whether leading university teams or mentoring fellow entrepreneurs, I've always focused on creating environments where everyone can do their best work.</p>
+          <p class="personal-text" style="color: white;">I've been on teams and built relationships I know will last a lifetime, and I know that doesn't happen by accident. It takes effort on all sides to go from back to back late night coding seasons and happy around each other. Despite that, kindness begets kindness and that effort makes all of this worth doing in the first place.</p>
         </div>
         <div class="">
           <img 
