@@ -659,9 +659,9 @@
 
     <!-- Conclusion -->
     <section class="hero-section">
-      <h2 style="color: white;">Ready to Build the Future of IoT at Memfault!</h2>
+      <h2 style="color: white;">I'm extreamy excited to help at Memfault!</h2>
       <p class="hero-description" style="color: white;">
-        I'm excited to bring my embedded systems expertise and passion for customer success to Memfault. 
+        Thank you for looking at my resume! I'd be ecstatic to bring my embedded systems expertise and passion for customer success to Memfault. 
       </p>
       <div style="margin-top: 2rem; text-align: center;">
         <a href="/" class="back-button" style="
