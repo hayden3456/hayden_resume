@@ -7,31 +7,6 @@
 	let showCoorsTekButton = false;
 	let showShieldAIButton = false;
 
-	async function checkUserLocation() {
-		try {
-			const response = await fetch('http://ip-api.com/json/');
-			const data = await response.json();
-			
-			// Check if user is in Colorado or Illinois
-			if (data.countryCode === 'US' && (data.region === 'CO')) {
-				showCoorsTekButton = true;
-			}
-			
-			// Check if user is in Texas
-			if (data.countryCode === 'US' && (data.region === 'TX' || data.region === 'IL' || data.region === 'PA')) {
-				showShieldAIButton = true;
-			}
-		} catch (error) {
-			console.error('Error fetching location:', error);
-			// Fallback: show buttons if geolocation fails (for development/testing)
-			showCoorsTekButton = true;
-			showShieldAIButton = true;
-		}
-	}
-
-	onMount(() => {
-		checkUserLocation();
-	});
 </script>
 
 <div
