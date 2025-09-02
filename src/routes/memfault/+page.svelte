@@ -578,7 +578,7 @@
       <div class="text-content">
         <h2>Modern Developer Practices</h2>
         <p>"Passionate about modern developer practices, such as automated software testing and CI/CD."</p>
-        <p class="personal-text">During my internship at CACI, my project was working on the CI/CD pipelines for satellite system analysis. I understand continuous integration in embedded systems where failures have real-world consequences.</p>
+        <p class="personal-text">During my internship at CACI, my project was working on the CI/CD pipelines for satellite system analysis. I understand continuous integration in systems where failures have real-world consequences.</p>
       </div>
       <div class="">
         <img src="/images/cicd.png" alt="CI/CD Pipeline" class="w-full object-cover rounded-lg" />
