@@ -460,7 +460,7 @@
     <section class="hero-section">
       <h1>Drone Software Engineer</h1>
       <p class="hero-description">
-        Welcome to my resume showcasing how my experience fits with the Drone Software Engineer position. I'm excited to bring my FAA certification, embedded systems expertise, and passion for aerial technology to your innovative team!
+        Welcome to my resume showcasing how my experience fits with the Drone Software Engineer position.
       </p>
     </section>
 
