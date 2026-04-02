@@ -534,7 +534,7 @@
         <p class="personal-text">Having started an small engineering firm I've made plenty of IoT projects that required sensor integration wiether it be computer vision, monitoring magnetic fields or recording gas readouts. Here is a picture of the team working in our space. </p>
       </div>
       <div class="image-placeholder">
-        <img src="/images/pg_working.jpg" alt="Sensor Integration Work" class="w-full h-full object-cover rounded-lg" />
+        <img src="/images/pg_working.webp" alt="Sensor Integration Work" class="w-full h-full object-cover rounded-lg" />
       </div>
     </section>
 
@@ -582,7 +582,7 @@
         </div>
         <div class="">
           <img 
-            src="/images/smiling_with_board.jpg" 
+            src="/images/smiling_with_board.webp" 
             alt="Development Work" 
             class="object-cover rounded-lg"
             style="height: 750px; width: 100%;"

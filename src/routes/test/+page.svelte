@@ -546,7 +546,7 @@
       <p class="personal-text">This is possibly my strongest attribute. This image is one example out of my whole life showing the team at an engineering firm I built late at night. Each new project required me to learn from serverless architectures to infant microbiomes. </p>
     </div>
     <div class="image-placeholder">
-      <img src="/images/pg_working.jpg" alt="Learning & Growth" class="w-full h-full object-cover rounded-lg" />
+      <img src="/images/pg_working.webp" alt="Learning & Growth" class="w-full h-full object-cover rounded-lg" />
     </div>
   </section>
 
@@ -600,7 +600,7 @@
     </div>
     
     <div >
-      <img src="/images/cicd.png" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
+      <img src="/images/cicd.webp" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
     </div>
   </section>
 
@@ -612,7 +612,7 @@
       <p class="personal-text">Having worked at a few companies, I've gotten the chance to experience more management styles than some do in a whole career. I've seen what works and where miscommunication happens. To the right is a high level Gantt chart for a 9 month long RC plane project.</p>
     </div>
     <div >
-      <img src="/images/gant.png" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
+      <img src="/images/gant.webp" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
     </div>
   </section>
 
@@ -636,7 +636,7 @@
       <p class="personal-text">My work in the phisical world has made it clear, there aren't error codes when a wire is missing. I've learned to be creative which pays dividends in challenging integration issues. </p>
     </div>
     <div >
-      <img src="/images/circuits.jpg" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
+      <img src="/images/circuits.webp" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
     </div>
   </section>
 
@@ -697,7 +697,7 @@
       <p class="personal-text" style="color: white;">I've worked with SQL databases for a few years now for my own projects. And have seen what enterprise database systems are capable of in my internship.</p>
     </div>
     <div >
-      <img src="/images/mongoDB.png" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
+      <img src="/images/mongoDB.webp" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
     </div>
   </section>
 
@@ -709,7 +709,7 @@
       <p class="personal-text" style="color: white;">While I haven't directly used Boomi yet, I'm excited to learn this enterprise integration platform. My experience with similar workflow automation tools like Zapier and my own projects has given me a strong foundation in integration concepts.</p>
     </div>
     <div >
-      <img src="/images/boomi.png" alt="Learning & Growth" style="width: 60%; height: 100%; object-fit: cover; border-radius: 8px;" />
+      <img src="/images/boomi.webp" alt="Learning & Growth" style="width: 60%; height: 100%; object-fit: cover; border-radius: 8px;" />
     </div>
   </section>
 

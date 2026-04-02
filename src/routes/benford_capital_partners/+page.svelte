@@ -595,7 +595,7 @@
         <div class="value-grid">
           <div class="value-card fade-in">
             <div class="value-icon">
-                <img src="/images/smiling_with_board.jpg" alt="Technical Deal Support" />
+                <img src="/images/smiling_with_board.webp" alt="Technical Deal Support" />
             </div>
             <h3>Technical Due Diligence</h3>
             <p>
@@ -606,7 +606,7 @@
 
           <div class="value-card fade-in">
             <div class="value-icon">
-              <img src="/images/pg_working.jpg" alt="Entrepreneurial Operations" />
+              <img src="/images/pg_working.webp" alt="Entrepreneurial Operations" />
             </div>
             <h3>Entrepreneurial Operations</h3>
             <p>
@@ -618,7 +618,7 @@
 
           <div class="value-card fade-in">
             <div class="value-icon">
-              <img src="/images/gant.png" alt="Cross-Functional Bridge" />
+              <img src="/images/gant.webp" alt="Cross-Functional Bridge" />
             </div>
             <h3>Cross-Functional</h3>
             <p>
@@ -663,7 +663,7 @@
         <div class="value-grid">
           <div class="value-card fade-in">
             <div class="value-icon">
-              <img src="/images/circuits.jpg" alt="Technical Due Diligence" />
+              <img src="/images/circuits.webp" alt="Technical Due Diligence" />
             </div>
             <h3>Technical Deal Support</h3>
             <p>
@@ -729,7 +729,7 @@
           <div class="timeline-item fade-in">
             <div class="timeline-content" style="text-align: center;">
               <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin: 1.5rem 0;">
-                <img src="/images/bcp.png" alt="Benford Capital Partners" style="height: 60px; width: auto; max-width: 200px; object-fit: contain;" />
+                <img src="/images/bcp.webp" alt="Benford Capital Partners" style="height: 60px; width: auto; max-width: 200px; object-fit: contain;" />
                 <span style="font-size: 3rem; color: #299686; font-weight: 300;">?</span>
               </div>
             </div>
@@ -813,7 +813,7 @@
         <div class="value-grid">
           <div class="value-card fade-in">
             <div class="value-icon">
-                <img src="/images/board.png" alt="Innovation Catalyst" />
+                <img src="/images/board.webp" alt="Innovation Catalyst" />
             </div>
             <h3>Instituting Smart Processes</h3>
             <p>

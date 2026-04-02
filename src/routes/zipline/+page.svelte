@@ -548,7 +548,7 @@
         <p class="personal-text">I've gained hands-on experience with both simulation tools (MATLAB Simulink, Gazebo) and hardware implementation. My work on autonomous RC aircraft involved extensive simulation validation before real-world testing.</p>
       </div>
       <div class="image-placeholder">
-        <img src="/images/circuits.jpg" alt="Hardware Experience" class="w-full h-full object-cover rounded-lg" />
+        <img src="/images/circuits.webp" alt="Hardware Experience" class="w-full h-full object-cover rounded-lg" />
       </div>
     </section>
 
@@ -581,7 +581,7 @@
         <p class="personal-text">Through coursework and projects, I've gained experience in state estimation, Kalman filtering, and dynamic modeling of aircraft systems. I understand the challenges of robust control design under uncertainty.</p>
       </div>
       <div class="image-placeholder">
-        <img src="/images/gant.png" alt="Project Planning" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
+        <img src="/images/gant.webp" alt="Project Planning" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
       </div>
     </section>
 
@@ -593,7 +593,7 @@
         <p class="personal-text">Proficient in C++ for embedded systems and Python/MATLAB for control system design and analysis. Experienced with version control and collaborative development using Git/GitHub.</p>
       </div>
       <div class="image-placeholder">
-        <img src="/images/cicd.png" alt="Software Development" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
+        <img src="/images/cicd.webp" alt="Software Development" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
       </div>
     </section>
 

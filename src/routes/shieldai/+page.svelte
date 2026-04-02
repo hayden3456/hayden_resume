@@ -381,7 +381,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    background-image: url('/images/board.png'), url('/images/board_design.png');
+    background-image: url('/images/board.webp'), url('/images/board_design.webp');
     background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
     background-position: 50% 50%, 50% 50%; /* Center both images */
     background-size: 80% auto, cover; /* Make panda1 smaller and panda2 fill the container */
@@ -584,7 +584,7 @@
         <p class="personal-text">My EE degree from Colorado School of Mines along with my entrepreneurial projects have led to me creating across the engineering fields from SaaS websites to joysticks for CAT scan technicians. </p>
       </div>
       <div class="image-placeholder">
-        <img src="/images/circuits.jpg" alt="PCB Design Project" class="w-full h-full object-cover rounded-lg" />
+        <img src="/images/circuits.webp" alt="PCB Design Project" class="w-full h-full object-cover rounded-lg" />
       </div>
     </section>
 
@@ -616,7 +616,7 @@
             <p class="personal-text">Having started my fair share of projects and seen them through to completion, I've seen how cheap ideas are and how difficult execution is. This Gantt chart shows one tool I've used to manage projects ensuring they get done. </p>
         </div>
         <div class="">
-            <img src="/images/gant.png" alt="Project Management" class="w-full h-full object-cover rounded-lg" />
+            <img src="/images/gant.webp" alt="Project Management" class="w-full h-full object-cover rounded-lg" />
         </div>
         </section>
 
@@ -629,7 +629,7 @@
           <p class="personal-text">My team at the engineering firm I co-founded would spend some late nights banging our heads on those endless engineering problems. We worked hard, started at the ceiling to dream, and grew together. I'd trust those people with my life.</p>
         </div>
         <div class="image-placeholder">
-          <img src="/images/pg_working.jpg" alt="Team Collaboration" class="w-full h-full object-cover rounded-lg" />
+          <img src="/images/pg_working.webp" alt="Team Collaboration" class="w-full h-full object-cover rounded-lg" />
         </div>
       </section>
 
@@ -698,7 +698,7 @@
         <p class="personal-text">Real-world hardware debugging doesn't come with the nice error codes I get in web development. I've learned to think creatively and systematically when troubleshooting complex electrical systems, especially when deadlines are tight and stakes are high.</p>
       </div>
       <div class="" style="transform: scale(0.8); transform-origin: center;">
-        <img src="/images/smiling_with_board.jpg" alt="Fast Development Cycle" class="w-full h-full object-cover rounded-lg" />
+        <img src="/images/smiling_with_board.webp" alt="Fast Development Cycle" class="w-full h-full object-cover rounded-lg" />
       </div>
     </section>
 

@@ -251,7 +251,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    background-image: url('/images/pipeline.webp'), url('/images/pig_pat.png');
+    background-image: url('/images/pipeline.webp'), url('/images/pig_pat.webp');
     background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
     background-position: 50% 50%, 50% 50%; /* Center both images */
     background-size: 50% auto, cover; /* Make panda1 smaller and panda2 fill the container */
@@ -262,7 +262,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    background-image: url('/images/board.webp'), url('/images/board_design.png');
+    background-image: url('/images/board.webp'), url('/images/board_design.webp');
     background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
     background-position: 50% 50%, 50% 50%; /* Center both images */
     background-size: 80% auto, cover; /* Make panda1 smaller and panda2 fill the container */

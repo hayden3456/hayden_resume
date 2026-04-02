@@ -612,7 +612,7 @@
       <p class="personal-text">My work in the physical world has taught me how to think when there aren't error codes. I've learned to be creative, which pays dividends in challenging integration issues. I've also worked with agile teams setting up a CI/CD pipeline during my software development internship, giving me a deep understanding of troubleshooting.</p>
     </div>
     <div class="image-placeholder">
-      <img src="/images/circuits.jpg" alt="Troubleshooting" class="w-full h-full object-cover rounded-lg" />
+      <img src="/images/circuits.webp" alt="Troubleshooting" class="w-full h-full object-cover rounded-lg" />
     </div>
   </section>
 
@@ -624,7 +624,7 @@
       <p class="personal-text">I have created the opportunity to get in front of many consumer-facing products in an engineering firm I founded. From MRI technician tools to diaper monitors, we were working late one night.</p>
     </div>
     <div class="">
-        <img src="/images/pg_working.jpg" alt="Learning & Growth" class="w-full h-full object-cover rounded-lg" />
+        <img src="/images/pg_working.webp" alt="Learning & Growth" class="w-full h-full object-cover rounded-lg" />
     </div>
   </section>
 

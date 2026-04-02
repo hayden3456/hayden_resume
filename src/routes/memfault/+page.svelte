@@ -531,7 +531,7 @@
         <p class="personal-text">In my engineering firm, I switched from working with Devs to pitching non-technical stakeholders. My ability to bridge the technical with business value is something I pride myself in.</p>
       </div>
       <div class="image-placeholder">
-        <img src="/images/pg_working.jpg" alt="Technical Presentation" class="w-full h-full object-cover rounded-lg" />
+        <img src="/images/pg_working.webp" alt="Technical Presentation" class="w-full h-full object-cover rounded-lg" />
       </div>
     </section>
 
@@ -543,7 +543,7 @@
         <p class="personal-text">Having tried and failed in the startup arena while in school, setting priories is the only way to live. I've built teams with different management styles, been through numerus crunch time situations, but I'm most proud of the fact I've stayed positive when times get hard.</p>
       </div>
       <div class="">
-        <img src="/images/gant.png" alt="Project Management" class="w-full  object-cover rounded-lg" />
+        <img src="/images/gant.webp" alt="Project Management" class="w-full  object-cover rounded-lg" />
       </div>
     </section>
 
@@ -555,7 +555,7 @@
         <p class="personal-text">During my internship at CACI, my project was working on the CI/CD pipelines for satellite system analysis. I understand continuous integration in systems where failures have real-world consequences.</p>
       </div>
       <div class="">
-        <img src="/images/cicd.png" alt="CI/CD Pipeline" class="w-full object-cover rounded-lg" />
+        <img src="/images/cicd.webp" alt="CI/CD Pipeline" class="w-full object-cover rounded-lg" />
       </div>
     </section>
 
@@ -569,7 +569,7 @@
         </div>
         <div class="">
           <img 
-            src="/images/smiling_with_board.jpg" 
+            src="/images/smiling_with_board.webp" 
             alt="Team Collaboration" 
             class="object-cover rounded-lg"
             style="height: 750px; width: 100%;"

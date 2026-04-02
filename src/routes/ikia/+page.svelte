@@ -168,7 +168,7 @@ import {
   width: 100%;
   height: 100vh;
   /* background-color: white;  */
-  background-image: url('http://localhost:5173/images/temp.png'), url('http://localhost:5173/images/logo.svg');
+  background-image: url('/images/temp.webp'), url('/images/logo.svg');
   background-repeat: no-repeat;
   background-position: top;
   background-position: 50% 50%;
@@ -179,7 +179,7 @@ import {
   position: relative;
   width: 70%;
   height: 100vh;
-  background-image: url('http://localhost:5173/images/panda1.png'), url('http://localhost:5173/images/panda2.png');
+  background-image: url('/images/panda1.webp'), url('/images/panda2.webp');
   background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
   background-position: 50% 50%, 50% 50%; /* Center both images */
   background-size: 50% auto, cover; /* Make panda1 smaller and panda2 fill the container */

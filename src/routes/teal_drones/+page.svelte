@@ -31,6 +31,8 @@
 		window.scrollBy({ top: delta, behavior: 'smooth' });
 	}
 
+	let jobPostingExpanded = $state(true);
+
 	/** Media for each signal — keep paths, embed URLs, and placeholder copy next to the card text. */
 	type SignalMedia =
 		| { type: 'image'; src: string; alt: string; fit?: 'contain' }
@@ -57,7 +59,7 @@
 				'Graduated in only 3 years from Colorado School of Mines, May 2025.',
 			media: {
 				type: 'image',
-				src: '/images/graduation_pic.JPEG',
+				src: '/images/graduation_pic.webp',
 				alt: 'Graduation — Colorado School of Mines, B.E. Electrical Engineering'
 			}
 		},
@@ -69,7 +71,7 @@
 				`My projects repeatedly put me on the bench with boards, wiring, probes, and iterative hardware validation. That hands-on workflow is the part of engineering work I absolutely love!`,
 			media: {
 				type: 'image',
-				src: '/images/circuits.jpg',
+				src: '/images/circuits.webp',
 				alt: 'Bench validation work'
 			}
 		},
@@ -83,7 +85,7 @@
 Writing reports, specs, and clear vendor communication were part of the job.`,
 			media: {
 				type: 'image',
-				src: '/images/smiling_with_board.jpg',
+				src: '/images/smiling_with_board.webp',
 				alt: 'Holding a prototype diaper-monitor device from client prototyping work'
 			}
 		},
@@ -103,7 +105,7 @@ Writing reports, specs, and clear vendor communication were part of the job.`,
 				'In university I learned ngspice and simulated various silicon layouts.',
 			media: {
 				type: 'image',
-				src: '/images/Ngspice_logo.jpg',
+				src: '/images/Ngspice_logo.webp',
 				alt: 'ngspice — SPICE-based circuit simulation',
 				fit: 'contain'
 			}
@@ -119,7 +121,7 @@ Writing reports, specs, and clear vendor communication were part of the job.`,
 				While not the same thing, pictured is a test rig I setup last week. I was designing my own mesh vpn system and because I was messing with network settings, I needed a way to communicate with devices when they lose wireless connection in testing. (Apologies for the horrible cable management)`,			
 			media: {
 				type: 'image',
-				src: 'images/dock_vpn_test_rig.jpg',
+				src: '/images/dock_vpn_test_rig.webp',
 				alt: 'Python-driven workflow and data pipeline diagram'
 			}
 		}
@@ -132,7 +134,7 @@ Writing reports, specs, and clear vendor communication were part of the job.`,
 			quote:
 				'"Teal\'s electrical engineers are responsible for their designs from conception to sustaining."',
 			copy:
-				'The aerospace projects I have worked on taught me how electrical decisions play out inside a full system. This video is from an rc plane competition where we had to drop an autonomous glider from a plane.',
+				'The aerospace projects I have worked on taught me how electrical decisions play out inside a full system. This video is from an RC plane competition where we had to drop an autonomous glider from a plane.',
 			media: { type: 'video', src: '/video/glider.mp4' }
 		},
 		{
@@ -548,6 +550,76 @@ Writing reports, specs, and clear vendor communication were part of the job.`,
 		pointer-events: none;
 	}
 
+	.grid-frame.job-posting-frame {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding-top: 1.25rem;
+	}
+
+	.job-posting-toggle {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		width: 100%;
+		margin: 0;
+		padding: 0.65rem 0.85rem;
+		border: 1px solid rgba(255, 255, 255, 0.14);
+		border-radius: 1rem;
+		background: rgba(255, 255, 255, 0.05);
+		color: var(--text-main);
+		font: 600 0.82rem/1.2 var(--mallory-stack);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		text-align: left;
+		cursor: pointer;
+		transition:
+			background-color 0.2s ease,
+			border-color 0.2s ease;
+	}
+
+	.job-posting-toggle:hover {
+		background: rgba(0, 142, 169, 0.14);
+		border-color: rgba(0, 142, 169, 0.35);
+	}
+
+	.job-posting-toggle:focus-visible {
+		outline: 2px solid var(--teal-accent);
+		outline-offset: 2px;
+	}
+
+	.job-posting-toggle svg {
+		flex-shrink: 0;
+		width: 1.15rem;
+		height: 1.15rem;
+		opacity: 0.85;
+		transition: transform 0.25s ease;
+	}
+
+	.job-posting-toggle[aria-expanded='true'] svg {
+		transform: rotate(180deg);
+	}
+
+	.job-posting-panel {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		grid-template-rows: 1fr;
+		transition: grid-template-rows 0.35s ease;
+	}
+
+	.job-posting-panel.is-collapsed {
+		grid-template-rows: 0fr;
+	}
+
+	.job-posting-panel-inner {
+		min-height: 0;
+		overflow: hidden;
+	}
+
 	.signal-card p,
 	.closer p {
 		margin: 0;
@@ -734,7 +806,7 @@ Writing reports, specs, and clear vendor communication were part of the job.`,
 		height: 100%;
 		align-self: stretch;
 		justify-self: stretch;
-		background-image: url('/images/board.webp'), url('/images/board_design.png');
+		background-image: url('/images/board.webp'), url('/images/board_design.webp');
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain, contain;
@@ -817,7 +889,7 @@ Writing reports, specs, and clear vendor communication were part of the job.`,
 					<div class="kicker">Teal Drones Application Page</div>
 					<h1>Electrical Engineer Role at Teal Drones</h1>
 					<p class="intro">
-						I would be ecstatic to get the chance to prove myself in an in-person interview. Drones are what got me into engineering in middle school, have been a constant focus of mine.
+						I would be ecstatic to get the chance to prove myself in an in-person interview. Drones are what got me into engineering in middle school, and have been a constant focus of mine ever since.
 					</p>
 				</div>
 			</div>
@@ -833,15 +905,34 @@ Writing reports, specs, and clear vendor communication were part of the job.`,
 			</button>
 		</section>
 
-		<section class="grid-frame">
-			<TealJobPosting />
+		<section class="grid-frame job-posting-frame">
+			<button
+				type="button"
+				class="job-posting-toggle"
+				aria-expanded={jobPostingExpanded}
+				aria-controls="job-posting-panel"
+				onclick={() => (jobPostingExpanded = !jobPostingExpanded)}
+			>
+				<span>Original job posting</span>
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+				</svg>
+			</button>
+			<div
+				id="job-posting-panel"
+				class="job-posting-panel"
+				class:is-collapsed={!jobPostingExpanded}
+			>
+				<div class="job-posting-panel-inner">
+					<TealJobPosting />
+				</div>
+			</div>
 		</section>
 
 		<section class="signal-grid">
 			<div class="section-kicker">Requirement Match</div>
 			<p class="intro" style="margin: 1rem 0 0;">
-				This section now mirrors the specific minimum requirements called out in Teal's posting so
-				they are visible at a glance instead of being implied across the rest of the portfolio.
+
 			</p>
 
 			{#each requirementSignals as signal, i}
