@@ -131,3 +131,7 @@ dist
 
 # SvelteKit
 .svelte-kit/
+
+# Vercel build output (must be built on the deploy environment; never commit —
+# Windows builds embed backslash paths into .vc-config.json and break prod)
+.vercel/

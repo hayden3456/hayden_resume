@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://haydenconstas.com/sitemap.xml
