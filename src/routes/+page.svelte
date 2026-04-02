@@ -1,41 +1,35 @@
 <script>
-	import Window from '$lib/window.svelte';
-	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
 	import Hero from '$lib/sections/hero.svelte';
 	import About from '$lib/sections/about.svelte';
-	import Ikiagi from '$lib/sections/ikiagi.svelte';
-	import Skills from '$lib/sections/skills.svelte';
-	import { activateOnScroll, focus, preventDefault, self, trapFocus } from '$lib/util';
 	import Work from '$lib/sections/work.svelte';
 	import Project from '$lib/sections/projects.svelte';
 	import Education from '$lib/sections/education.svelte';
-	import ContactModal from '$lib/contact-modal.svelte';
-
-	let showIkiagi = true;
-
-	onMount(() => {
-		// Check the viewport width and set `showIkiagi` to false if on mobile
-		const updateShowIkiagi = () => {
-			showIkiagi = window.innerWidth > 768; // Adjust breakpoint as needed
-		};
-
-		updateShowIkiagi();
-		window.addEventListener('resize', updateShowIkiagi);
-
-		// Cleanup the event listener
-		return () => window.removeEventListener('resize', updateShowIkiagi);
-
-		activateOnScroll('.cursor');
-	});
 </script>
+
+<svelte:head>
+	<title>Hayden Constas | Software and Electrical Engineer</title>
+	<meta
+		name="description"
+		content="Explore Hayden Constas's engineering portfolio, resume, and project work across embedded systems, automation, full-stack development, and applied AI."
+	/>
+	<link rel="canonical" href="https://haydenconstas.com/" />
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Hayden Constas",
+			"url": "https://haydenconstas.com/",
+			"image": "https://haydenconstas.com/images/website_ss.webp",
+			"jobTitle": "Software and Electrical Engineer",
+			"description": "Software and electrical engineer focused on embedded systems, automation, full-stack development, and applied AI.",
+			"sameAs": ["https://www.linkedin.com/in/hayden-constas-39a129228/"]
+		}
+	</script>
+</svelte:head>
 
 <Hero />
 <div class="relative z-50 h-4 w-full bg-slate-700"></div>
-<!-- {#if showIkiagi}
-	<Ikiagi />
-	<div class="relative z-50 h-4 w-full bg-slate-800"></div>
-{/if} -->
+<About />
 <Work />
 <div class="relative z-50 h-4 w-full bg-slate-700"></div>
 <Project />

@@ -149,13 +149,8 @@
     background-attachment: fixed;
   }
 
-  body {
+  :global(body) {
     background: linear-gradient(to bottom, #fcedd1, #fae4c9, #f8d8c1, #f7c6b1, #1e293b, #334155);
-  }
-
-  .container {
-    background: linear-gradient(to bottom, #fcedd1, #fae4c9, #f8d8c1, #f7c6b1, #1e293b, #334155);
-    position: relative;
   }
 
   section {
@@ -190,10 +185,6 @@
     order: 2;
     padding-left: 2rem;
     padding-right: 0;
-  }
-
-  .qualification-section-reverse .image-placeholder {
-    order: 1;
   }
 
   .text-content {
@@ -360,13 +351,6 @@
       padding: 0.4rem 0 0.4rem 1.2rem;
     }
 
-    .job-section p {
-      font-size: 0.9rem;
-    }
-
-    .job-note {
-      font-size: 0.8rem !important;
-    }
   }
 
   .job-description-section {
@@ -483,23 +467,6 @@
     color: #8b4513;
     font-weight: bold;
     font-size: 1.2rem;
-  }
-
-  .job-section p {
-    font-size: 1rem;
-    margin: 0.5rem 0;
-    font-family: "Times New Roman", serif;
-    color: #2f2f2f;
-  }
-
-  .job-note {
-    font-size: 0.9rem !important;
-    font-style: italic;
-    color: #666 !important;
-    margin-top: 1rem !important;
-    padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
   }
 
   .personal-text {

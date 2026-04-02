@@ -3,10 +3,15 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 
+	/** When true, expand to parent height (use inside a sized flex/grid cell). Default: square by column width. */
+	export let fill = false;
+
 	let canvasContainer;
+	let viewerHost;
 	let scene;
 	let isLoaded = false;
 	let aircraftModel;
+	let resizeObserver;
 
 	// Function to detect mobile devices
 	function isMobile() {
@@ -19,9 +24,19 @@
 
 		// Load external dependencies
 		await loadDependencies();
-		
+
 		// Initialize the viewer
 		loadModel();
+
+		resizeObserver = new ResizeObserver(() => {
+			if (!scene || !viewerHost) return;
+			const w = Math.max(1, Math.floor(viewerHost.clientWidth));
+			const h = Math.max(1, Math.floor(viewerHost.clientHeight));
+			scene.resizeTo(w, h);
+		});
+		if (viewerHost) resizeObserver.observe(viewerHost);
+
+		return () => resizeObserver?.disconnect();
 	});
 
 	async function loadDependencies() {
@@ -59,13 +74,17 @@
 	class AircraftViewer {
 		constructor() {
 			console.log('Initializing AircraftViewer');
+			const host = canvasContainer?.parentElement;
+			const w = Math.max(1, Math.floor(host?.clientWidth || 600));
+			const h = Math.max(1, Math.floor(host?.clientHeight || 600));
+
 			this.renderer = new window.THREE.WebGLRenderer({ antialias: true, alpha: true });
-			this.renderer.setSize(600, 600);
+			this.renderer.setSize(w, h);
 			this.renderer.shadowMap.enabled = true;
 			this.renderer.shadowMap.type = window.THREE.PCFSoftShadowMap;
-			this.renderer.setPixelRatio(window.devicePixelRatio);
+			this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 			this.renderer.setClearColor(0x000000, 0);
-			
+
 			canvasContainer.appendChild(this.renderer.domElement);
 			console.log('Renderer added to container');
 
@@ -73,7 +92,7 @@
 			this.scene = new window.THREE.Scene();
 
 			// Camera - adjusted for better view
-			this.camera = new window.THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+			this.camera = new window.THREE.PerspectiveCamera(45, w / h, 0.1, 1000);
 			this.camera.position.set(5, 2, 5);
 			this.camera.lookAt(0, 0, 0);
 
@@ -139,13 +158,13 @@
 			console.log('Model added to scene successfully');
 		}
 
-		onResize = () => {
-			const width = 600;
-			const height = 600;
-			
-			this.camera.aspect = width / height;
+		resizeTo(width, height) {
+			const w = Math.max(1, width);
+			const h = Math.max(1, height);
+
+			this.camera.aspect = w / h;
 			this.camera.updateProjectionMatrix();
-			this.renderer.setSize(width, height);
+			this.renderer.setSize(w, h);
 		}
 	}
 
@@ -167,6 +186,11 @@
 			console.log('OBJ model loaded:', obj);
 			scene = new AircraftViewer();
 			scene.addModel(obj);
+			if (viewerHost) {
+				const w = Math.max(1, Math.floor(viewerHost.clientWidth));
+				const h = Math.max(1, Math.floor(viewerHost.clientHeight));
+				scene.resizeTo(w, h);
+			}
 		}, function (progress) {
 			console.log('Loading progress:', progress);
 		}, function (error) {
@@ -181,7 +205,7 @@
 	}
 </script>
 
-<div class="aircraft-viewer">
+<div class="aircraft-viewer" class:fill bind:this={viewerHost}>
 	<div class="canvas-container" bind:this={canvasContainer}></div>
 	{#if !isLoaded}
 		<div class="loading">Loading...</div>
@@ -191,10 +215,19 @@
 <style>
 	.aircraft-viewer {
 		position: relative;
-		width: 600px;
-		height: 600px;
+		width: 100%;
+		aspect-ratio: 1;
+		height: auto;
+		max-height: min(90vh, 900px);
 		border-radius: 8px;
 		overflow: hidden;
+	}
+
+	.aircraft-viewer.fill {
+		aspect-ratio: auto;
+		height: 100%;
+		min-height: 240px;
+		max-height: none;
 	}
 
 	.canvas-container {
@@ -218,24 +251,4 @@
 		z-index: 10;
 	}
 
-	@media (max-width: 1024px) {
-		.aircraft-viewer {
-			width: 500px;
-			height: 500px;
-		}
-	}
-
-	@media (max-width: 768px) {
-		.aircraft-viewer {
-			width: 400px;
-			height: 400px;
-		}
-	}
-
-	@media (max-width: 640px) {
-		.aircraft-viewer {
-			width: 300px;
-			height: 300px;
-		}
-	}
 </style> 

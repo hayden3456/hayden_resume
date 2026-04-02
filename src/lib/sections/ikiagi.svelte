@@ -141,14 +141,6 @@ $: {
       height: 80vh;
     }
   
-    .model {
-      width: 100%;
-      height: 80vh;
-      max-width: 1000px;
-      margin: auto;
-      display: block;
-    }
-  
     /* Container for Ikigai circles */
     .ikigai-container {
       position: fixed;
@@ -214,43 +206,6 @@ $: {
     bottom: -150px;
     right: -120px;
 }
-/* Text boxes for circles */
-.text-box {
-    position: absolute;
-    width: 150px; /* Adjust as needed */
-    font-size: 0.9em;
-    font-weight: bold;
-    color: black;
-    text-align: center;
-    border-radius: 5px; /* Rounded edges */
-    padding: 5px;
-}
-
-/* Positioning text boxes relative to circles */
-.text-box.left {
-    top: 50%;
-    left: -300px; /* Move right from the center of 'What the world needs' */
-    transform: translateY(-50%);
-}
-
-.text-box.right {
-    top: 50%;
-    right: -300px; /* Move right from the center of 'What the world needs' */
-    transform: translateY(-50%);
-}
-
-.text-box.top {
-    top: -220px; /* Move downwards from the center of 'What you can be paid for' */
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.text-box.bottom {
-    bottom: -220px; /* Move downwards from the center of 'What you can be paid for' */
-    left: 50%;
-    transform: translateX(-50%);
-}
-
     /* Center text for Ikigai */
     .center-text {
       position: absolute;

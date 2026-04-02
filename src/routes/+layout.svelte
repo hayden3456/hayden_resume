@@ -22,7 +22,6 @@
 	}
 
 	function handleEscapeClose(event: KeyboardEvent) {
-		console.log(event);
 		if (event.key !== 'Escape') return;
 
 		toggleModal();

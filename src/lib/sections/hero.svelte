@@ -1,12 +1,8 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
-	import { onMount } from 'svelte';
 
 	let modal: { visible: Writable<boolean> } = getContext('modal');
-	let showCoorsTekButton = false;
-	let showShieldAIButton = false;
-
 </script>
 
 <div
@@ -18,19 +14,19 @@
 		class="parallax absolute bottom-0 left-0 right-0 z-0 h-full overflow-hidden bg-[#fcedd1] bg-[url('/images/stars.webp')] bg-no-repeat pl-24 opacity-15 bg-blend-multiply [--parallax-speed:8]"
 	></div>
 	<div
-		class="parallax absolute bottom-0 left-0 right-0 z-10 h-full overflow-hidden rounded-tl-full bg-[#fae4c9] bg-[url('/images/moun1.jpg')] bg-cover bg-top pl-24 opacity-15 bg-blend-multiply [--parallax-speed:6]"
+		class="parallax absolute bottom-0 left-0 right-0 z-10 h-full overflow-hidden rounded-tl-full bg-[#fae4c9] bg-[url('/images/moun1.webp')] bg-cover bg-top pl-24 opacity-15 bg-blend-multiply [--parallax-speed:6]"
 	></div>
 	<div
 		class="parallax absolute bottom-0 left-12 right-0 z-20 h-[60vh] rounded-tl-full bg-[#f8d8c1] [--parallax-speed:4]"
 	></div>
 	<div
-		class="parallax bg-coverbg-center absolute bottom-0 left-24 right-0 z-30 h-[45vh] rounded-tl-full bg-[#f7c6b1] bg-[url('/images/moun2.jpg')] bg-cover opacity-70 bg-blend-multiply [--parallax-speed:2|]"
+		class="parallax bg-coverbg-center absolute bottom-0 left-24 right-0 z-30 h-[45vh] rounded-tl-full bg-[#f7c6b1] bg-[url('/images/moun2.webp')] bg-cover opacity-70 bg-blend-multiply [--parallax-speed:2|]"
 	></div>
 	<div
 		class="parallax absolute left-0 right-0 top-[15vh] z-50 mx-auto w-fit px-4 text-left text-2xl [--parallax-speed:2] md:bottom-1/2 md:px-6 [@media_((min-height:600px)_and_(min-width:640px))]:text-4xl [@media_((min-height:800px)_and_(min-width:768px))]:text-5xl"
 	>
 
-		<p
+		<h1
 			class="font-['Roboto_Mono'] font-medium leading-none tracking-tight text-slate-600 drop-shadow"
 		>
 			<span class="font-normal text-slate-500/15"></span>&nbsp;&nbsp;&nbsp;&nbsp;Nice to meet you, my name's <span
@@ -40,7 +36,10 @@
 				class="cursor active font-['Roboto_Mono'] text-slate-500/30"
 				id="cursor-1">&#x2590;</span
 			>
-		</p>
+		</h1>
+		<!-- <p class="mt-4 max-w-2xl text-sm font-medium tracking-wide text-slate-600 md:text-base">
+			Software and electrical engineer building embedded systems, full-stack products, and automation.
+		</p> -->
 
 		<div class="mt-16 flex items-center gap-4">
 			<button

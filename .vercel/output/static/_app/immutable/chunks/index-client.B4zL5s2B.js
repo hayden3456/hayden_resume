@@ -1,0 +1,1 @@
+import{a2 as o,a3 as t,a4 as u,a5 as c,_ as e}from"./runtime.CXvSkQAf.js";function l(n){o===null&&t(),u&&o.l!==null?s(o).m.push(n):c(()=>{const a=e(n);if(typeof a=="function")return a})}function i(n){o===null&&t(),l(()=>()=>e(n))}function s(n){var a=n.l;return a.u??(a.u={a:[],b:[],m:[]})}export{i as a,l as o};

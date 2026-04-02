@@ -3,14 +3,17 @@
   import {
     fly,
   } from 'svelte/transition';
-  import Carousel from "$lib/Carousel.svelte"
   import PlaneAnimation from '$lib/plane-animation.svelte';
   import VtolViewer from '$lib/vtol-viewer.svelte';
   
     import { onMount } from 'svelte';
-    import { activateOnScroll } from '$lib/util';
 
     onMount(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
+    let frame = 0;
+
     // Function to handle parallax effect for an element
     function applyParallax(e: MouseEvent, elem: HTMLElement) {
       const _w = window.innerWidth / 2;
@@ -32,23 +35,32 @@
   
     // Add event listener for mousemove
     function handleParallax(e: MouseEvent) {
-      if (parallaxElem1) {
-        applyParallax(e, parallaxElem1 as HTMLElement);
-      }
-      if (parallaxElem2) {
-        applyParallax(e, parallaxElem2 as HTMLElement);
-      }
-      if (parallaxElem3) {
-        applyParallax(e, parallaxElem3 as HTMLElement);
-      }
-      if (parallaxElem4) {
-        applyParallax(e, parallaxElem4 as HTMLElement);
-      }
+      if (frame) return;
+
+      frame = window.requestAnimationFrame(() => {
+        if (parallaxElem1) {
+          applyParallax(e, parallaxElem1 as HTMLElement);
+        }
+        if (parallaxElem2) {
+          applyParallax(e, parallaxElem2 as HTMLElement);
+        }
+        if (parallaxElem3) {
+          applyParallax(e, parallaxElem3 as HTMLElement);
+        }
+        if (parallaxElem4) {
+          applyParallax(e, parallaxElem4 as HTMLElement);
+        }
+
+        frame = 0;
+      });
     }
   
     document.addEventListener("mousemove", handleParallax);
   
     return () => {
+      if (frame) {
+        window.cancelAnimationFrame(frame);
+      }
       document.removeEventListener("mousemove", handleParallax);
     };
   });
@@ -95,7 +107,7 @@
       <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
         <div id="parallax" class = "text-center"></div>
         <div>
-            <h2 class="text-5xl font-bold mb-4">Gut Health Monitor</h2>
+            <h3 class="text-5xl font-bold mb-4">Gut Health Monitor</h3>
             <p>Started a company that gave dietary feedback from the on toilet sensor. <br> <br>
               From user feedback, we changed the form factor several times
               with the shown version being an early design. 
@@ -108,20 +120,20 @@
   
     <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
       <div>
-          <h2 class="text-5xl font-bold mb-4">Custom Shirts</h2>
-          <p>In the effort to get my engineering firm off the ground, we created custom shirts to become cashflow positive. 
+          <h3 class="text-5xl font-bold mb-4">Home VPN Service</h3>
+          <p>A service that let non-technical people set up a VPN to their home internet connection by plugging in a device and connecting.
             <br><br>
-            While nothing technical, I learned what building a brand meant to people. </p>
+            Building it meant digging into what makes the internet tick, network protocols, and was made with Netbird as the the underlying infrastructure.</p>
       </div>
-    <div class = "carousel">
-      <Carousel/>
+    <div class="max-w-full sm:max-w-[min(100%,560px)]">
+      <img src="/images/360_spin_1400.gif" alt="Home VPN service hardware demo" class="w-full h-auto rounded-lg" loading="lazy" decoding="async" />
     </div>
     </div>
   
   <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
     <div id="pipe" class = "text-center"></div>
     <div>
-        <h2 class="text-5xl font-bold mb-4">Pipline Integrity Device</h2>
+        <h3 class="text-5xl font-bold mb-4">Pipeline Integrity Device</h3>
         <p>Lead design iteration and testing of an MVP device to retrieve integrity monitoring equipment.<br> <br>
           With my co-owner we got the device in the field with Chevron which led to securing $200k in seed funding.</p>
     </div>
@@ -129,9 +141,9 @@
 
 <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
   <div>
-      <h2 class="text-5xl font-bold mb-4">Baby Monitor</h2>
+      <h3 class="text-5xl font-bold mb-4">Baby Monitor</h3>
       <p>Me and our team created a device that detected when a baby's diaper needed changing and would notify the parents. The IoT device strapped to the side of a crib.<br><br>
-      While never making out of the protype phase it was my first crash course into combining disciplines from biology to web dev to hardware.</p>
+      While never making it out of the prototype phase it was my first crash course into combining disciplines from biology to web development to hardware.</p>
   </div>
   <div id="panda" class = "text-center"></div>
 </div>
@@ -139,7 +151,7 @@
   <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
     <div id="board" class = "text-center"></div>
     <div>
-        <h2 class="text-5xl font-bold mb-4">Power Supply Board</h2>
+        <h3 class="text-5xl font-bold mb-4">Power Supply Board</h3>
         <p>Used Eagle design software to create a power supply board for a PCB design class.</p>
     </div>
 </div>
@@ -147,7 +159,7 @@
 
 <div transition:fly="{{ x: -400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
   <div class="w-2/5">
-    <h2 class="text-5xl font-bold mb-4">Brokered Aircraft Sales</h2>
+    <h3 class="text-5xl font-bold mb-4">Brokered Aircraft Sales</h3>
     <p>Brokered for an old VTFF (Vertical Takeoff, Forward Flight) 
       aircraft design to be sold to OEM aircraft manufacturers. 
       Got the deal down the line as far as getting in front of the DoD Innovation Unit. 
@@ -155,7 +167,7 @@
       Had to prepare the old files and gather the designs in a cohesive story told to potential buyers. 
       For more information visit: 
     </p>
-    <a class = "text-blue-300" href="https://www.youtube.com/watch?v=TN_yvkcoihA">https://www.youtube.com/watch?v=TN_yvkcoihA</a>
+    <a class = "text-blue-300" href="https://www.youtube.com/watch?v=TN_yvkcoihA" rel="noopener noreferrer">https://www.youtube.com/watch?v=TN_yvkcoihA</a>
   </div>
   <div class="text-center w-3/5">
     <VtolViewer/>
@@ -165,10 +177,10 @@
 
 
 <div transition:fly="{{ x: 400, delay: 5, duration: 1000 }}" class="flex flex-col sm:flex-row items-center sm:space-x-8 space-y-4 sm:space-y-0">
-  <div ><img src="\images\turn.gif" alt="robot"></div>
+  <div ><img src="/images/turn.gif" alt="Maze navigation robot demo" loading="lazy" decoding="async"></div>
   <div>
-      <h2 class="text-5xl font-bold mb-4">Robot Creation</h2>
-      <p>Designed and created a robot to use Open CV on a Raspberry Pi and a PID controller an an Arduino Uno, to navigate a maze of ArUco markers.</p>
+      <h3 class="text-5xl font-bold mb-4">Robot Creation</h3>
+      <p>Designed and created a robot to use OpenCV on a Raspberry Pi and a PID controller on an Arduino Uno to navigate a maze of ArUco markers.</p>
   </div>
 </div>
 
@@ -208,24 +220,6 @@
     }
   }
 
-  .custom-shape-divider-top-1750914341 {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-}
-
-.custom-shape-divider-top-1750914341 svg {
-    position: relative;
-    display: block;
-    width: calc(125% + 1.3px);
-    height: 135px;
-}
-
-.custom-shape-divider-top-1750914341 .shape-fill {
-    fill: #1E293B;
-}
-
   /* .carousel{
     height: 700px;
   } */
@@ -235,7 +229,7 @@
     width: 100%;
     height: 100vh;
     /* background-color: white;  */
-    background-image: url('/images/temp.png'), url('/images/logo.svg');
+    background-image: url('/images/temp.webp'), url('/images/logo.svg');
     background-repeat: no-repeat;
     background-position: top;
     background-position: 50% 50%;
@@ -246,7 +240,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    background-image: url('/images/panda1.png'), url('/images/panda2.png');
+    background-image: url('/images/panda1.webp'), url('/images/panda2.webp');
     background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
     background-position: 50% 50%, 50% 50%; /* Center both images */
     background-size: 50% auto, cover; /* Make panda1 smaller and panda2 fill the container */
@@ -257,7 +251,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    background-image: url('/images/pipeline.png'), url('/images/pig_pat.png');
+    background-image: url('/images/pipeline.webp'), url('/images/pig_pat.png');
     background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
     background-position: 50% 50%, 50% 50%; /* Center both images */
     background-size: 50% auto, cover; /* Make panda1 smaller and panda2 fill the container */
@@ -268,21 +262,13 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    background-image: url('/images/board.png'), url('/images/board_design.png');
+    background-image: url('/images/board.webp'), url('/images/board_design.png');
     background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
     background-position: 50% 50%, 50% 50%; /* Center both images */
     background-size: 80% auto, cover; /* Make panda1 smaller and panda2 fill the container */
     transform: scale(0.7);
   }
   
-  
-  .model {
-    width: 100%; /* Use full width of container */
-    max-width: 800px; /* Maximum width to prevent overflow */
-    height: 600px; /* Adjust height for proportion */
-    margin: auto; /* Center the model */
-    display: block; /* Ensure proper layout */
-  }
   
   </style>
           

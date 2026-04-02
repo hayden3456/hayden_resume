@@ -25,9 +25,9 @@
 							class="rounded border border-slate-200 bg-gradient-to-br from-white to-slate-100 px-6 py-4 sm:px-8 sm:py-6"
 						>
 							<div class="mx-auto mb-4 h-12 w-10 rounded-b-full bg-[#f7c6b1] sm:mb-6"></div>
-							<h2 class="mb-4 text-center text-lg font-bold text-slate-600 sm:mb-6 sm:text-xl">
+							<h3 class="mb-4 text-center text-lg font-bold text-slate-600 sm:mb-6 sm:text-xl">
 								Colorado School of Mines
-							</h2>
+							</h3>
 							<h3 class="">Bachelor of Engineering in</h3>
 							<h4 class="text-lg font-bold text-slate-700 sm:text-xl">Electrical Engineering</h4>
 							<h4 class="hidden text-lg font-bold text-slate-500 sm:block">2025</h4>

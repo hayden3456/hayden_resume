@@ -56,13 +56,8 @@
       background-attachment: fixed;
     }
   
-    body {
+    :global(body) {
       background: linear-gradient(to bottom, #f0f9ff, #e0f2fe, #bae6fd, #7dd3fc, #1e293b, #0f172a);
-    }
-  
-    .container {
-      background: linear-gradient(to bottom, #f0f9ff, #e0f2fe, #bae6fd, #7dd3fc, #1e293b, #0f172a);
-      position: relative;
     }
   
     section {
@@ -97,10 +92,6 @@
       order: 2;
       padding-left: 2rem;
       padding-right: 0;
-    }
-
-    .qualification-section-reverse .image-placeholder {
-      order: 1;
     }
 
     .text-content {
@@ -273,7 +264,8 @@
       }
 
       /* Fix video and iframe responsiveness */
-      video, iframe {
+      video,
+      :global(iframe) {
         width: 100% !important;
         height: auto !important;
         max-height: 300px;
@@ -432,24 +424,6 @@
       font-size: 0.8rem;
     }
 
-    .job-section p {
-      font-size: 1rem;
-      margin: 0.5rem 0;
-      font-family: "Inter", "Arial", sans-serif;
-      color: #1e293b;
-      line-height: 1.6;
-    }
-
-    .job-note {
-      font-size: 0.9rem !important;
-      font-style: italic;
-      color: #475569 !important;
-      margin-top: 1rem !important;
-      padding: 0.75rem;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 6px;
-      border-left: 3px solid #3b82f6;
-    }
   </style>
   
   <progress max="100" value="0"></progress>

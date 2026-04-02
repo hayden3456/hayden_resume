@@ -56,13 +56,8 @@
       background-attachment: fixed;
     }
   
-    body {
+    :global(body) {
       background: linear-gradient(to bottom, #fcedd1, #fae4c9, #f8d8c1, #f7c6b1, #1e293b, #334155);
-    }
-  
-    .container {
-      background: linear-gradient(to bottom, #fcedd1, #fae4c9, #f8d8c1, #f7c6b1, #1e293b, #334155);
-      position: relative;
     }
   
     section {
@@ -97,10 +92,6 @@
       order: 2;
       padding-left: 2rem;
       padding-right: 0;
-    }
-
-    .qualification-section-reverse .image-placeholder {
-      order: 1;
     }
 
     .text-content {
@@ -204,24 +195,6 @@
       color: #e2e8f0;
     }
 
-    /* SVG positioning */
-    svg {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      height: auto;
-      max-width: 869px;
-      z-index: 100;
-      pointer-events: none;
-    }
-
-    /* Make the ball more visible */
-    #ball circle {
-      filter: drop-shadow(0 0 10px rgba(71, 85, 105, 0.8));
-    }
-
     @media (max-width: 768px) {
       section {
         padding: 2rem 1rem;
@@ -316,18 +289,9 @@
         overflow-wrap: break-word;
       }
 
-      .job-section p {
-        font-size: 0.95rem;
-        line-height: 1.4;
-      }
-
-      .job-note {
-        font-size: 0.85rem !important;
-        line-height: 1.4;
-      }
-
       /* Fix video and iframe responsiveness */
-      video, iframe {
+      video,
+      :global(iframe) {
         width: 100% !important;
         height: auto !important;
         max-height: 300px;
@@ -489,23 +453,6 @@
       color: #8b4513;
       font-weight: bold;
       font-size: 1.2rem;
-    }
-
-    .job-section p {
-      font-size: 1rem;
-      margin: 0.5rem 0;
-      font-family: "Times New Roman", serif;
-      color: #2f2f2f;
-    }
-
-    .job-note {
-      font-size: 0.9rem !important;
-      font-style: italic;
-      color: #666 !important;
-      margin-top: 1rem !important;
-      padding: 0.5rem;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
     }
 
     .personal-text {

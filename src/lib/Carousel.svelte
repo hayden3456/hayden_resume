@@ -1,11 +1,11 @@
 <script>
     // Array of image URLs
     let images = [
-      '/images/shirt1.png',
-      '/images/shirt2.png',
-      '/images/shirt3.png',
-      '/images/shirt4.png',
-      '/images/shirt5.png'
+      '/images/shirt1.webp',
+      '/images/shirt2.webp',
+      '/images/shirt3.webp',
+      '/images/shirt4.webp',
+      '/images/shirt5.webp'
     ];
   
     // Index of the current image
@@ -25,7 +25,7 @@
   <div class="carousel items-center">
     <button class="arrow left" on:click={prevImage}>&lt;</button>
     <div class="image-container">
-      <img src="{images[currentIndex]}" alt="Image {currentIndex + 1}" />
+      <img src="{images[currentIndex]}" alt="Custom apparel project image {currentIndex + 1}" loading="lazy" decoding="async" />
     </div>
     <button class="arrow right" on:click={nextImage}>&gt;</button>
   </div>

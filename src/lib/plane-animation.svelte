@@ -260,7 +260,6 @@
 
 		window.gsap.fromTo('canvas', { x: "50%", autoAlpha: 0 }, { duration: 1, x: "0%", autoAlpha: 1 });
 		window.gsap.to('.loading', { autoAlpha: 0 });
-		window.gsap.to('.scroll-cta', { opacity: 1 });
 		window.gsap.set('svg', { autoAlpha: 1 });
 
 		let tau = Math.PI * 2;
@@ -371,7 +370,6 @@
 		
 		delay += 1.5; // Add extra delay for entrance
 
-		tl.to('.scroll-cta', { duration: 0.25, opacity: 0 }, delay);
         tl.to(plane.rotation, { x: tau * .25, y: 0, z: tau * 0.03, ease: 'power1.inOut' }, delay);
 		tl.to(plane.position, { x: -10, ease: 'power1.in', y: 0, z: getZOffset(0) }, delay);
 
@@ -682,9 +680,9 @@
 			<div class="divider"></div>
 		</div>
 		<div class="section">
-			<h3><b>American Association of Aeronautics and Astronautics RC Competition.</b></h3>
+			<h3><b>AIAA RC Plane Competition.</b></h3>
 			<h3><b>Overview</b></h3>
-			<p><b>We built a 6ft rc plane and glider from the ground up for the AIAA competion. It consisted of 3 main missions:</b></p>
+			<p><b>We built a 6ft rc plane and glider from the ground up for the competion. It consisted of 3 main missions:</b></p>
 		</div>
 		
 		<div class="section right">
@@ -715,8 +713,7 @@
 				<line id="line-length" x1="10" y1="95" x2="90" y2="95" stroke-width="0.5" class="drawing-line"></line>
 			</svg>
 			<div class="section dark">
-				<h2>The facts and figures.</h2>
-				<p>Lets get into the nitty gritty...</p>
+				<h2>Our Design Breakdown</h2>
 			</div>
 			<div class="section dark length">
 				<h2>Glider.</h2>
@@ -787,20 +784,6 @@
 		}
 	}
 
-	a {
-		color: white;
-	}
-
-	ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	li {
-		margin-top: 10px;
-	}
-
 	.plane-animation {
 		margin: 0;
 		min-height: 100%;
@@ -820,16 +803,6 @@
 		pointer-events: none;
 		visibility: hidden;
 		opacity: 0;
-	}
-
-	.solid {
-		-webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-	}
-
-	.wireframe {
-		-webkit-clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
-		clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
 	}
 
 	.content {
@@ -946,23 +919,13 @@
 		background-image: url("https://assets.codepen.io/557388/clouds.png");
 	}
 	
-	.content .scroll-cta, .content .credits {
-		position: absolute;
-		bottom: var(--padding);
-	}
-	
-	.content .scroll-cta {
-		font-size: var(--font-size-medium);
-		opacity: 0;
-	}
-	
 	.content .sunset {
 		background: url("https://assets.codepen.io/557388/sunset-reduced.jpg") no-repeat top center;
 		background-size: cover;
 		transform-origin: top center;
 	}
 	
-	.content h1, .content h2 {
+	.content h2 {
 		font-size: var(--font-size-large);
 		margin: 0vmin 0 2vmin 0;
 		font-weight: 700;
@@ -973,10 +936,6 @@
 		font-size: var(--font-size-medium);
 		font-weight: 400;
 		margin: 0;
-	}
-	
-	.content .end h2 {
-		margin-bottom: 50vh;
 	}
 	
 	.content .loading {

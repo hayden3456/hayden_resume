@@ -33,6 +33,24 @@
 	import { activateOnScroll } from '$lib/util';
 
 	const work = [
+	{
+		from: 'Aug 2025',
+		to: 'Feb 2026',
+		title: 'Systems Analyst Integrations Specialist',
+		workPlace: '@CoorsTek, Inc.',
+		body: [
+			'Tied together in-house and SaaS software solutions to keep systems talking and operations running smoothly.',
+			'Helped implement a company-wide chatbot powered by internal data.'
+		],
+		keywords: [
+			'Systems Integration',
+			'SaaS',
+			'Internal Tools',
+			'Chatbots',
+			'Automation'
+		],
+		icons: []
+	},
     {
         from: 'May 2024',
         to: 'June 2024',
@@ -118,13 +136,13 @@
 </script>
 
 <div
-	class="left-0 -mt-2 w-full overflow-hidden border-t-8 border-slate-700 bg-slate-800 pb- pt-24 md:py-24"
+	class="left-0 -mt-1 w-full overflow-hidden border-slate-700 bg-slate-800 pb- "
 >
 	<div class="relative mx-auto max-w-7xl px-4 md:px-6">
-		<div
+		<!-- <div
 			class="parallax absolute
-			-top-24 right-48 z-0 -mx-96 h-full w-full bg-[url('/images/coffee.webp')] bg-contain bg-no-repeat opacity-50 bg-blend-normal drop-shadow [--parallax-speed:5] sm:right-24 sm:bg-auto md:-right-[10vw] lg:opacity-100"
-		></div>
+			-top-64 right-48 z-0 -mx-96 h-full w-full bg-[url('/images/coffee.webp')] bg-contain bg-no-repeat opacity-50 bg-blend-normal drop-shadow [--parallax-speed:5] sm:right-24 sm:bg-auto md:-right-[10vw] lg:opacity-100"
+		></div> -->
 		<a id="work">
             <h2
             class="relative z-10 mx-auto font-['Roboto_Mono'] text-xl leading-none tracking-wide text-[#fce4b8]"
@@ -134,28 +152,30 @@
               &#x2590;
             </span>
           </h2>
-        <p 
+        <!-- <p 
         class="mb-16 pr-24 text-2xl font-medium leading-tight tracking-tight text-slate-300 md:text-3xl lg:w-1/2"
     >
         My name is <span class="font-bold">Hayden Constas</span>. I'm an electrical engineer with a background in entrepreneurship. I've learned a lot the hard way, and am always looking forward to the next challege. Here's the journey I've been on so far. 
-    </p>
+    </p> -->
     
 		</a>
 
 		<div
-			class="relative mx-auto space-y-12 overflow-hidden via-90% pb-4 sm:pt-8 sm:before:absolute sm:before:inset-0 sm:before:left-[1px] sm:before:h-full sm:before:w-[1px] sm:before:-translate-x-px sm:before:bg-gradient-to-b sm:before:from-white/25 sm:before:via-white/25 sm:before:to-transparent mt-36"
+			class="relative mx-auto space-y-4 overflow-hidden via-90% pb-4 sm:pt-8 sm:before:absolute sm:before:inset-0 sm:before:left-[1px] sm:before:h-full sm:before:w-[1px] sm:before:-translate-x-px sm:before:bg-gradient-to-b sm:before:from-white/25 sm:before:via-white/25 sm:before:to-transparent mt-36"
 		>
 			{#each work as w, i}
-				<Milestone
-					from={w.from}
-					to={w.to}
-					heading={w.title}
-					subheading={w.workPlace}
-					body={w.body}
-					keywords={w.keywords}
-					icons={w.icons}
-					active={i === 0}
-				></Milestone>
+				<div class:mt-[34px]={i === 0}>
+					<Milestone
+						from={w.from}
+						to={w.to}
+						heading={w.title}
+						subheading={w.workPlace}
+						body={w.body}
+						keywords={w.keywords}
+						icons={w.icons}
+						active={i === 0}
+					></Milestone>
+				</div>
 			{/each}
 		</div>
 	</div>

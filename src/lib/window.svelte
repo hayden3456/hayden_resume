@@ -26,7 +26,10 @@
 	<div class="-ml-2 mb-4 flex gap-2">
 		{#if close}
 			<!-- functional button -->
-			<button class="h-3 w-3 rounded-full bg-red-400 transition hover:brightness-90" onclick={close}
+			<button
+				aria-label="Close window"
+				class="h-3 w-3 rounded-full bg-red-400 transition hover:brightness-90"
+				onclick={close}
 			></button>
 		{:else}
 			<!-- purely decoration -->
