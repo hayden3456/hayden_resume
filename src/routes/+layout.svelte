@@ -6,8 +6,11 @@
 	import { fade } from 'svelte/transition';
 	import { focus, preventDefault, self, trapFocus } from '$lib/util';
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 	import GitHub from '$lib/icons/git-hub.svelte';
 	import LinkedIn from '$lib/icons/linked-in.svelte';
+
+	$: hideSiteChrome = $page.url.pathname === '/morgan_stanley';
 
 	var modal = setContext('modal', {
 		visible: writable(false)
@@ -45,6 +48,7 @@
 	onDestroy(unsubscribe);
 </script>
 
+{#if !hideSiteChrome}
 <nav class="absolute left-0 right-0 z-50 mx-auto max-w-7xl p-4 md:p-6">
 	<ul class="flex items-end justify-between text-slate-700">
 		<li>
@@ -58,9 +62,11 @@
 		</li>
 	</ul>
 </nav>
+{/if}
 <main>
 	<slot />
 </main>
+{#if !hideSiteChrome}
 <footer
 	class="left-0 -mt-2 w-full overflow-hidden bg-gradient-to-b from-slate-900 to-slate-900 py-24"
 >
@@ -89,8 +95,9 @@
 		</ul>
 	</div>
 </footer>
+{/if}
 
-{#if $visible}
+{#if $visible && !hideSiteChrome}
 	<button
 		transition:fade
 		class="fixed top-0 z-[100] flex h-full w-full cursor-default items-center justify-center bg-white/70 sm:bg-white/50 sm:backdrop-blur"
