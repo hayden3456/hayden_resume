@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import 'lenis/dist/lenis.css';
+	import YieldCurvesChart from './YieldCurvesChart.svelte';
+	import { beforeNavigate } from '$app/navigation';
 
 	const IMG = {
 		layer01: '/morgan_stanley/paralax_1_1.avif',
-		layer02: '/morgan_stanley/paralax_1_3.avif',
+		layer02: '/morgan_stanley/paralax_1_3_ms.avif',
 		layer03: '/morgan_stanley/paralax_1_2.avif',
 		portfolioBg: '/morgan_stanley/branch_2.avif',
 		/** Footer parallax: base → city → foreground (trees / peaks). */
@@ -14,142 +16,189 @@
 	} as const;
 
 	const SOCIAL = {
-		linkedin: 'https://www.linkedin.com/in/hayden-constas-39a129228/',
-		/** Set to your X profile URL to show the X button instead of GitHub. */
-		x: '',
-		github: 'https://github.com/haydenconstas'
+		linkedin: 'https://www.linkedin.com/in/hayden-constas-39a129228/'
 	} as const;
 
-	/** Posting: IED — Quantitative Trading Assistant — Salt Lake City (professional). */
+	const CONTACT = {
+		email: 'hjconstas@gmail.com',
+		phoneDisplay: '(708)-830-0299',
+		/** E.164 for tel: links */
+		phoneTel: '+17088300299'
+	} as const;
+
+	/** Posting: PWM — Client Service Associate — Salt Lake City (professional). */
 	const posting = {
-		role: 'Quantitative Trading Assistant',
-		division: 'Institutional Equity Division (IED)',
+		role: 'Private Wealth Management Client Service Associate',
+		division: 'Private Wealth Management (PWM)',
 		office: 'Salt Lake City, UT'
 	} as const;
 
-	const responsibilityFit: { ask: string; answer: string }[] = [
+	type ReqMedia =
+		| { src: string; alt: string; fit?: 'contain'; kind?: 'image' | 'video' }
+		| { kind: 'yieldCurves'; alt: string };
+
+	type ReqCard = {
+		eyebrow: string;
+		title: string;
+		/** Exact-ish wording from the posting, in quotes. */
+		quote: string;
+		copy: string;
+		media: ReqMedia;
+	};
+
+	/** One card per posting requirement — knowledge, skills, and how this role shows up day to day. */
+	const requirementCards: ReqCard[] = [
 		{
-			ask: 'Oversee real-time model calibration and market parameter maintenance.',
-			answer:
-				'At CACI I worked on satellite software where traceability, disciplined checklists, and CI-minded rigor matter before anything ships. That habit of keeping parameters and builds in a known-good state maps cleanly to supporting calibration workflows where consistency is non-negotiable.'
+			eyebrow: 'Role 01',
+			title: 'Client-first relationships',
+			quote:
+				'"Through regular interactions with clients, individuals in this role build trusted relationships. Leading with a client first mindset."',
+			copy:
+				'I learned to build strong client relationships by starting an engineering firm where we prototyped people’s ideas. That meant explaining complex concepts to non-technical clients, listening first, and making sure their vision was clearly understood. The picture was from a prototype in progress.',
+			media: {
+				src: '/images/smiling_with_board.webp',
+				alt: 'Collaboration and clear client-facing communication'
+			}
 		},
 		{
-			ask: 'Monitor market data (vol surfaces, dividends, borrow curves, yield curves) and resolve fit errors promptly.',
-			answer:
-				'My strength is live data systems: validate inputs, catch bad fits fast, and narrow whether the issue is data, model assumptions, or plumbing. SAFFIRE-adjacent GIS work and integration debugging at CoorsTek trained me to treat anomalies as tickets with a tight feedback loop.'
+			eyebrow: 'Role 02',
+			title: 'Detail, docs, and prioritization',
+			quote:
+				'"Detail orientated with superior organizational skills and ability to prioritize."',
+			copy:
+				'Engineering habits carry over big time: checklists, version control, and a low tolerance for ambiguous handoffs. When multiple requests compete for time, I rank by impact and deadlines.',
+			media: { src: '/images/circuits.webp', alt: 'Precision and organized execution' }
 		},
 		{
-			ask: 'Troubleshoot exchange-related quote issues and ensure smooth trading operations.',
-			answer:
-				'Tie-outs across vendors, APIs, and internal tools are a recurring theme in my integrations work—when two systems disagree, I chase the delta methodically and communicate what broke, why, and what we need from the other side.'
+			eyebrow: 'Role 03',
+			title: 'Financial products literacy',
+			quote:
+				'"Knowledge of financial services products, including but not limited to equities, bonds, options, mutual funds, annuities, insurance, and managed accounts."',
+			copy:
+				"I'm not coming from a brokerage path but I bring strong quantitative instincts, learn quickly, and respect compliance. I love to learn and have dived into fields from biology to physics. I'm excited to do it again.",
+			media: {
+				kind: 'yieldCurves',
+				alt: 'Illustrative yield, borrow, and dividend curves across tenors — quantitative lens on markets'
+			}
 		},
 		{
-			ask: 'Validate new-name fits and manage corporate actions and basket compositions.',
-			answer:
-				'Delivering MVPs at Protogenesis meant new clients, new datasets, and shifting scope weekly. I am used to validating new configurations, documenting edge cases, and keeping a coherent “system picture” when the underlying pieces change.'
+			eyebrow: 'Role 04',
+			title: 'Addepar & platform learning',
+			quote: '"Experience with or knowledge of Addepar."',
+			copy:
+				'I have not used Addepar yet, but I am extremely familiar with the SaaS world and will learn fast. I helped build an internal chatbot on data at CoorsTek (Called Clay), which is using similar tech under the hood.',
+			media: {
+				src: '/images/red_clay_branded2.png',
+				alt: 'Learning new tools through repetition and clear workflows',
+			}
 		},
 		{
-			ask: 'Collaborate with traders, strats, and support teams to address live requests quickly and accurately.',
-			answer:
-				'I have shipped alongside engineers, operators, and stakeholders in defense tech, industrial integration, and startups. I default to crisp updates, explicit assumptions, and escalation when I need a decision—not silent scrambling.'
+			eyebrow: 'Role 05',
+			title: 'Microsoft Office & clerical work at scale',
+			quote:
+				'"Advanced Microsoft Office skills (Word, Excel, Outlook and PowerPoint)." Enter profile information or pre-fill account documentation on client accounts and/or documents in a clerical capacity.',
+			copy:
+				'I live in spreadsheets for analysis, Word and PowerPoint for crisp narratives. I care about the small things which is why I build an automatic documentation tool for software teams shown in the video.',
+			media: {
+				src: '/video/code_changing.mp4',
+				alt: 'Learning new tools through repetition and clear workflows',
+				kind: 'video'
+			}
+		},
+		{
+			eyebrow: 'Role 06',
+			title: 'Writing, phones, and calendar logistics',
+			quote:
+				'"Exceptional writing, interpersonal and client service skills." Answering inbound phone calls or making outbound calls with updates on service requests. Managing the calendar including coordinating meetings or events with logistics.',
+			copy:
+				"It's not my first rodeo in 'sales'. I write for busy readers with short context and clear next steps. Here I am helping run an entrepreneurship workshop.",
+			media: {
+				src: '/images/me_crop.gif',
+				alt: 'Coordinated execution behind the scenes'
+			}
+		},
+		{
+			eyebrow: 'Role 07',
+			title: 'Fast pace, adaptability, teamwork',
+			quote:
+				'"Ability to work in a fast-paced, evolving environment." "Adaptable and ability to multitask." "Team player with the ability to collaborate with others."',
+			copy:
+				"I've learned to adapt quickly, juggle priorities, and make things smoother for the team instead of adding chaos. Here's my team working late at the engineering company.",
+			media: {
+				src: '/images/pg_working.jpg',
+				alt: 'Team working late at the engineering company'
+			}
 		}
 	];
 
-	const lookingForFit: { ask: string; answer: string }[] = [
+	const technicalCards: ReqCard[] = [
 		{
-			ask: 'Exceptional attention to detail and ability to work under pressure.',
-			answer:
-				'EE labs, embedded bring-up, and client deadlines all reward zero-tolerance for sloppy work. I am calmest when the plan is explicit: reproduce, measure, fix, re-verify.'
+			eyebrow: 'Preferred · Education',
+			title: 'College degree',
+			quote: '"High School Diploma/Equivalency" · "College degree preferred."',
+			copy:
+				'I hold a B.E. in Electrical Engineering from Colorado School of Mines (completed in three years). That is more than the minimum—and it is training in disciplined thinking, not entitlement. I am ready to pair it with PWM-specific onboarding and licensing steps the firm requires.',
+			media: { src: '/images/graduation_pic.webp', alt: 'Colorado School of Mines — B.E. Electrical Engineering' }
 		},
 		{
-			ask: 'Strong technical aptitude with model calibration frameworks and script-driven workflows.',
-			answer:
-				'I work primarily in Python for automation, tooling, and data-heavy workflows, with C/C++ comfort from embedded and systems-style projects. I treat scripting as the spine of repeatable desk work.'
+			eyebrow: 'Preferred · Experience',
+			title: 'Industry experience',
+			quote: '"Two or more years of industry experience preferred."',
+			copy:
+				'My professional experience has been in engineering-heavy software, industrial R&D integrations, and startups—not yet on a PWM service desk. The through-line is regulated-adjacent work, stakeholder communication, and getting the small details right the first time. I am motivated to translate that into PWM operations quickly.',
+			media: {
+				src: '/images/smiling_with_board.webp',
+				alt: 'Professional experience in technical and client-facing roles'
+			}
 		},
 		{
-			ask: 'Critical thinking to diagnose, escalate, and resolve complex issues.',
-			answer:
-				'My debugging style is hypothesis-driven: isolate variables, shrink the repro, and only then change state. That is the same instinct the posting describes for live issues on a trading floor.'
-		},
-		{
-			ask: 'Excellent communication and collaboration skills across multiple teams.',
-			answer:
-				'From mentoring engineers at Protogenesis to integrating SaaS across teams at CoorsTek, I write and speak with enough context that the next person can act without an archaeology session.'
-		},
-		{
-			ask: 'Familiarity with equity derivatives concepts (vol surfaces, dividends, borrow curves, forward pricing, yield curves).',
-			answer:
-				'I will be direct: my deepest classroom and project strength is engineering mathematics and systems—not years on a derivatives desk. I have studied core pricing and risk intuition (options, forwards, implied vol framing) and I am hungry to deepen market microstructure and surface dynamics with practitioners.'
-		},
-		{
-			ask: 'Prior experience in a front-office or quant-adjacent support role within equities or derivatives.',
-			answer:
-				'I have not held a titled front-office support role at a bank. My adjacent experience is real-time software, data validation, and operational integrations where mistakes are expensive and latency matters—closest cultural cousin to the rhythm you are hiring for.'
-		},
-		{
-			ask: 'Exposure to structured products, equity derivatives, or options market-making environments.',
-			answer:
-				'Limited professional exposure there today; strongest parallel is high-stakes environments (defense-adjacent software, industrial systems) where controls and precision dominate. I am explicit about the gap and motivated to close it fast.'
-		}
-	];
-
-	const technicalFit: { title: string; bullets: string[] }[] = [
-		{
-			title: 'Mathematics',
-			bullets: [
-				'Linear algebra, optimization, differential equations, probability, and numerical methods through a rigorous EE program at Colorado School of Mines (B.E., completed in three years).',
-				'Comfort translating engineered models into code and sanity checks—less “black box,” more “does this behave at the limit?”'
-			]
-		},
-		{
-			title: 'Quantitative finance',
-			bullets: [
-				'Coursework and self-study around option pricing intuition, simulation thinking, and how assumptions show up in outputs—ready to align vocabulary and depth with IED’s actual stack.',
-				'I learn fastest shoulder-to-shoulder with people who live the market; I bring the engineering discipline to make that apprenticeship productive.'
-			]
-		},
-		{
-			title: 'Programming — Python',
-			bullets: [
-				'Python for test automation, data processing/visualization, tooling, and full-stack backends in side projects and client work.',
-				'I am happy living in notebooks or repos when the goal is reproducible calibration and fast iteration, not one-off clicks.'
-			]
+			eyebrow: 'Knowledge · Digital',
+			title: 'Digital tools & education',
+			quote:
+				'"Educating or enrolling clients in digital tools (e.g. MSOnline, eSign, eAuthorization)."',
+			copy:
+				'I enjoy turning “click here, then here” into confidence: short walkthroughs, screenshots when appropriate, and a confirmation that the client completed the right step. My background in software makes me patient with UX friction and good at translating jargon into plain language.',
+			media: {
+				src: '/images/Ngspice_logo.webp',
+				alt: 'Translating technical steps for non-specialists',
+				fit: 'contain'
+			}
 		}
 	];
 
 	const testimonials = [
 		{
 			quote:
-				'Live systems reward people who treat “probably fine” as a bug. I default to evidence: logs, plots, and a written theory of what changed.',
-			attribution: '— How I troubleshoot'
+				'Wealth clients remember how you made them feel on the hard days: heard, informed, and taken seriously. I want to be that steady voice on the line and in the inbox.',
+			attribution: '— Service mindset'
 		},
 		{
 			quote:
-				'The best support engineers shorten the path from symptom to root cause. I want traders and strats to see me as someone who closes loops, not opens new mysteries.',
-			attribution: '— How I collaborate'
+				'The best associates make advisors faster: prep done, follow-ups logged, paperwork clean, and surprises flagged early.',
+			attribution: '— How I support a team'
 		},
 		{
 			quote:
-				'I like roles where the floor is high for correctness and the ceiling is high for learning. IED sits in that intersection.',
-			attribution: '— Why this team'
+				'PWM is where technical fluency meets hospitality. That intersection is where I want to grow.',
+			attribution: '— Why PWM'
 		}
 	];
 
 	const rampItems: { n: string; title: string; body: string }[] = [
 		{
 			n: '01',
-			title: 'Equity derivatives fluency',
-			body: 'Deepening daily literacy on surfaces, borrow, corporate actions, and how they interact in production systems—not just textbook summaries.'
+			title: 'PWM product & policy fluency',
+			body: 'Building day-over-day comfort with accounts, money movement norms, client disclosures, and how the Salt Lake office runs service—so I can answer confidently within guardrails.'
 		},
 		{
 			n: '02',
-			title: 'Market-hours tempo',
-			body: 'Translating my real-time software instincts into the faster cadence of a trading desk: tighter handoffs, cleaner runbooks, ruthless prioritization.'
+			title: 'Addepar and the digital stack',
+			body: 'Reps on the workflows advisors actually use: account maintenance, document tracking, and the client digital touchpoints named in the posting.'
 		},
 		{
 			n: '03',
-			title: 'Your tools and conventions',
-			body: 'I learn internal frameworks fastest by pairing early: shadowing, reading incident notes, and contributing small fixes that earn context.'
+			title: 'Rhythm with your FA / PWA teams',
+			body: 'Early shadowing to learn each team’s client service model—calendar norms, escalation paths, and what “great” looks like for your book of business.'
 		}
 	];
 
@@ -388,7 +437,7 @@
 </script>
 
 <svelte:head>
-	<title>Hayden Constas | Morgan Stanley — IED Quantitative Trading Assistant</title>
+	<title>Hayden Constas | Morgan Stanley — PWM Client Service Associate</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 	<link
@@ -400,17 +449,10 @@
 <div class="ms-page">
 	<header class="site-header" class:is-at-top={navIsAtTop}>
 		<div class="padding-global header-inner">
-			<a class="logo" href="#overview">Hayden Constas</a>
-			<nav class="header-nav" aria-label="Primary">
-				<a href="#overview">Overview</a>
-				<a href="#responsibilities">Responsibilities</a>
-				<a href="#looking-for">What they want</a>
-				<a href="#technical">Technical</a>
-				<a href="#experience">Experience</a>
-				<a class="nav-cta" href="#cta">Next step</a>
-			</nav>
+			<a class="logo" href="https://haydenconstas.com">Hayden Constas</a>
 		</div>
 	</header>
+
 
 	<section bind:this={heroEl} class="hero" aria-label="Hero">
 		<div class="hero-layers">
@@ -426,7 +468,7 @@
 			<div class="hero-layers_overlay" aria-hidden="true"></div>
 		</div>
 		<div class="padding-global hero-heading">
-			<p class="hero-pretitle">Prepared for Morgan Stanley</p>
+			<p class="hero-pretitle">Application For Morgan Stanley</p>
 			<h1>
 				<span class="h1-line">Hayden Constas</span>
 			</h1>
@@ -435,7 +477,6 @@
 				<span class="hero-role-sep">·</span>
 				{posting.office}
 			</p>
-			<p class="hero-tagline">Precision, live systems, and a disciplined path from signal to root cause.</p>
 		</div>
 	</section>
 
@@ -444,179 +485,183 @@
 			<p class="eyebrow">Overview</p>
 			<div class="word-blur-block about-copy">
 				<p data-word-blur>
-					I am a Colorado School of Mines electrical engineering graduate (B.E., finished in three years) who
-					spends most of my professional energy in software: integrations, automation, and data-intensive
-					workflows. This page is a concise map from Morgan Stanley’s posting for a Quantitative Trading Assistant
-					in IED to the problems I have actually solved.
+					Thank you for taking the time to review my application. I’m Hayden, an electrical engineer who has spent the last few years building software, wrangling data, and working alongside clients.
 				</p>
 				<p data-word-blur>
-					I am candid about gaps—especially sell-side derivatives seat time—because the right team match is
-					built on clarity. What I bring on day one is engineering rigor, Python-heavy tooling comfort, and a
-					habit of staying correct under pressure while learning fast beside practitioners.
+					Private Wealth Management is a new vertical for my résumé, but I'm used to exceptional service, competing priorities, and learning tools fast. I built this page to show how my experience fits the role. I would love the chance to talk in an interview.
 				</p>
 			</div>
 		</div>
 	</section>
-
-	<section id="responsibilities" class="section portfolio has-bg-parallax">
-		<div class="portfolio_bg_wrap" aria-hidden="true">
-			<img class="portfolio_bg" src={IMG.portfolioBg} alt="" width="1920" height="1080" />
-		</div>
-		<div class="padding-global relative z-1">
-			<p class="eyebrow">Key responsibilities</p>
-			<p class="section-lead word-blur-block">
-				<span data-word-blur
-					>Each item below quotes the role’s core ownership. Underneath is how my trajectory transfers—not a
-					claim that I have already done the identical job, but a straight answer to “why this is a fit.”</span
-				>
-			</p>
-			<ul class="fit-list">
-				{#each responsibilityFit as row, i}
-					<li class="fit-item">
-						<span class="fit-index">{String(i + 1).padStart(2, '0')}</span>
-						<div class="fit-body">
-							<p class="fit-ask"><span class="fit-kicker">Posting</span>{row.ask}</p>
-							<div class="fit-answer word-blur-block">
-								<p data-word-blur>{row.answer}</p>
-							</div>
-						</div>
-					</li>
-				{/each}
-			</ul>
-		</div>
-	</section>
-
-	<section id="looking-for" class="section looking-for">
+	<section class="job-desc-banner" aria-label="Official Morgan Stanley job posting text">
 		<div class="padding-global">
-			<p class="eyebrow">What they’re looking for</p>
-			<p class="section-lead word-blur-block">
-				<span data-word-blur
-					>The posting’s softer requirements matter as much as the bullet points. Here is my direct read on each
-					line—no inflation.</span
-				>
-			</p>
-			<ul class="fit-list">
-				{#each lookingForFit as row, i}
-					<li class="fit-item">
-						<span class="fit-index">{String(i + 1).padStart(2, '0')}</span>
-						<div class="fit-body">
-							<p class="fit-ask"><span class="fit-kicker">Posting</span>{row.ask}</p>
-							<div class="fit-answer word-blur-block">
-								<p data-word-blur>{row.answer}</p>
-							</div>
-						</div>
-					</li>
-				{/each}
-			</ul>
-		</div>
-	</section>
+			<details class="job-desc-details">
+				<summary class="job-desc-summary">
+					<span class="job-desc-summary-text">
+						<span class="eyebrow job-desc-eyebrow">Job description</span>
+						<span class="job-desc-headline">Private Wealth Management — Client Service Associate</span>
+						<span class="job-desc-meta-line">Salt Lake City, Utah, United States of America</span>
+					</span>
+					<span class="job-desc-chevron" aria-hidden="true">▾</span>
+				</summary>
+				<div class="job-desc-panel">
+		
 
-	<section id="technical" class="section technical">
-		<div class="padding-global">
-			<p class="eyebrow">Preferred technical background</p>
-			<p class="section-lead word-blur-block">
-				<span data-word-blur
-					>Grouped the way the job lists it: mathematics, quantitative finance intuition, and Python. I keep
-					each section grounded in what I can demonstrate today.</span
-				>
-			</p>
-			<div class="tech-columns">
-				{#each technicalFit as block}
-					<div class="tech-block">
-						<h3 class="tech-title">{block.title}</h3>
-						<ul class="tech-bullets">
-							{#each block.bullets as line}
-								<li>{line}</li>
-							{/each}
-						</ul>
-					</div>
-				{/each}
-			</div>
-		</div>
-	</section>
+					<h2 class="job-desc-h">Position summary</h2>
+					<p class="job-desc-p">
+						Client Service Associates provide exceptional service to our clients and support Financial Advisor(s)
+						(FAs) / Private Wealth Advisor(s) (PWAs) / teams on a daily basis. Through regular interactions with
+						clients, individuals in this role build trusted relationships. Leading with a client first mindset, a
+						successful candidate for this role will have strong interpersonal skills and will be able to assist
+						clients with their everyday needs.
+					</p>
 
-	<section class="section testimonials">
-		<div class="padding-global">
-			<p class="eyebrow">Operating principles</p>
-			<div class="quote-shell">
-				<blockquote class="quote-block" class:is-blurring={quoteBlur}>
-					<p>{testimonials[testimonialIndex].quote}</p>
-					<footer>{testimonials[testimonialIndex].attribution}</footer>
-				</blockquote>
-				<div class="quote-controls">
-					<button type="button" class="quote-btn" onclick={prevQuote} aria-label="Previous quote">←</button>
-					<button type="button" class="quote-btn" onclick={nextQuote} aria-label="Next quote">→</button>
+					<h2 class="job-desc-h">Client support</h2>
+					<ul class="job-desc-list">
+						<li>
+							Service coverage for a FA/PWA/team: support cultivating and enhancing new and existing client
+							relationships.
+						</li>
+						<li>Execute money movement transactions at the request of the client and/or FA/PWA/team.</li>
+						<li>
+							Answer general non-investment related questions concerning client accounts, including relaying stock
+							positions and providing account balances (e.g., funds due and margin debit).
+						</li>
+						<li>
+							Enter profile information or pre-fill account documentation on client accounts and/or documents in
+							a clerical capacity at the direction of the client and/or FA/PWA/team.
+						</li>
+						<li>
+							Educate or enroll clients in digital tools (e.g. MSOnline, eSign, eAuthorization).
+						</li>
+						<li>
+							Onboard and maintain client accounts, including collecting client information and required
+							documentation in a clerical capacity at the direction of the client and/or FA/PWA/team.
+						</li>
+						<li>
+							Provide existing clients with details around their account information (e.g., investment objectives,
+							risk tolerance).
+						</li>
+						<li>
+							Accept or enter unsolicited orders and/or enter solicited orders in a clerical capacity at the
+							direction of the FA/PWA/team.
+						</li>
+						<li>Support marketing strategy (e.g., website maintenance).</li>
+						<li>Assist teams in delivering against their business plan and client service model.</li>
+						<li>Stay current on policies, procedures, and new platforms.</li>
+						<li>
+							Participate in firm initiatives (e.g., training or education programs), special projects, and other
+							duties directed by local management.
+						</li>
+					</ul>
+
+					<h2 class="job-desc-h">Administrative support</h2>
+					<ul class="job-desc-list">
+						<li>
+							Answer inbound phone calls or make outbound calls with updates on service requests; schedule follow-up
+							calls with FAs / PWAs / teams as needed.
+						</li>
+						<li>
+							Manage the calendar: coordinate meetings or events with logistics such as material prep (e.g.,
+							maintaining agendas, sending calendar invites with Zoom credentials).
+						</li>
+						<li>Maintain travel itineraries; prepare expense reports and manage reimbursement.</li>
+						<li>General in-office support: copying, filing, scanning documentation.</li>
+						<li>Prepare and submit expense reports for processing at the direction of the FA/PWA.</li>
+					</ul>
+
+					<h2 class="job-desc-h">Education, experience, knowledge, and skills</h2>
+					<ul class="job-desc-list">
+						<li>
+							<strong>Education and experience:</strong> High school diploma/equivalency required; college degree
+							preferred; two or more years of industry experience preferred.
+						</li>
+						<li>
+							Knowledge of financial services products, including but not limited to equities, bonds, options,
+							mutual funds, annuities, insurance, and managed accounts.
+						</li>
+						<li>Experience with or knowledge of Addepar.</li>
+						<li>Detail orientated with superior organizational skills and ability to prioritize.</li>
+						<li>Advanced Microsoft Office skills (Word, Excel, Outlook and PowerPoint).</li>
+						<li>Exceptional writing, interpersonal and client service skills.</li>
+						<li>Strong time management skills.</li>
+						<li>Team player with the ability to collaborate with others.</li>
+						<li>Ability to work in a fast-paced, evolving environment.</li>
+						<li>Adaptable and ability to multitask.</li>
+						<li>Goal oriented, self-motivated and results driven.</li>
+					</ul>
+
+					<h2 class="job-desc-h">What you can expect from Morgan Stanley</h2>
+					<p class="job-desc-p job-desc-p--last">
+						At Morgan Stanley, we raise, manage and allocate capital for our clients – helping them reach their
+						goals. Our values – putting clients first, doing the right thing, leading with exceptional ideas,
+						committing to diversity and inclusion, and giving back – guide how we support clients, communities, and
+						more than 80,000 employees worldwide. The Firm is committed to equal employment opportunity and building
+						a diverse workforce.
+					</p>
 				</div>
-			</div>
+			</details>
 		</div>
 	</section>
 
-	<section id="experience" class="section team">
-		<div class="padding-global team-grid">
-			<div class="team-visual">
-				<img src={IMG.layer02} alt="" width="800" height="1000" />
-			</div>
-			<div class="team-copy word-blur-block">
-				<p class="eyebrow">Evidence from my path</p>
-				<h2 class="team-name">Hayden Constas</h2>
-				<p data-word-blur>
-					<strong>CoorsTek — Systems Analyst Integrations Specialist.</strong>
-					Tied together SaaS and in-house systems; built automation around internal data; debugged production-style workflows when vendors and operators saw different truth.
-				</p>
-				<p data-word-blur>
-					<strong>CACI — Software Development Intern (SAFFIRE).</strong>
-					Satellite GIS insights for DoD partners: collaborative software delivery where testing, traceability, and teamwork are baseline expectations.
-				</p>
-				<p data-word-blur>
-					<strong>Protogenesis — Co-Founder.</strong>
-					Client MVPs with fuzzy requirements turned into shippable systems; mentored engineers; lived in full-stack JavaScript/TypeScript and pragmatic Python where it sped delivery.
-				</p>
-				<p data-word-blur>
-					<strong>Upstream Vee — Co-Proprietor.</strong>
-					Pipeline monitoring product work with Chevron-facing pressure: design iteration, bench validation, and translating field constraints into engineering decisions.
-				</p>
-			</div>
-		</div>
-	</section>
+	<section id="requirements" class="section portfolio has-bg-parallax looking-for">
 
-	<section id="ramp" class="section philosophies">
-		<div class="padding-global">
-			<p class="eyebrow">What I would ramp first</p>
-			<ul class="philosophy-list">
-				{#each rampItems as ph, i}
-					<li class="philosophy-item" class:is-open={openPhilosophy === i}>
-						<button
-							type="button"
-							class="philosophy-trigger"
-							onclick={() => toggleRamp(i)}
-							aria-expanded={openPhilosophy === i}
-						>
-							<span class="ph-n">{ph.n}</span>
-							<span class="ph-title">{ph.title}</span>
-							<span class="ph-icon" aria-hidden="true">{openPhilosophy === i ? '−' : '+'}</span>
-						</button>
-						<div class="philosophy-panel">
-							<p>{ph.body}</p>
+		<div class="padding-global relative z-1">
+			<p class="eyebrow">Why Me</p>
+			<p class="section-lead word-blur-block">
+				<span data-word-blur
+					>The below section is to show off why I'm a great fit for the role.</span
+				>
+			</p>
+			<div class="ms-signal-grid">
+				{#each requirementCards as card, i}
+					<article class="ms-signal-card" class:ms-signal-card--reverse={i % 2 === 1}>
+						<div class="ms-signal-copy">
+							<p class="ms-signal-eyebrow">{card.eyebrow}</p>
+							<h2 class="ms-signal-title">{card.title}</h2>
+							<blockquote class="ms-signal-quote">{card.quote}</blockquote>
+							<p class="ms-signal-body">{card.copy}</p>
 						</div>
-					</li>
+						<div
+							class="ms-signal-media"
+							class:ms-signal-media--contain={'fit' in card.media && card.media.fit === 'contain'}
+						>
+							{#if card.media.kind === 'video'}
+								<video
+									src={card.media.src}
+									class="ms-signal-media-asset"
+									aria-label={card.media.alt}
+									muted
+									loop
+									playsinline
+									autoplay
+									preload="metadata"
+									width="960"
+									height="720"
+								></video>
+							{:else if card.media.kind === 'yieldCurves'}
+								<YieldCurvesChart alt={card.media.alt} />
+							{:else}
+								<img
+									class="ms-signal-media-asset"
+									src={card.media.src}
+									alt={card.media.alt}
+									loading="lazy"
+									decoding="async"
+									width="960"
+									height="720"
+								/>
+							{/if}
+						</div>
+					</article>
 				{/each}
-			</ul>
+			</div>
 		</div>
 	</section>
 
-	<section id="links" class="section essays">
-		<div class="padding-global">
-			<p class="eyebrow">Links</p>
-			<ul class="essay-list">
-				{#each essays as e}
-					<li>
-						<span class="essay-date">{e.sub}</span>
-						<a class="essay-title" href={e.href}>{e.label}</a>
-					</li>
-				{/each}
-			</ul>
-		</div>
-	</section>
+	
+
+
 
 	<footer id="cta" class="footer-parallax" aria-label="Closing">
 		<div class="footer-parallax-layers" aria-hidden="true">
@@ -632,29 +677,29 @@
 			<div class="footer-parallax_topfade"></div>
 		</div>
 		<div class="footer-parallax_content padding-global">
-			<h2 class="footer-parallax_heading">Say hello if you’ve made it this far</h2>
+			<h2 class="footer-parallax_heading">Let's talk if you’ve made it this far</h2>
 			<div class="footer-parallax_actions">
-				{#if SOCIAL.x}
-					<a class="footer-social-btn" href={SOCIAL.x} target="_blank" rel="noopener noreferrer">
-						<svg class="footer-social-icon" viewBox="0 0 24 24" aria-hidden="true">
-							<path
-								fill="currentColor"
-								d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-							/>
-						</svg>
-						<span>Hayden on X</span>
-					</a>
-				{:else}
-					<a class="footer-social-btn" href={SOCIAL.github} target="_blank" rel="noopener noreferrer">
-						<svg class="footer-social-icon" viewBox="0 0 24 24" aria-hidden="true">
-							<path
-								fill="currentColor"
-								d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-							/>
-						</svg>
-						<span>Hayden on GitHub</span>
-					</a>
-				{/if}
+				<a
+					class="footer-social-btn footer-contact-btn"
+					href="mailto:{CONTACT.email}"
+				>
+					<svg class="footer-social-icon" viewBox="0 0 24 24" aria-hidden="true">
+						<path
+							fill="currentColor"
+							d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"
+						/>
+					</svg>
+					<span>{CONTACT.email}</span>
+				</a>
+				<a class="footer-social-btn footer-contact-btn" href="tel:{CONTACT.phoneTel}">
+					<svg class="footer-social-icon" viewBox="0 0 24 24" aria-hidden="true">
+						<path
+							fill="currentColor"
+							d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.25 1.12.38 2.33.58 3.57.58.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.58 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+						/>
+					</svg>
+					<span>{CONTACT.phoneDisplay}</span>
+				</a>
 				<a
 					class="footer-social-btn"
 					href={SOCIAL.linkedin}
@@ -683,7 +728,7 @@
 	}
 
 	.ms-page {
-		--page-bg: #f6f5ff;
+		--page-bg: #ffffff;
 		--brand: #2448bf;
 		--body: rgba(36, 72, 191, 0.7);
 		--hero-text: #f6f5ff;
@@ -717,6 +762,7 @@
 		background: transparent;
 		color: var(--hero-text);
 		box-shadow: none;
+		opacity: 0;
 	}
 
 	.site-header:not(.is-at-top) {
@@ -776,10 +822,163 @@
 		opacity: 1;
 	}
 
+	.job-desc-banner {
+		position: relative;
+		z-index: 15;
+		padding: calc(4.5rem + 0.35rem) 0 1rem;
+		background: var(--page-bg);
+		border-bottom: 1px solid rgba(36, 72, 191, 0.1);
+	}
+
+	.job-desc-details {
+		border-radius: 1rem;
+		border: 1px solid rgba(36, 72, 191, 0.14);
+		background: linear-gradient(
+			165deg,
+			rgba(255, 255, 255, 0.97) 0%,
+			rgba(255, 255, 255, 0.94) 100%
+		);
+		box-shadow: 0 12px 40px rgba(36, 72, 191, 0.08);
+		overflow: hidden;
+	}
+
+	.job-desc-summary {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 1rem 1.25rem;
+		align-items: start;
+		padding: 1.15rem 1.25rem;
+		cursor: pointer;
+		list-style: none;
+		font: inherit;
+		color: var(--brand);
+		transition: background 0.2s ease;
+	}
+
+	.job-desc-summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.job-desc-summary:hover {
+		background: rgba(36, 72, 191, 0.04);
+	}
+
+	.job-desc-eyebrow {
+		margin: 0 0 0.5rem;
+	}
+
+	.job-desc-headline {
+		display: block;
+		font-family: 'Cormorant Garamond', serif;
+		font-weight: 600;
+		font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+		line-height: 1.28;
+		margin: 0 0 0.35rem;
+	}
+
+	.job-desc-meta-line {
+		display: block;
+		font-size: 0.9rem;
+		font-weight: 500;
+		opacity: 0.78;
+	}
+
+	.job-desc-chevron {
+		font-size: 0.85rem;
+		opacity: 0.5;
+		line-height: 1.7;
+		transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.job-desc-details[open] .job-desc-chevron {
+		transform: rotate(-180deg);
+	}
+
+	.job-desc-panel {
+		padding: 0 1.25rem 1.35rem;
+		border-top: 1px solid rgba(36, 72, 191, 0.1);
+	}
+
+	.job-desc-facts {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 0.85rem;
+		margin: 1.1rem 0 1.5rem;
+		padding: 0;
+		font-size: 0.9rem;
+	}
+
+	@media (min-width: 640px) {
+		.job-desc-facts {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1rem 1.5rem;
+		}
+	}
+
+	.job-desc-facts dt {
+		font-weight: 600;
+		font-size: 0.68rem;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		opacity: 0.65;
+		margin: 0 0 0.2rem;
+	}
+
+	.job-desc-facts dd {
+		margin: 0;
+		line-height: 1.45;
+		color: var(--body);
+	}
+
+	.job-desc-h {
+		font-family: 'Cormorant Garamond', serif;
+		font-weight: 600;
+		font-size: 1.2rem;
+		color: var(--brand);
+		margin: 1.35rem 0 0.6rem;
+	}
+
+	.job-desc-h:first-of-type {
+		margin-top: 0;
+	}
+
+	.job-desc-p {
+		margin: 0 0 0.85rem;
+		font-size: 0.98rem;
+		line-height: 1.65;
+		max-width: 52rem;
+	}
+
+	.job-desc-p--last {
+		margin-bottom: 0;
+	}
+
+	.job-desc-list {
+		margin: 0 0 0.85rem;
+		padding-left: 1.15rem;
+		max-width: 52rem;
+		font-size: 0.98rem;
+		line-height: 1.6;
+	}
+
+	.job-desc-list li {
+		margin: 0.35rem 0;
+	}
+
+	.job-desc-list--tight li {
+		margin: 0.28rem 0;
+	}
+
+	.job-desc-list strong {
+		font-weight: 600;
+		color: var(--brand);
+	}
+
 	.hero {
 		position: relative;
-		min-height: 100vh;
-		min-height: 100svh;
+		/* Taller than one viewport so the scene breathes; tweak % if you want more/less. */
+		min-height: 112vh;
+		min-height: 112svh;
 		overflow: hidden;
 	}
 
@@ -804,7 +1003,8 @@
 		min-width: 100%;
 		height: 120%;
 		object-fit: cover;
-		transform: translateX(-50%);
+		/* Nudge the stack down slightly vs. bottom edge (tweak % if you need more/less). */
+		transform: translate(-50%, 10%);
 	}
 
 	.hero-layer._01 {
@@ -824,7 +1024,7 @@
 		bottom: 0;
 		height: min(45vh, 28rem);
 		z-index: 4;
-		background: linear-gradient(to top, #f6f5ff, transparent);
+		background: linear-gradient(to top, #ffffff, transparent);
 		pointer-events: none;
 	}
 
@@ -841,7 +1041,7 @@
 
 	.hero-pretitle {
 		margin: 0 0 0.35rem;
-		font-size: 0.72rem;
+		font-size: 0.88rem;
 		font-weight: 600;
 		letter-spacing: 0.2em;
 		text-transform: uppercase;
@@ -853,7 +1053,7 @@
 		margin: 0;
 		font-family: 'Cormorant Garamond', serif;
 		font-weight: 500;
-		font-size: clamp(2.5rem, 7vw, 4rem);
+		font-size: clamp(3rem, 9vw, 5rem);
 		line-height: 1.02;
 		color: var(--hero-text);
 		max-width: 20ch;
@@ -863,8 +1063,8 @@
 
 	.hero-role {
 		margin: 0.75rem 0 0;
-		max-width: 26rem;
-		font-size: 0.95rem;
+		max-width: 32rem;
+		font-size: 1.15rem;
 		font-weight: 500;
 		line-height: 1.45;
 		color: rgba(246, 245, 255, 0.95);
@@ -932,114 +1132,134 @@
 		z-index: 1;
 	}
 
-	.fit-list {
-		list-style: none;
-		margin: 2rem 0 0;
-		padding: 0;
+	.ms-signal-grid {
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
-	}
-
-	.fit-item {
-		display: grid;
-		grid-template-columns: auto 1fr;
-		gap: 1rem 1.25rem;
-		align-items: start;
-		padding-bottom: 2rem;
-		border-bottom: 1px solid rgba(36, 72, 191, 0.12);
-	}
-
-	.fit-item:last-child {
-		border-bottom: none;
-		padding-bottom: 0;
-	}
-
-	.fit-index {
-		font-family: 'Cormorant Garamond', serif;
-		font-size: 1.5rem;
-		font-weight: 600;
-		color: var(--brand);
-		opacity: 0.35;
-		line-height: 1;
-		padding-top: 0.15rem;
-	}
-
-	.fit-body {
-		min-width: 0;
-	}
-
-	.fit-kicker {
-		display: block;
-		font-family: Inter, system-ui, sans-serif;
-		font-size: 0.65rem;
-		font-weight: 700;
-		letter-spacing: 0.18em;
-		text-transform: uppercase;
-		color: var(--brand);
-		opacity: 0.65;
-		margin-bottom: 0.35rem;
-	}
-
-	.fit-ask {
-		margin: 0 0 0.75rem;
-		font-size: 1.05rem;
-		font-weight: 600;
-		line-height: 1.45;
-		color: var(--brand);
-	}
-
-	.fit-answer {
-		margin: 0;
-	}
-
-	.fit-answer p {
-		margin: 0;
-		font-size: 1.05rem;
-		line-height: 1.65;
-	}
-
-	.tech-columns {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 2rem;
+		gap: clamp(2rem, 5vw, 2.75rem);
 		margin-top: 2rem;
 	}
 
-	@media (min-width: 900px) {
-		.tech-columns {
-			grid-template-columns: repeat(3, 1fr);
-			gap: 1.75rem;
-		}
+	.ms-signal-card {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(260px, 1.05fr);
+		gap: 1.5rem 1.75rem;
+		align-items: stretch;
+		padding: clamp(1.25rem, 3vw, 1.65rem);
+		border-radius: 1.25rem;
+		border: 1px solid rgba(36, 72, 191, 0.14);
+		background:
+			linear-gradient(165deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.88) 100%),
+			linear-gradient(90deg, rgba(36, 72, 191, 0.06), transparent 55%);
+		box-shadow:
+			0 20px 50px rgba(36, 72, 191, 0.1),
+			inset 0 1px 0 rgba(255, 255, 255, 0.8);
 	}
 
-	.tech-block {
-		padding: 1.35rem 1.25rem;
-		border-radius: 0.75rem;
-		background: rgba(255, 255, 255, 0.65);
-		border: 1px solid rgba(36, 72, 191, 0.1);
-		box-shadow: 0 8px 28px rgba(36, 72, 191, 0.05);
+	.ms-signal-card--reverse {
+		grid-template-columns: minmax(260px, 1.05fr) minmax(0, 1fr);
 	}
 
-	.tech-title {
-		margin: 0 0 1rem;
-		font-family: 'Cormorant Garamond', serif;
-		font-size: 1.35rem;
+	.ms-signal-card--reverse .ms-signal-copy {
+		order: 2;
+	}
+
+	.ms-signal-card--reverse .ms-signal-media {
+		order: 1;
+	}
+
+	.ms-signal-copy {
+		padding: 0.35rem 0;
+		min-width: 0;
+	}
+
+	.ms-signal-eyebrow {
+		margin: 0 0 0.5rem;
+		font-size: 0.68rem;
 		font-weight: 600;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
 		color: var(--brand);
+		opacity: 0.75;
 	}
 
-	.tech-bullets {
-		margin: 0;
-		padding-left: 1.15rem;
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
+	.ms-signal-title {
+		margin: 0 0 0.85rem;
+		font-family: 'Cormorant Garamond', serif;
+		font-weight: 600;
+		font-size: clamp(1.45rem, 3.2vw, 2.15rem);
+		line-height: 1.12;
+		color: var(--brand);
+		letter-spacing: -0.02em;
 	}
 
-	.tech-bullets li {
+	.ms-signal-quote {
+		margin: 0 0 1rem;
+		padding: 0 0 0 1rem;
+		border-left: 3px solid var(--brand);
 		font-size: 0.98rem;
-		line-height: 1.6;
+		font-style: normal;
+		font-weight: 500;
+		line-height: 1.65;
+		color: rgba(36, 72, 191, 0.88);
+	}
+
+	.ms-signal-body {
+		margin: 0;
+		font-size: 1.02rem;
+		line-height: 1.68;
+		color: var(--body);
+	}
+
+	.ms-signal-media {
+		position: relative;
+		display: flex;
+		align-items: stretch;
+		min-height: min(320px, 52vw);
+		border-radius: 1rem;
+		overflow: hidden;
+		border: 1px solid rgba(36, 72, 191, 0.12);
+		background: rgba(36, 72, 191, 0.04);
+		box-shadow: 0 12px 36px rgba(36, 72, 191, 0.12);
+	}
+
+	/* Single class so Svelte scoped CSS always binds; covers both img + video */
+	.ms-signal-media-asset {
+		display: block;
+		flex: 1 1 auto;
+		align-self: stretch;
+		width: 100%;
+		min-height: min(320px, 52vw);
+		height: 100%;
+		min-width: 0;
+		object-fit: cover;
+		object-position: center;
+	}
+
+	.ms-signal-media--contain .ms-signal-media-asset {
+		object-fit: contain;
+		padding: 1rem;
+		box-sizing: border-box;
+		background: rgba(255, 255, 255, 0.65);
+	}
+
+	@media (max-width: 800px) {
+		.ms-signal-card,
+		.ms-signal-card--reverse {
+			grid-template-columns: 1fr;
+		}
+
+		.ms-signal-card--reverse .ms-signal-copy,
+		.ms-signal-card--reverse .ms-signal-media {
+			order: unset;
+		}
+
+		.ms-signal-media {
+			min-height: 240px;
+		}
+
+		.ms-signal-media-asset {
+			min-height: 240px;
+		}
 	}
 
 	.portfolio_bg_wrap {
@@ -1110,7 +1330,7 @@
 		height: 2.75rem;
 		border-radius: 999px;
 		border: 1px solid rgba(36, 72, 191, 0.2);
-		background: rgba(246, 245, 255, 0.9);
+		background: rgba(255, 255, 255, 0.92);
 		color: var(--brand);
 		cursor: pointer;
 		font-size: 1rem;
@@ -1321,7 +1541,7 @@
 		top: 0;
 		height: min(42vh, 24rem);
 		z-index: 4;
-		background: linear-gradient(to bottom, #f6f5ff 0%, rgba(246, 245, 255, 0.65) 35%, transparent 100%);
+		background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0.65) 35%, transparent 100%);
 		pointer-events: none;
 	}
 
@@ -1390,6 +1610,14 @@
 		width: 1.15rem;
 		height: 1.15rem;
 		flex-shrink: 0;
+	}
+
+	/* Contact info reads better without all-caps */
+	.footer-contact-btn {
+		text-transform: none;
+		letter-spacing: 0.04em;
+		font-weight: 600;
+		font-size: 0.8rem;
 	}
 
 	.footer-parallax_sub {
