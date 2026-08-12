@@ -28,7 +28,17 @@
 		return { destroy: () => io.disconnect() };
 	}
 
+	// The RegPermit embed needs a desktop-sized viewport to lay out; on a phone the frame
+	// breaks, so swap it for a pointer to the real site. null until we've measured, so the
+	// server-rendered markup doesn't commit to either branch and flip on hydration.
+	let isPhone = $state<boolean | null>(null);
+
 	onMount(() => {
+		const query = window.matchMedia('(max-width: 768px), (pointer: coarse) and (max-width: 950px)');
+		isPhone = query.matches;
+		const onChange = (event: MediaQueryListEvent) => (isPhone = event.matches);
+		query.addEventListener('change', onChange);
+
 		const gsapScript = document.createElement('script');
 		gsapScript.src = 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js';
 		gsapScript.onload = () => {
@@ -47,6 +57,8 @@
 			document.body.appendChild(scrollTriggerScript);
 		};
 		document.body.appendChild(gsapScript);
+
+		return () => query.removeEventListener('change', onChange);
 	});
 </script>
 
@@ -209,15 +221,28 @@
 				front-end, service-tier, API, automation, scripting, and integration work."
 			</p>
 			<p class="personal-text">
-				I founded <a href="https://regpermit.com" target="_blank" rel="noopener noreferrer">RegPermit</a
-				>, an AI air permitting assistant. Python scripts are used in the
-				ingestion of the regulations off EPA and state agency sites; TypeScript runs the app and its
-				agent harnesses. Below is a clickable example of the tool.
+				I founded <a href="https://regpermit.com" target="_blank" rel="noopener noreferrer"
+					>RegPermit</a
+				>, an AI air permitting assistant. Python scripts are used in the ingestion of the
+				regulations off EPA and state agency sites; TypeScript runs the app and its agent harnesses. {isPhone
+					? 'The live tool is at RegPermit.com.'
+					: 'Below is a clickable example of the tool.'}
 			</p>
 		</div>
 		<div class="embed">
-			<iframe src="https://regpermit.com/embed" title="RegPermit interactive demo" loading="lazy"
-			></iframe>
+			{#if isPhone}
+				<div class="embed-fallback">
+					<p class="embed-fallback-lead">View on a computer for the interactive demo.</p>
+					<p class="embed-fallback-sub">
+						Or visit <a href="https://regpermit.com" target="_blank" rel="noopener noreferrer"
+							>RegPermit.com</a
+						> for more info.
+					</p>
+				</div>
+			{:else if isPhone === false}
+				<iframe src="https://regpermit.com/embed" title="RegPermit interactive demo" loading="lazy"
+				></iframe>
+			{/if}
 		</div>
 	</section>
 
@@ -525,19 +550,57 @@
 		padding-right: 0;
 	}
 
+	/* Hold the 16/9 box on the wrapper so the slot keeps its size while we're still
+	   deciding, on mount, whether this viewport gets the iframe or the fallback. */
 	.embed {
 		width: 100%;
 		max-width: 1120px;
 		margin: 0 auto;
+		aspect-ratio: 16 / 9;
 	}
 
 	.embed iframe {
 		display: block;
 		width: 100%;
-		aspect-ratio: 16 / 9;
+		height: 100%;
 		border: 0;
 		border-radius: 12px;
 		background: #fff;
+	}
+
+	.embed-fallback {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 0.5rem;
+		height: 100%;
+		padding: 1.75rem 1.25rem;
+		text-align: center;
+		border: 1px solid #e2ddd6;
+		border-radius: 12px;
+		background: #fff;
+	}
+
+	.embed-fallback-lead {
+		margin: 0;
+		font-family: 'Inter', system-ui, sans-serif;
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: #2f2f2f;
+	}
+
+	.embed-fallback-sub {
+		margin: 0;
+		font-family: 'Inter', system-ui, sans-serif;
+		font-size: 0.95rem;
+		line-height: 1.5;
+		color: #55504a;
+	}
+
+	.embed-fallback a {
+		color: #8b4513;
+		font-weight: 600;
 	}
 
 	.media {
@@ -890,7 +953,10 @@
 			max-width: none;
 		}
 
-		.media {
+		/* .text-content is forced to order 1 above, so the visual slots need an explicit
+		   order too — otherwise they default to 0 and jump above the heading. */
+		.media,
+		.embed {
 			order: 2;
 		}
 
@@ -899,8 +965,21 @@
 			height: 260px;
 		}
 
+		/* The fallback card is copy, not a 16/9 frame — let it size to its text. */
+		.embed {
+			aspect-ratio: auto;
+		}
+
 		.embed iframe {
 			min-height: 340px;
+		}
+
+		.embed-fallback-lead {
+			font-size: 1.05rem !important;
+		}
+
+		.embed-fallback-sub {
+			font-size: 0.95rem !important;
 		}
 
 		.board-visual {
