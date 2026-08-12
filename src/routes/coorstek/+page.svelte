@@ -359,7 +359,7 @@
 			<p class="personal-text">
 				For a gut health monitor I deployed a HIPAA-compliant system on AWS, so containerized
 				services and the cloud practices that come with holding health data are familiar ground.
-				Azure I want to go deeper on but the core principles transfer.
+				I'm confident the core cloud principles will transfer to Azure development.
 			</p>
 		</div>
 		<div class="media media--contain media--mid">
