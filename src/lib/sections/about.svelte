@@ -24,7 +24,7 @@
         >
             <div class="space-y-6">
                 <p class="text-sm leading-normal text-slate-100 sm:text-base">
-                    I work on embedded systems and IoT—firmware, applications, and hardware—using several languages and frameworks.
+                    I'm a full stack developer, from embedded systems to enterprise scale cloud compute. I work on firmware, applications, and hardware using several languages and frameworks.
                 </p>
                 <p class="text-sm leading-normal text-slate-100 sm:text-base">
                     I also build and optimize software with C++, Python, JavaScript, TypeScript, and Svelte: web apps, mobile, and backends.

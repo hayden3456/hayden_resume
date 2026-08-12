@@ -23,13 +23,12 @@
 		class="parallax bg-coverbg-center absolute bottom-0 left-24 right-0 z-30 h-[45vh] rounded-tl-full bg-[#f7c6b1] bg-[url('/images/moun2.webp')] bg-cover opacity-70 bg-blend-multiply [--parallax-speed:2|]"
 	></div>
 	<div
-		class="parallax absolute left-0 right-0 top-[15vh] z-50 mx-auto w-fit px-4 text-left text-2xl [--parallax-speed:2] md:bottom-1/2 md:px-6 [@media_((min-height:600px)_and_(min-width:640px))]:text-4xl [@media_((min-height:800px)_and_(min-width:768px))]:text-5xl"
+		class="parallax absolute left-0 right-0 top-[15vh] z-50 mx-auto max-w-7xl px-4 text-left text-2xl [--parallax-speed:2] md:bottom-1/2 md:px-6 [@media_((min-height:600px)_and_(min-width:640px))]:text-4xl [@media_((min-height:800px)_and_(min-width:768px))]:text-5xl"
 	>
-
 		<h1
 			class="font-['Roboto_Mono'] font-medium leading-none tracking-tight text-slate-600 drop-shadow"
 		>
-			<span class="font-normal text-slate-500/15"></span>&nbsp;&nbsp;&nbsp;&nbsp;Nice to meet you, my name's <span
+			Nice to meet you, my name's <span
 				class="text-slate-700">Hayden</span
 			>
 			<span

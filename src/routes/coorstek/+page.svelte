@@ -1,724 +1,1019 @@
-<script>
-    import { onMount } from 'svelte';
-
-    onMount(() => {
-      const gsapScript = document.createElement('script');
-      gsapScript.src = 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js';
-      gsapScript.onload = () => {
-        const scrollTriggerScript = document.createElement('script');
-        scrollTriggerScript.src = 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.js';
-        scrollTriggerScript.onload = () => {
-          const gsap = window.gsap;
-          gsap.registerPlugin(window.ScrollTrigger);
-
-          // Progress bar animation
-          gsap.to('progress', {
-            value: 100,
-            ease: 'none',
-            scrollTrigger: { scrub: 0.3 }
-          });
-        };
-        document.body.appendChild(scrollTriggerScript);
-      };
-      document.body.appendChild(gsapScript);
-    });
-  </script>
-  
-  <svelte:head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </svelte:head>
-  
-  <style>
-    progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 15px;
-      border: none;
-      background: transparent;
-      z-index: 1000;
-    }
-  
-    progress::-webkit-progress-bar {
-      background: transparent;
-    }
-  
-    progress::-webkit-progress-value {
-      background: linear-gradient(to right, #475569, #64748b, #94a3b8, #cbd5e1, #e2e8f0, #f1f5f9);
-      background-attachment: fixed;
-    }
-  
-    progress::-moz-progress-bar {
-      background: linear-gradient(to right, #475569, #64748b, #94a3b8, #cbd5e1, #e2e8f0, #f1f5f9);
-      background-attachment: fixed;
-    }
-  
-    :global(body) {
-      background: linear-gradient(to bottom, #fcedd1, #fae4c9, #f8d8c1, #f7c6b1, #1e293b, #334155);
-    }
-  
-    section {
-      min-height: 100vh;
-      padding: 5vw;
-      display: flex;
-      align-items: center;
-      box-sizing: border-box;
-    }
-
-    .hero-section {
-      text-align: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    .qualification-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .qualification-section-reverse {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .qualification-section-reverse .text-content {
-      order: 2;
-      padding-left: 2rem;
-      padding-right: 0;
-    }
-
-    .text-content {
-      padding-right: 2rem;
-    }
-
-    .image-placeholder {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px dashed rgba(255, 255, 255, 0.3);
-      border-radius: 12px;
-      height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 1.2rem;
-      backdrop-filter: blur(10px);
-    }
-  
-    h1 {
-      font-size: max(20px, min(100px, 10vw));
-      font-family: "Permanent Marker", cursive;
-      line-height: 1.1;
-      color: #334155;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 2rem;
-    }
-
-    h2 {
-      font-size: max(16px, min(60px, 6vw));
-      font-family: "Permanent Marker", cursive;
-      line-height: 1.2;
-      color: #334155;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 1.5rem;
-    }
-  
-    p {
-      margin: 0;
-      font-size: max(8px, min(20px, 2vw));
-      font-family: "Courier New", monospace;
-      line-height: 1.4;
-      color: #334155;
-      text-shadow: none;
-      font-weight: 300;
-      letter-spacing: 0.5px;
-    }
-
-    .hero-description {
-      font-size: max(6px, min(16px, 1.5vw));
-      max-width: 800px;
-      margin: 0 auto;
-      font-family: "Courier New", monospace;
-      text-shadow: none;
-      font-weight: 300;
-      letter-spacing: 0.5px;
-    }
-
-    .personal-text {
-      font-family: "Permanent Marker", cursive;
-      font-size: max(9px, min(26px, 2.5vw));
-      line-height: 1.2;
-      color: #334155;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-      margin-top: 1rem;
-    }
-  
-    /* Darker text for sections with light backgrounds */
-    section:nth-child(1) h1,
-    section:nth-child(1) p,
-    section:nth-child(2) h2,
-    section:nth-child(2) p,
-    section:nth-child(3) h2,
-    section:nth-child(3) p,
-    section:nth-child(4) h2,
-    section:nth-child(4) p,
-    section:nth-child(5) h2,
-    section:nth-child(5) p,
-    section:nth-child(6) h2,
-    section:nth-child(6) p,
-    section:nth-child(7) h2,
-    section:nth-child(7) p,
-    section:nth-child(8) h2,
-    section:nth-child(8) p,
-    section:nth-child(9) h2,
-    section:nth-child(9) p,
-    section:nth-child(10) h2,
-    section:nth-child(10) p,
-    section:nth-child(11) h2,
-    section:nth-child(11) p,
-    section:nth-child(12) h2,
-    section:nth-child(12) p,
-    section:nth-child(13) h2,
-    section:nth-child(13) p {
-      color: #475569;
-    }
-  
-    /* Lighter text for sections with dark backgrounds */
-    section:nth-child(14) h2,
-    section:nth-child(14) p {
-      color: #e2e8f0;
-    }
-
-    @media (max-width: 768px) {
-      section {
-        padding: 2rem 1rem;
-        min-height: auto;
-      }
-
-      .qualification-section,
-      .qualification-section-reverse {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      
-      .text-content {
-        padding-right: 0;
-        padding-left: 0;
-        order: 1;
-      }
-      
-      .image-placeholder {
-        height: 250px;
-        order: 2;
-      }
-
-      h1 {
-        font-size: 2.5rem !important;
-        line-height: 1.1;
-        margin-bottom: 1rem;
-      }
-
-      h2 {
-        font-size: 2rem !important;
-        line-height: 1.2;
-        margin-bottom: 1rem;
-      }
-
-      p {
-        font-size: 1rem !important;
-        line-height: 1.5;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-      }
-
-      .hero-description {
-        font-size: 1rem !important;
-        line-height: 1.5;
-        padding: 0 1rem;
-      }
-
-      .personal-text {
-        font-size: 1.1rem !important;
-        line-height: 1.4;
-        margin-top: 1rem;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-      }
-
-      .job-description-section {
-        padding: 1rem;
-      }
-
-      .job-card {
-        padding: 1.5rem;
-        margin: 0;
-        border-radius: 10px;
-      }
-
-      .job-header h2 {
-        font-size: 2rem;
-      }
-
-      .job-title {
-        font-size: 1.4rem;
-        letter-spacing: 1px;
-        word-wrap: break-word;
-      }
-
-      .job-overview p {
-        font-size: 1rem;
-        line-height: 1.5;
-      }
-
-      .job-section h3 {
-        font-size: 1.3rem;
-        line-height: 1.3;
-      }
-
-      .job-section li {
-        font-size: 0.95rem;
-        padding: 0.4rem 0 0.4rem 1.2rem;
-        line-height: 1.4;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-      }
-
-      /* Fix video and iframe responsiveness */
-      video,
-      :global(iframe) {
-        width: 100% !important;
-        height: auto !important;
-        max-height: 300px;
-      }
-
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-
-      /* Progress bar mobile fix */
-      progress {
-        height: 10px;
-      }
-    }
-
-    /* Additional mobile styles for very small screens */
-    @media (max-width: 480px) {
-      section {
-        padding: 1.5rem 0.75rem;
-      }
-
-      h1 {
-        font-size: 2rem !important;
-      }
-
-      h2 {
-        font-size: 1.7rem !important;
-      }
-
-      .personal-text {
-        font-size: 1rem !important;
-      }
-
-      .job-card {
-        padding: 1rem;
-      }
-
-      .job-header h2 {
-        font-size: 1.7rem;
-      }
-
-      .job-title {
-        font-size: 1.2rem;
-      }
-    }
-
-    .job-description-section {
-      padding: 2rem 5vw;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: auto;
-    }
-
-    .job-card {
-      background: linear-gradient(135deg, #f5f5dc 0%, #f0e68c 50%, #daa520 100%);
-      border: 2px solid #8b4513;
-      border-radius: 15px;
-      padding: 2.5rem;
-      max-width: 900px;
-      width: 100%;
-      box-shadow: 
-        0 10px 30px rgba(139, 69, 19, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-      position: relative;
-      font-family: "Times New Roman", serif;
-      color: #2f2f2f;
-      line-height: 1.6;
-    }
-
-    .job-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.05) 50%, transparent 60%);
-      pointer-events: none;
-      border-radius: 13px;
-    }
-
-    .job-header {
-      text-align: center;
-      margin-bottom: 2rem;
-      border-bottom: 2px solid #8b4513;
-      padding-bottom: 1rem;
-    }
-
-    .job-header h2 {
-      font-family: "Permanent Marker", cursive;
-      font-size: 2.5rem;
-      color: #8b4513;
-      margin: 0 0 0.5rem 0;
-      text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
-    }
-
-    .job-title {
-      font-family: "Times New Roman", serif;
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #2f2f2f;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    .job-overview {
-      margin-bottom: 2rem;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 8px;
-      border-left: 4px solid #8b4513;
-    }
-
-    .job-overview p {
-      font-size: 1.1rem;
-      margin: 0;
-      font-family: "Times New Roman", serif;
-      color: #2f2f2f;
-    }
-
-    .job-section {
-      margin-bottom: 2rem;
-    }
-
-    .job-section h3 {
-      font-family: "Permanent Marker", cursive;
-      font-size: 1.5rem;
-      color: #8b4513;
-      margin: 0 0 1rem 0;
-      text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.2);
-      border-bottom: 1px solid #daa520;
-      padding-bottom: 0.5rem;
-    }
-
-    .job-section ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .job-section li {
-      position: relative;
-      padding: 0.5rem 0 0.5rem 1.5rem;
-      font-size: 1rem;
-      font-family: "Times New Roman", serif;
-      color: #2f2f2f;
-    }
-
-    .job-section li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: #8b4513;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
-    .personal-text {
-      font-family: "Permanent Marker", cursive;
-      font-size: max(9px, min(26px, 2.5vw));
-      line-height: 1.2;
-      color: #334155;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-      margin-top: 1rem;
-    }
-  </style>
-  
-  <progress max="100" value="0"></progress>
-  
-  <div class="min-h-screen bg-gradient-to-b from-[#fcedd1] via-[#fae4c9] via-[#f8d8c1] via-[#f7c6b1] to-slate-800">
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <h1>Systems Analyst - Integrations Specialist</h1>
-      <p class="hero-description">
-        Thank you for taking the time to visit my page showcasing how I meet the qualifications for the Systems Analyst position at CoorsTek. 
-        Please scroll through to see my experiences as they relate to the job! 🚀
-      </p>
-    </section>
-
-    <!-- Job Description Card -->
-    <section class="job-description-section">
-      <div class="job-card">
-        <div class="job-header">
-          <h2>Job Description</h2>
-          <div class="job-title">Systems Analyst - Integrations Specialist</div>
-        </div>
-        
-        <div class="job-overview">
-          <p>We're looking for a System Analyst who can grow into owning our integrations. In this role, you'll design, build, test, and deploy connections between our core business systems—starting with support in our current ERP and moving on to integrations in our new ERP and other applications. You'll work with Boomi (training provided) alongside APIs (SOAP/REST), data formats like JSON and XML, and SQL for data queries. We also need someone who's curious about Agentic AI and ready to explore how AI-driven automation can improve our processes.</p>
-        </div>
-
-        <div class="job-section">
-          <h3>Responsibilities</h3>
-          <ul>
-            <li>Build, test, and deploy integrations between corporate applications using Boomi.</li>
-            <li>Create and maintain API connections (SOAP/REST) and data mappings (JSON/XML).</li>
-            <li>Write and optimize SQL queries to validate, transform, and troubleshoot data flows.</li>
-            <li>Translate business needs into clear technical steps for integration work.</li>
-            <li>Troubleshoot and fix data-flow issues to keep systems in sync.</li>
-            <li>Document all integration steps for hand-offs and future updates.</li>
-            <li>Keep up with new Boomi features and best practices.</li>
-            <li>Work closely with internal teams and external partners to launch integrations smoothly.</li>
-            <li>Follow data security and compliance guidelines at every stage.</li>
-          </ul>
-        </div>
-
-        <div class="job-section">
-          <h3>Qualifications</h3>
-          <ul>
-            <li>Growth mindset with curiosity driven desire to learn new technologies.</li>
-            <li>Knowledge of Agentic AI concepts or a strong willingness to learn how AI agents can drive automation.</li>
-            <li>Clear, organized documentation habits.</li>
-            <li>Understanding of the software development lifecycle and change-management basics (required).</li>
-            <li>Ability to manage multiple tasks, work independently, and collaborate cross-functionally.</li>
-            <li>Strong communication and teamwork skills.</li>
-            <li>Excellent analytical and problem-solving skills, with meticulous attention to detail.</li>
-            <li>Proven experience with SOAP/REST APIs and working with JSON/XML data formats.</li>
-            <li>Familiarity with or eagerness to learn integrations for Workday, Salesforce, Coupa, QAD, SAP, and Apriso.</li>
-            <li>Experience (or coursework) in an ERP system such as SAP (preferred).</li>
-            <li>Proficient in SQL—able to write complex queries, joins, and basic performance tuning.</li>
-            <li>Hands-on experience or strong interest in Boomi (your work here will help you grow).</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Growth Mindset -->
-    <section class="qualification-section">
-      <div class="text-content">
-        <h2>Growth Mindset</h2>
-        <p>"Growth mindset with curiosity-driven desire to learn new technologies. Continuously expanding skillset and staying current with industry trends and best practices."</p>
-        <p class="personal-text">This is possibly my strongest attribute. This image is one example out of my whole life showing the team at an engineering firm I built late at night. Each new project required me to learn from serverless architectures to infant microbiomes. </p>
-      </div>
-      <div class="image-placeholder">
-        <img src="/images/pg_working.webp" alt="Learning & Growth" class="w-full h-full object-cover rounded-lg" />
-      </div>
-    </section>
-
-    <!-- AI Concepts -->
-    <section class="qualification-section-reverse">
-      <div class="text-content">
-        <h2>Agentic AI Concepts</h2>
-        <p>"Knowledge of Agentic AI concepts and strong willingness to learn how AI agents can drive automation. Excited to explore AI-powered integration solutions."</p>
-        <p class="personal-text">Agentic systems are going to be huge. I've done my far share of projects such as making King Soopers shopping lists off their sales API. To the left is an email bot that both scrapped the internet for the right leads for me and indicated a custom outreach campaign. </p>
-      </div>
-      <div>
-        <video 
-          src="/video/email_demo.mp4" 
-          class="rounded-2xl w-full h-full object-cover"
-          autoplay 
-          muted 
-          loop
-          playsinline
-          style="width: 100%; height: 500px;"
-        ></video>
-      </div>
-    </section>
-
-    <!-- Documentation -->
-    <section class="qualification-section">
-      <div class="text-content">
-        <h2>Documentation Excellence</h2>
-        <p>"Clear, organized documentation habits. Experience creating technical specifications, user guides, and integration documentation for maintainable solutions."</p>
-        <p class="personal-text">I believe great documentation is the foundation of maintainable systems. One trait I find helpful is always putting complex logic into a visual format. It helps me trace back my thoughts, and explain the system to a new person. </p>
-      </div>
-      <div class="image-placeholder">
-        <iframe 
-          width="768" 
-          height="432" 
-          src="https://miro.com/app/live-embed/uXjVKl9ynqA=/?embedMode=view_only_without_ui&moveToViewport=-6318,-3527,13565,6773&embedId=708113086286" 
-          frameborder="0" 
-          scrolling="no" 
-          allow="fullscreen; clipboard-read; clipboard-write" 
-          allowfullscreen
-          title="Documentation and Process Flow Diagram"
-        ></iframe>
-      </div>
-    </section>
-
-    <!-- SDLC Understanding -->
-    <section class="qualification-section-reverse">
-      <div class="text-content">
-        <h2>Software Development Lifecycle</h2>
-        <p>"Understanding of the software development lifecycle and change-management basics. Experience with agile methodologies and version control systems."</p>
-        <p class="personal-text">I've worked with agile teams setting up a CI/CD pipeline in my software development internship. Having shot myself in the foot with version control I deeply understand the value it brings.</p>
-      </div>
-      
-      <div class="" style="transform: scale(0.8); transform-origin: center;">
-        <img src="/images/smiling_with_board.webp" alt="Fast Development Cycle" class="w-full h-full object-cover rounded-lg" />
-      </div>
-    </section>
-
-    <!-- Task Management -->
-    <section class="qualification-section">
-      <div class="text-content">
-        <h2>Project Management</h2>
-        <p>"Ability to manage multiple tasks, work independently, and collaborate cross-functionally. Proven track record of delivering projects on time and within scope."</p>
-        <p class="personal-text">Having worked at a few companies, I've gotten the chance to experience more management styles than some do in a whole career. I've seen what works and where miscommunication happens. To the right is a high level Gantt chart for a 9 month long RC plane project.</p>
-      </div>
-      <div >
-        <img src="/images/gant.webp" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
-      </div>
-    </section>
-
-    <!-- Communication Skills -->
-    <section class="qualification-section-reverse">
-      <div class="text-content">
-        <h2>Communication & Teamwork</h2>
-        <p>"Strong communication and teamwork skills. Experience collaborating with cross-functional teams and stakeholders to deliver successful integration solutions."</p>
-        <p class="personal-text">I love working with teams and bridging the gap between the technical and non-technical. That's where real creativity happens, because there's no certain answer. Here I am running an entrepreneurship workshop at Mines</p>
-      </div>
-      <div >
-        <img src="/images/me.gif" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
-      </div>
-    </section>
-
-    <!-- Analytical Skills -->
-    <section class="qualification-section">
-      <div class="text-content">
-        <h2>Analytical & Problem-Solving</h2>
-        <p>"Excellent analytical and problem-solving skills with meticulous attention to detail. Proven ability to troubleshoot complex integration issues."</p>
-        <p class="personal-text">My work in the physical world has made it clear, there aren't error codes when a wire is missing. I've learned to be creative which pays dividends in challenging integration issues. </p>
-      </div>
-      <div >
-        <img src="/images/circuits.webp" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
-      </div>
-    </section>
-
-    <!-- API Experience -->
-    <section class="qualification-section-reverse">
-      <div class="text-content">
-        <h2>SOAP/REST APIs</h2>
-        <p>"Proven experience with SOAP/REST APIs and working with JSON/XML data formats. Skilled in API development, testing, and integration."</p>
-        <p class="personal-text">Having built full stack applications I've built and integrated REST APIs. Here is one example of a REST FastAPI I built for a full stack agentic sales tool that returns custom leads to the user.</p>
-      </div>
-      <div >
-        <iframe 
-          src="/api_demo.html" 
-          class="w-full h-full rounded-lg border-0"
-          style="width: 100%; height: 500px;"
-          title="API Documentation Demo"
-        ></iframe>
-      </div>
-    </section>
-
-    <!-- Integration Platforms -->
-    <section class="qualification-section">
-      <div class="text-content">
-        <h2>Integration Platforms</h2>
-        <p>"Familiarity and eagerness to learn integrations for Workday, Salesforce, Coupa, QAD, SAP, and Apriso. Ready to adapt to new integration technologies."</p>
-        <p class="personal-text">I'm excited to work with enterprise integration platforms and learn new technologies. I include this video to show how I went from knowing nothing about aerodynamics to being able to help design a whole system that integrated together.</p>
-      </div>
-      <div>
-        <video 
-          src="/video/glider.mp4" 
-          class="rounded-2xl w-full h-full object-cover"
-          autoplay 
-          muted 
-          loop
-          playsinline
-          style="width: 100%; height: 500px;"
-        ></video>
-      </div>
-    </section>
-
-    <!-- ERP Experience -->
-    <section class="qualification-section-reverse">
-      <div class="text-content">
-        <h2>ERP System Experience</h2>
-        <p>"Experience and coursework in ERP systems including SAP (preferred), with understanding of enterprise resource planning workflows and processes."</p>
-        <p class="personal-text">I've studied ERP systems and understand their importance in enterprise operations. I'm confident in my ability to learn the SAP system inside and out very quickly.</p>
-      </div>
-      <div >
-        <img src="/images/learning.gif" alt="Learning & Growth" style="width: 60%; height: 100%; object-fit: cover; border-radius: 8px;" />
-      </div>
-    </section>
-
-    <!-- SQL Proficiency -->
-    <section class="qualification-section">
-      <div class="text-content">
-        <h2 style="color: white;">SQL Expertise</h2>
-        <p style="color: white;">"Proficient in SQL with ability to write complex queries, joins, and basic performance tuning. Experienced in database optimization and data manipulation."</p>
-        <p class="personal-text" style="color: white;">I've worked with SQL databases for a few years now for my own projects. And have seen what enterprise database systems are capable of in my internship.</p>
-      </div>
-      <div >
-        <img src="/images/mongoDB.webp" alt="Learning & Growth" style="width: 100%; height: 80%; object-fit: cover; border-radius: 8px;" />
-      </div>
-    </section>
-
-    <!-- Boomi Experience -->
-    <section class="qualification-section-reverse">
-      <div class="text-content">
-        <h2 style="color: white;">Boomi Integration Platform</h2>
-        <p style="color: white;">"Hands-on experience and strong interest in Boomi integration platform. My work here demonstrates my growth and capabilities in enterprise integration solutions."</p>
-        <p class="personal-text" style="color: white;">While I haven't directly used Boomi yet, I'm excited to learn this enterprise integration platform. My experience with similar workflow automation tools like Zapier and my own projects has given me a strong foundation in integration concepts.</p>
-      </div>
-      <div >
-        <img src="/images/boomi.webp" alt="Learning & Growth" style="width: 60%; height: 100%; object-fit: cover; border-radius: 8px;" />
-      </div>
-    </section>
-
-    <!-- Conclusion -->
-    <section class="hero-section">
-      <h2 style="color: white;">Ready to Contribute!</h2>
-      <p class="hero-description" style="color: white;">
-        I'm excited to bring my integration expertise and passion for learning to CoorsTek. 
-        Let's build amazing solutions together! 🌟
-      </p>
-      <div style="margin-top: 2rem; text-align: center;">
-        <a href="/" class="back-button" style="
-          display: inline-block;
-          padding: 0.75rem 1.5rem;
-          background-color: #6b7280;
-          color: white;
-          text-decoration: none;
-          border-radius: 8px;
-          font-weight: 500;
-          transition: background-color 0.2s ease;">
-          ← Back to Main Page
-        </a>
-      </div>
-    </section>
-  </div>
-  
+<script lang="ts">
+	import { onMount } from 'svelte';
+
+	// Chrome will silently stall a muted autoplay video that starts offscreen, so drive
+	// playback from an observer instead.
+	function playInView(node: HTMLVideoElement) {
+		node.muted = true;
+		let primed = false;
+		const io = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						// Some servers never hand over the first frame off the autoplay path alone;
+						// an explicit load() kicks the fetch before we ask it to play.
+						if (!primed) {
+							primed = true;
+							node.load();
+						}
+						node.play().catch(() => {});
+					} else {
+						node.pause();
+					}
+				}
+			},
+			{ rootMargin: '300px 0px', threshold: 0.01 }
+		);
+		io.observe(node);
+		return { destroy: () => io.disconnect() };
+	}
+
+	onMount(() => {
+		const gsapScript = document.createElement('script');
+		gsapScript.src = 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js';
+		gsapScript.onload = () => {
+			const scrollTriggerScript = document.createElement('script');
+			scrollTriggerScript.src = 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.js';
+			scrollTriggerScript.onload = () => {
+				const gsap = (window as any).gsap;
+				gsap.registerPlugin((window as any).ScrollTrigger);
+
+				gsap.to('progress', {
+					value: 100,
+					ease: 'none',
+					scrollTrigger: { scrub: 0.3 }
+				});
+			};
+			document.body.appendChild(scrollTriggerScript);
+		};
+		document.body.appendChild(gsapScript);
+	});
+</script>
+
+<svelte:head>
+	<title>Hayden Constas | CoorsTek — AI Deployment Engineer</title>
+	<meta
+		name="description"
+		content="Hayden Constas — application for AI Deployment Engineer at CoorsTek, Golden CO (R-113714), from a former CoorsTek integration specialist who helped deploy Clay."
+	/>
+	<link rel="canonical" href="https://haydenconstas.com/coorstek" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://haydenconstas.com/coorstek" />
+	<meta property="og:title" content="Hayden Constas | CoorsTek — AI Deployment Engineer" />
+	<meta
+		property="og:description"
+		content="Application for AI Deployment Engineer at CoorsTek, Golden CO — how I meet the posting."
+	/>
+	<meta property="og:image" content="https://haydenconstas.com/images/website_ss.webp" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Hayden Constas | CoorsTek — AI Deployment Engineer" />
+	<meta name="twitter:image" content="https://haydenconstas.com/images/website_ss.webp" />
+</svelte:head>
+
+<progress max="100" value="0"></progress>
+
+<div>
+	<!-- 1. Hero -->
+	<section class="hero-section hero-banner">
+		<div class="hero-bg" aria-hidden="true"></div>
+		<div class="hero-fade" aria-hidden="true"></div>
+		<div class="hero-inner">
+			<h1>AI Deployment Engineer</h1>
+		</div>
+	</section>
+
+	<!-- 2. Job Description Card -->
+	<section class="job-description-section">
+		<details class="job-card">
+			<summary class="job-summary">
+				<div class="job-header">
+					<h2>Job Description</h2>
+				</div>
+				<span class="expand-pill">
+					<span class="expand-label"></span>
+					<span class="chev" aria-hidden="true">▾</span>
+				</span>
+			</summary>
+
+			<div class="job-body">
+				<div class="job-overview">
+					<p>
+						"The AI Deployment Engineer will support CoorsTek's AI and automation strategy by
+						building, deploying, and scaling practical AI-enabled solutions. This is a hands-on,
+						developer-first role for someone with strong software development skills and experience
+						delivering real applications, products, automations, or production solutions."
+					</p>
+				</div>
+
+				<div class="job-section">
+					<h3>Responsibilities</h3>
+					<ul>
+						<li>
+							Design, build, configure, test, deploy, and support solutions using approved
+							enterprise AI, automation, application platforms, custom code, APIs, scripts, and
+							integrations.
+						</li>
+						<li>
+							Develop prototypes, pilots, and production-ready solutions using approved enterprise
+							patterns.
+						</li>
+						<li>
+							Partner with business groups, functional teams, and plant sites to translate use cases
+							into scalable, working solutions.
+						</li>
+						<li>
+							Support CoorsTek's citizen development approach by helping business-led builders work
+							within approved patterns.
+						</li>
+						<li>
+							Help move solutions from prototype to governed production, including testing,
+							ownership, and handoff.
+						</li>
+						<li>
+							Define reusable deployment patterns, templates, and support practices repeatable
+							across sites.
+						</li>
+						<li>Develop lightweight business cases and value measures for deployments.</li>
+						<li>Create and maintain documentation, knowledge assets, and handoff materials.</li>
+						<li>
+							Stay current on emerging AI tools and translate them into practical recommendations.
+						</li>
+						<li>Refactor, harden, and scale prototypes into production-ready applications.</li>
+					</ul>
+				</div>
+
+				<div class="job-section">
+					<h3>Requirements</h3>
+					<ul>
+						<li>
+							Bachelor's degree in IT, Computer Science, Engineering, Data Analytics, Business, or a
+							related field.
+						</li>
+						<li>
+							3+ years in IT, automation, business systems, manufacturing technology, analytics,
+							software delivery, or AI enablement.
+						</li>
+						<li>
+							3–5 years hands-on software development, shipping working code into business or
+							operational environments.
+						</li>
+						<li>
+							Strong practical development with Python and/or TypeScript across front-end,
+							service-tier, API, automation, and integration work.
+						</li>
+						<li>
+							Disciplined practices: Git, branching, pull requests, code review, testing,
+							deployment, documentation, production support.
+						</li>
+						<li>
+							Preferred: AI-assisted development tools, Azure-hosted applications, Databricks,
+							manufacturing systems, HMI/SCADA, PLC-adjacent workflows.
+						</li>
+						<li>Experience working directly with business stakeholders on process improvement.</li>
+						<li>Preferred: cross-functional work in a multi-site or global environment.</li>
+						<li>ITAR regulated — must be a US Citizen or Lawful Permanent Resident.</li>
+						<li>Approximately 40% travel, domestic and international.</li>
+					</ul>
+				</div>
+			</div>
+		</details>
+	</section>
+
+	<!-- 3. Already did this here -->
+	<section class="qualification-section">
+		<div class="text-content">
+			<h2>AI Deployment at CoorsTek</h2>
+			<p>
+				"Design, build, configure, test, deploy, and support solutions using approved enterprise AI,
+				automation, application platforms, custom code, APIs, scripts, and integrations."
+			</p>
+			<p class="personal-text">
+				From Aug 2025 to Feb 2026 I was on the implementation team for Clay, the Moveworks assistant
+				rolled out to CoorsTek worldwide. I'd be starting this job knowing CoorsTek systems already.
+			</p>
+		</div>
+		<div class="media media--contain media--tall">
+			<img
+				src="/coorstek/clay.webp"
+				alt="Clay, the CoorsTek AI assistant, walking an employee through a VPN issue"
+			/>
+		</div>
+	</section>
+
+	<!-- 4. Python / TypeScript -->
+	<section class="qualification-section-stacked">
+		<div class="text-content">
+			<h2>Python & TypeScript</h2>
+			<p>
+				"Strong practical development experience using Python and/or TypeScript, including
+				front-end, service-tier, API, automation, scripting, and integration work."
+			</p>
+			<p class="personal-text">
+				I founded <a href="https://regpermit.com" target="_blank" rel="noopener noreferrer">RegPermit</a
+				>, an AI air permitting assistant. Python scripts are used in the
+				ingestion of the regulations off EPA and state agency sites; TypeScript runs the app and its
+				agent harnesses. Below is a clickable example of the tool.
+			</p>
+		</div>
+		<div class="embed">
+			<iframe src="https://regpermit.com/embed" title="RegPermit interactive demo" loading="lazy"
+			></iframe>
+		</div>
+	</section>
+
+	<!-- 5. Shipping into real environments -->
+	<section class="qualification-section">
+		<div class="text-content">
+			<h2>Production Software</h2>
+			<p>
+				"3-5 years of hands-on software development experience, with demonstrated experience
+				shipping working code into business or operational environments."
+			</p>
+			<p class="personal-text">
+				I've built client apps at Protogenesis, learned SaaS implementation at CoorsTek, and
+				military security satellite GIS at CACI. On the right is an automatic code
+				<a href="https://docforge.net/" target="_blank" rel="noopener noreferrer"
+					>documentation tool</a
+				> I made.
+			</p>
+		</div>
+		<div class="media media--video">
+			<a
+				class="media-link"
+				href="https://docforge.net/"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="Open DocForge at docforge.net"
+			>
+				<video
+					src="/coorstek/docforge.mp4"
+					poster="/coorstek/poster-docforge.webp"
+					aria-label="DocForge generating and updating documentation"
+					muted
+					loop
+					playsinline
+					autoplay
+					preload="auto"
+					use:playInView
+				></video>
+			</a>
+		</div>
+	</section>
+
+	<!-- 6. Git / CI-CD -->
+	<section class="qualification-section-reverse">
+		<div class="text-content">
+			<h2>Development Practices</h2>
+			<p>
+				"Experience working with disciplined software development practices, including Git,
+				branching, pull requests, code review, testing, deployment, documentation, and production
+				support."
+			</p>
+			<p class="personal-text">
+				I ran full-stack CI/CD on SAFFIRE at CACI. I've also broken enough of my own work to respect
+				version control.
+			</p>
+		</div>
+		<div class="media media--contain">
+			<img
+				src="/images/cicd.webp"
+				alt="Plan, build, test, release, deploy, operate, monitor cycle"
+			/>
+		</div>
+	</section>
+
+	<!-- 7. Stakeholders & citizen development -->
+	<section class="qualification-section">
+		<div class="text-content">
+			<h2>Citizen Development</h2>
+			<p>
+				"Support CoorsTek's citizen development approach by helping business-led builders work
+				within approved patterns and by promoting viable solutions into supportable enterprise
+				models."
+			</p>
+			<p class="personal-text">
+				I mentored the student engineers at my own firm and ran entrepreneurship workshops at Mines.
+				Meeting someone at whatever they already built is the whole skill.
+			</p>
+		</div>
+		<div class="media media--contain media--photo">
+			<img src="/images/me_crop.gif" alt="Running a workshop with a team" />
+		</div>
+	</section>
+
+	<!-- 8. Plant floor -->
+	<section class="qualification-section-reverse">
+		<div class="text-content">
+			<h2>Manufacturing Systems</h2>
+			<p>
+				"Experience with... manufacturing systems, HMI/SCADA, PLC-adjacent workflows, or plant
+				automation environments preferred."
+			</p>
+			<p class="personal-text">
+				I have an electrical engineering degree, so I understand the principles at play. Combined
+				with my embedded code experience, I'm confident in my ability to master PLC automation.
+			</p>
+		</div>
+		<div class="media">
+			<div
+				class="board-visual"
+				role="img"
+				aria-label="A power supply board I designed in Eagle, shown over its PCB layout"
+			></div>
+		</div>
+	</section>
+
+	<!-- 9. AI tooling / Azure / Databricks -->
+	<section class="qualification-section">
+		<div class="text-content">
+			<h2>AI Tooling & Cloud</h2>
+			<p>
+				"Experience with AI-assisted development tools, Azure-hosted applications, Databricks...
+				Stay current on emerging AI tools and deployment patterns."
+			</p>
+			<p class="personal-text">
+				For a gut health monitor I deployed a HIPAA-compliant system on AWS, so containerized
+				services and the cloud practices that come with holding health data are familiar ground.
+				Azure I want to go deeper on but the core principles transfer.
+			</p>
+		</div>
+		<div class="media media--contain media--mid">
+			<img
+				src="/coorstek/gut-monitor.webp"
+				alt="The gut health monitor sensor mounted on a toilet seat"
+			/>
+		</div>
+	</section>
+
+	<!-- 10. Prototype to production -->
+	<section class="qualification-section-reverse">
+		<div class="text-content">
+			<h2>Prototype To Production</h2>
+			<p>
+				"Refactor, harden, and scale prototypes, internally built tools, and business-led solutions
+				into production-ready applications that can be supported within enterprise standards."
+			</p>
+			<p class="personal-text">
+				To the left is the first network test for DockVPN, an easy-to-set-up private business VPN. I
+				start with scrappy prototypes and take them through to something that holds together at
+				scale. The project site is <a
+					href="https://dockvpn.com"
+					target="_blank"
+					rel="noopener noreferrer">dockvpn.com</a
+				>.
+			</p>
+		</div>
+		<div class="media media--contain media--mid">
+			<img src="/coorstek/test-rig.webp" alt="Self-built network and VPN test rig" />
+		</div>
+	</section>
+
+	<!-- 11. ITAR, travel, Golden -->
+	<section class="qualification-section">
+		<div class="text-content">
+			<h2>ITAR, Travel & Location</h2>
+			<p>
+				"We are an ITAR Regulated Company... This role requires approximately 40% travel both
+				domestic/international."
+			</p>
+			<p class="personal-text">
+				US citizen, no sponsorship needed. I'm excited to travel onsite to plant visits, where the
+				real requirements show up.
+			</p>
+		</div>
+		<div class="media media--contain media--mid">
+			<img
+				src="/coorstek/graduation.webp"
+				alt="Colorado School of Mines, B.E. Electrical Engineering"
+			/>
+		</div>
+	</section>
+
+	<!-- 12. Conclusion -->
+	<section class="hero-section">
+		<div style="margin-top: 2rem; text-align: center;">
+			<a href="/" class="back-button">← Back to Main Page</a>
+		</div>
+	</section>
+</div>
+
+<style>
+	progress {
+		position: fixed;
+		top: 0;
+		left: 0;
+		-webkit-appearance: none;
+		appearance: none;
+		width: 100%;
+		height: 15px;
+		border: none;
+		background: transparent;
+		z-index: 1000;
+	}
+
+	progress::-webkit-progress-bar {
+		background: transparent;
+	}
+
+	progress::-webkit-progress-value {
+		background: linear-gradient(to right, #475569, #64748b, #94a3b8, #cbd5e1, #e2e8f0, #f1f5f9);
+		background-attachment: fixed;
+	}
+
+	progress::-moz-progress-bar {
+		background: linear-gradient(to right, #475569, #64748b, #94a3b8, #cbd5e1, #e2e8f0, #f1f5f9);
+		background-attachment: fixed;
+	}
+
+	:global(body) {
+		background: linear-gradient(
+			to bottom,
+			#fcedd1 0%,
+			#fae4c9 22%,
+			#f8d8c1 44%,
+			#f7c6b1 66%,
+			#f2b9a8 86%,
+			#1e293b 94%,
+			#334155 100%
+		);
+	}
+
+	section {
+		min-height: auto;
+		padding: 3.25rem 5vw;
+		display: flex;
+		align-items: center;
+		box-sizing: border-box;
+	}
+
+	.hero-section {
+		text-align: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	/* Banner: the Clayworks HQ build in downtown Golden, fading into the page gradient. */
+	.hero-banner {
+		position: relative;
+		overflow: hidden;
+		padding: 0;
+		min-height: 86vh;
+		/* column flex, so the vertical axis is justify-content */
+		justify-content: flex-end;
+		align-items: stretch;
+	}
+
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		background: url('/coorstek/hero.webp') center 62% / cover no-repeat;
+	}
+
+	.hero-fade {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to bottom,
+			rgba(252, 237, 209, 0) 0%,
+			rgba(252, 237, 209, 0.14) 46%,
+			rgba(252, 237, 209, 0.8) 63%,
+			rgba(252, 237, 209, 0.97) 74%,
+			#fcedd1 85%
+		);
+	}
+
+	.hero-inner {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		padding: 0 5vw 2.5vh;
+	}
+
+	.qualification-section,
+	.qualification-section-reverse {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		align-items: center;
+	}
+
+	.qualification-section-reverse .text-content {
+		order: 2;
+		padding-left: 2rem;
+		padding-right: 0;
+	}
+
+	.text-content {
+		padding-right: 2rem;
+	}
+
+	/* Full-width variant: the visual runs under the copy instead of beside it,
+	   for embeds that need the whole row to be usable. */
+	.qualification-section-stacked {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		align-content: center;
+	}
+
+	/* Hold the copy to the same measure it gets as a grid column in the two-up
+	   sections — (row - gap) / 2 less its padding — and centre that block. */
+	.qualification-section-stacked .text-content {
+		width: 100%;
+		max-width: calc(45vw - 3.5rem);
+		margin: 0 auto;
+		padding-right: 0;
+	}
+
+	.embed {
+		width: 100%;
+		max-width: 1120px;
+		margin: 0 auto;
+	}
+
+	.embed iframe {
+		display: block;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		border: 0;
+		border-radius: 12px;
+		background: #fff;
+	}
+
+	.media {
+		border-radius: 12px;
+		overflow: hidden;
+	}
+
+	.media-link {
+		display: block;
+		border-radius: 12px;
+	}
+
+	.media-link:focus-visible {
+		outline: 2px solid #8b4513;
+		outline-offset: 4px;
+	}
+
+	.media img,
+	.media video {
+		display: block;
+		width: 100%;
+		height: 340px;
+		object-fit: cover;
+		object-position: center 22%;
+		border: 0;
+		border-radius: 12px;
+	}
+
+	.media--contain img {
+		object-fit: contain;
+	}
+
+	/* Layered board visual — same assets as #board on the homepage: the photographed
+	   board floats over its Eagle layout. */
+	.board-visual {
+		height: 340px;
+		border-radius: 12px;
+		background-image: url('/images/board.webp'), url('/images/board_design.webp');
+		background-repeat: no-repeat, no-repeat;
+		background-position: center, center;
+		background-size:
+			auto 92%,
+			cover;
+	}
+
+	/* Between the default strip and --tall: gives a near-square subject more room
+	   without growing the row enough to crowd the next section. */
+	.media--mid img {
+		height: 420px;
+	}
+
+	.media--tall img {
+		height: 520px;
+	}
+
+	.media--photo img {
+		height: 440px;
+	}
+
+	/* Show the whole frame rather than cropping it to the row height */
+	.media--video video {
+		height: 440px;
+		object-fit: contain;
+	}
+
+	h1 {
+		font-size: max(20px, min(68px, 6.4vw));
+		font-family: 'Inter', system-ui, sans-serif;
+		font-weight: 700;
+		letter-spacing: -0.025em;
+		line-height: 1.08;
+		color: #1e293b;
+		margin-bottom: 1.25rem;
+	}
+
+	h2 {
+		font-size: max(16px, min(42px, 4.2vw));
+		font-family: 'Inter', system-ui, sans-serif;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.15;
+		color: #1e293b;
+		margin-bottom: 1.25rem;
+	}
+
+	/* Quoted straight from the posting */
+	p {
+		margin: 0;
+		font-size: max(8px, min(17px, 1.7vw));
+		font-family: 'Roboto Mono', ui-monospace, monospace;
+		line-height: 1.55;
+		color: #475569;
+		font-weight: 400;
+		letter-spacing: 0;
+	}
+
+	.personal-text {
+		font-family: 'Inter', system-ui, sans-serif;
+		font-size: max(9px, min(20px, 1.95vw));
+		font-weight: 450;
+		line-height: 1.55;
+		color: #1e293b;
+		margin-top: 1.25rem;
+	}
+
+	.personal-text a {
+		color: #8b4513;
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 3px;
+		font-weight: 600;
+		transition: opacity 0.2s ease;
+	}
+
+	.personal-text a:hover {
+		opacity: 0.75;
+	}
+
+	/* Darker text over the light part of the gradient */
+	section:nth-child(-n + 12) h2,
+	section:nth-child(-n + 12) p {
+		color: #475569;
+	}
+
+	/* Lighter text over the dark tail of the gradient */
+	section:nth-child(13) h2,
+	section:nth-child(13) p {
+		color: #e2e8f0;
+	}
+
+	.job-description-section {
+		padding: 1.25rem 5vw;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: auto;
+	}
+
+	.job-card {
+		background: linear-gradient(135deg, #f5f5dc 0%, #f0e68c 50%, #daa520 100%);
+		border: 2px solid #8b4513;
+		border-radius: 15px;
+		padding: 1.15rem 1.75rem 1.35rem;
+		max-width: 900px;
+		width: 100%;
+		box-shadow:
+			0 10px 30px rgba(139, 69, 19, 0.3),
+			inset 0 1px 0 rgba(255, 255, 255, 0.4),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+		position: relative;
+		font-family: 'Inter', system-ui, sans-serif;
+		color: #2f2f2f;
+		line-height: 1.6;
+	}
+
+	.job-card[open] {
+		padding: 1.75rem 2.5rem 2.5rem;
+	}
+
+	.job-card:hover {
+		box-shadow:
+			0 14px 38px rgba(139, 69, 19, 0.38),
+			inset 0 1px 0 rgba(255, 255, 255, 0.4),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	}
+
+	.job-summary {
+		list-style: none;
+		cursor: pointer;
+		display: block;
+	}
+
+	.job-summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.job-summary:focus-visible {
+		outline: 2px solid #8b4513;
+		outline-offset: 6px;
+		border-radius: 8px;
+	}
+
+	.job-header {
+		text-align: center;
+		padding-bottom: 0.85rem;
+	}
+
+	/* The obvious "this opens" affordance */
+	.expand-pill {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.6rem;
+		margin: 0 auto;
+		width: fit-content;
+		padding: 0.5rem 1.25rem;
+		border: 2px solid #8b4513;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.55);
+		font-family: 'Inter', system-ui, sans-serif;
+		font-weight: 700;
+		font-size: 0.82rem;
+		letter-spacing: 0.09em;
+		text-transform: uppercase;
+		color: #8b4513;
+		transition:
+			background 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.job-summary:hover .expand-pill {
+		background: rgba(255, 255, 255, 0.85);
+		transform: translateY(-1px);
+	}
+
+	.expand-label::after {
+		content: 'Read the full posting';
+	}
+
+	.job-card[open] .expand-label::after {
+		content: 'Hide the full posting';
+	}
+
+	.expand-pill .chev {
+		font-size: 0.95rem;
+		line-height: 1;
+		transition: transform 0.25s ease;
+	}
+
+	.job-card[open] .expand-pill .chev {
+		transform: rotate(180deg);
+	}
+
+	.job-body {
+		margin-top: 1.75rem;
+		padding-top: 1.75rem;
+		border-top: 2px solid #8b4513;
+	}
+
+	.job-header h2 {
+		font-family: 'Inter', system-ui, sans-serif;
+		font-weight: 700;
+		font-size: 0.8rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #8b4513;
+		margin: 0 0 0.15rem 0;
+	}
+
+	.job-overview {
+		margin-bottom: 2rem;
+		padding: 1rem;
+		background: rgba(255, 255, 255, 0.3);
+		border-radius: 8px;
+		border-left: 4px solid #8b4513;
+	}
+
+	.job-overview p {
+		font-size: 1rem;
+		line-height: 1.6;
+		margin: 0;
+		font-family: 'Inter', system-ui, sans-serif;
+		color: #2f2f2f;
+		letter-spacing: normal;
+	}
+
+	.job-section {
+		margin-bottom: 2rem;
+	}
+
+	.job-section:last-child {
+		margin-bottom: 0;
+	}
+
+	.job-section h3 {
+		font-family: 'Inter', system-ui, sans-serif;
+		font-weight: 700;
+		font-size: 0.95rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #8b4513;
+		margin: 0 0 1rem 0;
+		border-bottom: 1px solid #daa520;
+		padding-bottom: 0.5rem;
+	}
+
+	.job-section ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.job-section li {
+		position: relative;
+		padding: 0.4rem 0 0.4rem 1.5rem;
+		font-size: 0.95rem;
+		line-height: 1.55;
+		font-family: 'Inter', system-ui, sans-serif;
+		color: #2f2f2f;
+	}
+
+	.job-section li::before {
+		content: '•';
+		position: absolute;
+		left: 0;
+		color: #8b4513;
+		font-weight: bold;
+		font-size: 1.2rem;
+	}
+
+	.back-button {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		background-color: #6b7280;
+		color: white;
+		text-decoration: none;
+		border-radius: 8px;
+		font-weight: 500;
+	}
+
+	@media (max-width: 768px) {
+		section {
+			padding: 2rem 1rem;
+			min-height: auto;
+		}
+
+		.hero-banner {
+			min-height: 68vh;
+			padding: 0;
+		}
+
+		.hero-inner {
+			padding: 0 1.25rem 3rem;
+		}
+
+		.qualification-section,
+		.qualification-section-reverse {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.text-content,
+		.qualification-section-reverse .text-content {
+			padding-right: 0;
+			padding-left: 0;
+			order: 1;
+		}
+
+		.qualification-section-stacked .text-content {
+			max-width: none;
+		}
+
+		.media {
+			order: 2;
+		}
+
+		.media img,
+		.media video {
+			height: 260px;
+		}
+
+		.embed iframe {
+			min-height: 340px;
+		}
+
+		.board-visual {
+			height: 260px;
+		}
+
+		.media--mid img {
+			height: 320px;
+		}
+
+		.media--tall img {
+			height: 400px;
+		}
+
+		.media--photo img {
+			height: 320px;
+		}
+
+		.media--video video {
+			height: 260px;
+		}
+
+		h1 {
+			font-size: 2.5rem !important;
+			line-height: 1.1;
+			margin-bottom: 1rem;
+		}
+
+		h2 {
+			font-size: 2rem !important;
+			line-height: 1.2;
+			margin-bottom: 1rem;
+		}
+
+		p {
+			font-size: 1rem !important;
+			line-height: 1.5;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+		}
+
+		.personal-text {
+			font-size: 1.1rem !important;
+			line-height: 1.4;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+		}
+
+		.job-description-section {
+			padding: 1rem;
+		}
+
+		.job-card {
+			padding: 1rem 1.25rem 1.15rem;
+			margin: 0;
+			border-radius: 10px;
+		}
+
+		.job-card[open] {
+			padding: 1.25rem 1.25rem 1.5rem;
+		}
+
+		.job-header h2 {
+			font-size: 0.72rem;
+		}
+
+		.job-overview p {
+			font-size: 1rem;
+			line-height: 1.5;
+		}
+
+		.job-section h3 {
+			font-size: 1.3rem;
+			line-height: 1.3;
+		}
+
+		.job-section li {
+			font-size: 0.95rem;
+			padding: 0.4rem 0 0.4rem 1.2rem;
+			line-height: 1.4;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+		}
+
+		progress {
+			height: 10px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		section {
+			padding: 1.5rem 0.75rem;
+		}
+
+		h1 {
+			font-size: 2rem !important;
+		}
+
+		h2 {
+			font-size: 1.7rem !important;
+		}
+
+		.personal-text {
+			font-size: 1rem !important;
+		}
+
+		.job-header h2 {
+			font-size: 0.68rem;
+		}
+
+		.expand-pill {
+			font-size: 0.72rem;
+			padding: 0.45rem 1rem;
+		}
+	}
+</style>

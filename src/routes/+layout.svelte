@@ -7,10 +7,17 @@
 	import { focus, preventDefault, self, trapFocus } from '$lib/util';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
-	import GitHub from '$lib/icons/git-hub.svelte';
 	import LinkedIn from '$lib/icons/linked-in.svelte';
 
-	$: hideSiteChrome = $page.url.pathname === '/morgan_stanley';
+	const chromeHiddenPaths = new Set(['/morgan_stanley', '/doppelmayr']);
+	const pathsWithOwnSocial = new Set(['/', '/morgan_stanley', '/doppelmayr', '/coorstek']);
+
+	$: pathnameNorm = ($page.url.pathname.replace(/\/$/, '') || '/').toLowerCase();
+	$: hideSiteChrome = chromeHiddenPaths.has(pathnameNorm);
+	$: canonicalPath = $page.url.pathname.replace(/\/$/, '') || '/';
+	$: defaultOgUrl =
+		canonicalPath === '/' ? 'https://haydenconstas.com/' : `https://haydenconstas.com${canonicalPath}`;
+	$: needsDefaultSocial = !pathsWithOwnSocial.has(pathnameNorm);
 
 	var modal = setContext('modal', {
 		visible: writable(false)
@@ -47,6 +54,22 @@
 
 	onDestroy(unsubscribe);
 </script>
+
+<svelte:head>
+	{#if needsDefaultSocial}
+		<meta property="og:title" content="Hayden Constas | Software and Electrical Engineer" />
+		<meta property="og:type" content="website" />
+		<meta
+			property="og:description"
+			content="Portfolio and resume of Hayden Constas — embedded systems, software, automation, and applied AI."
+		/>
+		<meta property="og:url" content={defaultOgUrl} />
+		<meta property="og:image" content="https://haydenconstas.com/images/website_ss.webp" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Hayden Constas | Software and Electrical Engineer" />
+		<meta name="twitter:image" content="https://haydenconstas.com/images/website_ss.webp" />
+	{/if}
+</svelte:head>
 
 {#if !hideSiteChrome}
 <nav class="absolute left-0 right-0 z-50 mx-auto max-w-7xl p-4 md:p-6">

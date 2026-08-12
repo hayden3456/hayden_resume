@@ -12,7 +12,30 @@
 		name="description"
 		content="Explore Hayden Constas's engineering portfolio, resume, and project work across embedded systems, automation, full-stack development, and applied AI."
 	/>
+	<meta
+		name="keywords"
+		content="Hayden Constas, software engineer, electrical engineer, embedded systems, firmware engineer, full-stack developer, automation engineer, AI engineer, portfolio, resume"
+	/>
 	<link rel="canonical" href="https://haydenconstas.com/" />
+	<meta property="og:title" content="Hayden Constas | Software and Electrical Engineer" />
+	<meta property="og:type" content="website" />
+	<meta
+		property="og:description"
+		content="Portfolio and resume of Hayden Constas, focused on embedded systems, web software, automation, and applied AI."
+	/>
+	<meta property="og:url" content="https://haydenconstas.com/" />
+	<meta property="og:image" content="https://haydenconstas.com/images/website_ss.webp" />
+	<meta property="og:image:type" content="image/webp" />
+	<meta property="og:image:alt" content="Screenshot of Hayden Constas's website" />
+	<meta property="og:site_name" content="Hayden Constas" />
+	<meta property="og:locale" content="en_US" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Hayden Constas | Software and Electrical Engineer" />
+	<meta
+		name="twitter:description"
+		content="Portfolio and resume of Hayden Constas, focused on embedded systems, web software, automation, and applied AI."
+	/>
+	<meta name="twitter:image" content="https://haydenconstas.com/images/website_ss.webp" />
 	<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",

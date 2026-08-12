@@ -320,9 +320,7 @@
 	}
 
 	.hero-copy,
-	.hero-meta,
-	.signal-card,
-	.brand-values {
+	.signal-card {
 		backdrop-filter: blur(10px);
 	}
 
@@ -379,8 +377,7 @@
 		margin-top: 2rem;
 	}
 
-	.cta,
-	.secondary {
+	.cta {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -403,131 +400,15 @@
 		border: 1px solid transparent;
 	}
 
-	.secondary {
-		background: transparent;
-		color: var(--text-main);
-		border: 1px solid var(--tractable-border);
-	}
-
 	.cta:hover {
 		transform: translateY(-1px);
 		box-shadow: 0 12px 28px rgba(57, 85, 255, 0.28);
 	}
 
-	.secondary:hover {
-		transform: translateY(-1px);
-		background: rgba(57, 85, 255, 0.06);
-	}
-
-	.hero-meta {
-		padding: 1.5rem;
-		border: 1px solid var(--border);
-		border-radius: 1.5rem;
-		background:
-			linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.78)),
-			linear-gradient(135deg, rgba(57, 85, 255, 0.08), rgba(133, 182, 255, 0.04));
-		box-shadow: var(--tractable-shadow);
-	}
-
-	.logo-chip {
-		display: grid;
-		grid-template-columns: auto 1fr;
-		gap: 1rem;
-		align-items: center;
-		margin-bottom: 1.5rem;
-	}
-
-	.logo-thumb {
-		position: relative;
-		width: 4.5rem;
-		height: 4.5rem;
-		border-radius: 1rem;
-		border: 1px solid var(--tractable-border);
-		background:
-			linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.75)),
-			radial-gradient(circle at 30% 35%, rgba(57, 85, 255, 0.2), transparent 38%);
-		overflow: hidden;
-	}
-
-	.logo-thumb::before,
-	.logo-thumb::after {
-		content: '';
-		position: absolute;
-		inset: auto;
-		background: var(--tractable-text);
-	}
-
-	.logo-thumb::before {
-		top: 0.9rem;
-		left: 1.15rem;
-		width: 0.44rem;
-		height: 2.65rem;
-		border-radius: 999px;
-	}
-
-	.logo-thumb::after {
-		top: 1.18rem;
-		left: 1.65rem;
-		width: 1.6rem;
-		height: 0.44rem;
-		border-radius: 999px;
-		box-shadow: 0 0.92rem 0 var(--tractable-accent);
-	}
-
-	.logo-chip strong,
-	.logo-chip span,
-	.stat strong,
-	.stat span,
 	.signal-card h2,
 	.signal-card blockquote,
-	.value-pill,
 	.closer h2 {
 		font-family: var(--mallory-stack);
-	}
-
-	.logo-chip strong {
-		display: block;
-		font-size: 1.2rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-	}
-
-	.logo-chip span {
-		display: block;
-		margin-top: 0.25rem;
-		font-size: 0.86rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--text-dim);
-	}
-
-	.hero-stats {
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 0.75rem;
-	}
-
-	.stat {
-		padding: 1rem;
-		border-radius: 1rem;
-		background: var(--panel);
-		border: 1px solid var(--tractable-border);
-	}
-
-	.stat strong {
-		display: block;
-		font-size: 1.35rem;
-		font-weight: 700;
-		letter-spacing: -0.03em;
-	}
-
-	.stat span {
-		display: block;
-		margin-top: 0.35rem;
-		font-size: 0.8rem;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--text-dim);
 	}
 
 	.grid-frame {
@@ -635,36 +516,6 @@
 	/* Preserve newlines in signal copy ({text} escapes HTML, so <br> won't work). */
 	.signal-card p {
 		white-space: pre-line;
-	}
-
-	.brand-values {
-		margin-top: 1.25rem;
-		padding: 1.25rem;
-		border-radius: 1.25rem;
-		border: 1px solid var(--tractable-border);
-		background: var(--panel);
-	}
-
-	.values-row {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.75rem;
-		margin-top: 1rem;
-	}
-
-	.value-pill {
-		display: inline-flex;
-		align-items: center;
-		min-height: 2.6rem;
-		padding: 0.65rem 0.95rem;
-		border-radius: 999px;
-		border: 1px solid var(--tractable-border);
-		background: rgba(255, 255, 255, 0.65);
-		font-size: 0.8rem;
-		font-weight: 700;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--text-main);
 	}
 
 	.signal-section-title {
@@ -914,15 +765,9 @@
 			padding-inline: 1rem;
 		}
 
-		.hero-meta,
 		.signal-card,
-		.brand-values,
 		.grid-frame {
 			padding: 1.1rem;
-		}
-
-		.hero-stats {
-			grid-template-columns: 1fr;
 		}
 
 		.signal-media,
@@ -934,8 +779,7 @@
 			min-height: 300px;
 		}
 
-		.cta,
-		.secondary {
+		.cta {
 			width: 100%;
 		}
 	}

@@ -438,6 +438,22 @@
 
 <svelte:head>
 	<title>Hayden Constas | Morgan Stanley — PWM Client Service Associate</title>
+	<meta
+		name="description"
+		content="Hayden Constas — application for Private Wealth Management Client Service Associate at Morgan Stanley, Salt Lake City."
+	/>
+	<link rel="canonical" href="https://haydenconstas.com/morgan_stanley" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://haydenconstas.com/morgan_stanley" />
+	<meta property="og:title" content="Hayden Constas | Morgan Stanley — PWM Client Service Associate" />
+	<meta
+		property="og:description"
+		content="Application for PWM Client Service Associate — Salt Lake City."
+	/>
+	<meta property="og:image" content="https://haydenconstas.com/images/website_ss.webp" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Hayden Constas | Morgan Stanley — PWM Client Service Associate" />
+	<meta name="twitter:image" content="https://haydenconstas.com/images/website_ss.webp" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 	<link
@@ -788,39 +804,6 @@
 		color: inherit;
 	}
 
-	.header-nav {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem 1.25rem;
-		align-items: center;
-		font-size: 0.875rem;
-		font-weight: 500;
-	}
-
-	.header-nav a {
-		color: inherit;
-		text-decoration: none;
-		opacity: 0.92;
-	}
-
-	.header-nav a:hover {
-		opacity: 1;
-	}
-
-	.site-header:not(.is-at-top) .nav-cta {
-		background: var(--brand);
-		color: var(--page-bg);
-		padding: 0.4rem 0.9rem;
-		border-radius: 999px;
-		opacity: 1;
-	}
-
-	.site-header.is-at-top .nav-cta {
-		border: 1px solid rgba(246, 245, 255, 0.45);
-		padding: 0.4rem 0.9rem;
-		border-radius: 999px;
-		opacity: 1;
-	}
 
 	.job-desc-banner {
 		position: relative;
@@ -899,37 +882,6 @@
 		border-top: 1px solid rgba(36, 72, 191, 0.1);
 	}
 
-	.job-desc-facts {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 0.85rem;
-		margin: 1.1rem 0 1.5rem;
-		padding: 0;
-		font-size: 0.9rem;
-	}
-
-	@media (min-width: 640px) {
-		.job-desc-facts {
-			grid-template-columns: repeat(3, 1fr);
-			gap: 1rem 1.5rem;
-		}
-	}
-
-	.job-desc-facts dt {
-		font-weight: 600;
-		font-size: 0.68rem;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		opacity: 0.65;
-		margin: 0 0 0.2rem;
-	}
-
-	.job-desc-facts dd {
-		margin: 0;
-		line-height: 1.45;
-		color: var(--body);
-	}
-
 	.job-desc-h {
 		font-family: 'Cormorant Garamond', serif;
 		font-weight: 600;
@@ -963,10 +915,6 @@
 
 	.job-desc-list li {
 		margin: 0.35rem 0;
-	}
-
-	.job-desc-list--tight li {
-		margin: 0.28rem 0;
 	}
 
 	.job-desc-list strong {
@@ -1074,15 +1022,6 @@
 	.hero-role-sep {
 		opacity: 0.5;
 		padding-inline: 0.2em;
-	}
-
-	.hero-tagline {
-		margin: 1rem 0 0;
-		max-width: 22rem;
-		font-size: 0.9rem;
-		line-height: 1.5;
-		color: rgba(246, 245, 255, 0.82);
-		text-shadow: 0 1px 1rem rgba(17, 28, 78, 0.3);
 	}
 
 	.h1-line {
@@ -1262,231 +1201,9 @@
 		}
 	}
 
-	.portfolio_bg_wrap {
-		position: absolute;
-		inset: 0;
-		z-index: 0;
-		pointer-events: none;
-	}
-
-	.portfolio_bg {
-		position: absolute;
-		left: 50%;
-		top: -8%;
-		width: 115%;
-		max-width: none;
-		height: auto;
-		min-height: 118%;
-		object-fit: cover;
-		transform: translateX(-50%);
-		opacity: 0.22;
-		filter: saturate(1.05);
-		will-change: transform;
-	}
-
 	.section-lead {
 		max-width: 40rem;
 		margin-bottom: 2.5rem;
-	}
-
-	.quote-shell {
-		max-width: 40rem;
-		margin-top: 2rem;
-	}
-
-	.quote-block {
-		margin: 0;
-		transition:
-			opacity 0.45s ease,
-			filter 0.45s ease;
-	}
-
-	.quote-block.is-blurring {
-		opacity: 0.2;
-		filter: blur(0.5rem);
-	}
-
-	.quote-block p {
-		font-family: 'Cormorant Garamond', serif;
-		font-size: clamp(1.5rem, 3vw, 2rem);
-		line-height: 1.35;
-		color: var(--brand);
-		margin: 0 0 1rem;
-	}
-
-	.quote-block footer {
-		font-size: 0.95rem;
-		color: var(--body);
-	}
-
-	.quote-controls {
-		display: flex;
-		gap: 0.5rem;
-		margin-top: 1.5rem;
-	}
-
-	.quote-btn {
-		width: 2.75rem;
-		height: 2.75rem;
-		border-radius: 999px;
-		border: 1px solid rgba(36, 72, 191, 0.2);
-		background: rgba(255, 255, 255, 0.92);
-		color: var(--brand);
-		cursor: pointer;
-		font-size: 1rem;
-		transition:
-			background 0.2s ease,
-			transform 0.2s ease;
-	}
-
-	.quote-btn:hover {
-		background: #fff;
-		transform: translateY(-1px);
-	}
-
-	.team-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 2rem;
-		align-items: center;
-	}
-
-	@media (min-width: 768px) {
-		.team-grid {
-			grid-template-columns: 1fr 1.1fr;
-			gap: 3rem;
-		}
-	}
-
-	.team-visual {
-		border-radius: 1rem;
-		overflow: hidden;
-		border: 1px solid rgba(36, 72, 191, 0.1);
-		box-shadow: 0 24px 60px rgba(36, 72, 191, 0.12);
-	}
-
-	.team-visual img {
-		display: block;
-		width: 100%;
-		height: auto;
-		object-fit: cover;
-	}
-
-	.team-name {
-		font-family: 'Cormorant Garamond', serif;
-		font-weight: 500;
-		font-size: clamp(2rem, 4vw, 2.75rem);
-		color: var(--brand);
-		margin: 0.25rem 0 1rem;
-	}
-
-	.team-copy p {
-		font-size: 1.05rem;
-		line-height: 1.65;
-		margin: 0 0 1rem;
-	}
-
-	.philosophy-list {
-		list-style: none;
-		margin: 2rem 0 0;
-		padding: 0;
-		max-width: 48rem;
-		border-top: 1px solid rgba(36, 72, 191, 0.12);
-	}
-
-	.philosophy-item {
-		border-bottom: 1px solid rgba(36, 72, 191, 0.12);
-	}
-
-	.philosophy-trigger {
-		width: 100%;
-		display: grid;
-		grid-template-columns: auto 1fr auto;
-		gap: 1rem;
-		align-items: center;
-		padding: 1.25rem 0;
-		background: none;
-		border: none;
-		cursor: pointer;
-		font: inherit;
-		text-align: left;
-		color: var(--brand);
-		transition: transform 0.3s ease;
-	}
-
-	.philosophy-trigger:hover {
-		transform: translateX(4px);
-	}
-
-	.ph-n {
-		font-size: 0.8rem;
-		font-weight: 600;
-		opacity: 0.45;
-	}
-
-	.ph-title {
-		font-size: 1.15rem;
-		font-weight: 600;
-	}
-
-	.ph-icon {
-		font-size: 1.25rem;
-		opacity: 0.55;
-	}
-
-	.philosophy-panel {
-		clip-path: inset(0 0 100% 0);
-		transition: clip-path 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-
-	.philosophy-item.is-open .philosophy-panel {
-		clip-path: inset(0 0 0 0);
-	}
-
-	.philosophy-panel p {
-		margin: 0;
-		padding-bottom: 1.25rem;
-		max-width: 42rem;
-		line-height: 1.65;
-		font-size: 1rem;
-	}
-
-	.essay-list {
-		list-style: none;
-		margin: 2rem 0 0;
-		padding: 0;
-		max-width: 36rem;
-	}
-
-	.essay-list li {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		padding: 1rem 0;
-		border-bottom: 1px solid rgba(36, 72, 191, 0.1);
-		transition: opacity 0.25s ease;
-	}
-
-	.essay-list li:hover {
-		opacity: 0.85;
-	}
-
-	.essay-date {
-		font-size: 0.8rem;
-		font-weight: 500;
-		color: var(--brand);
-		opacity: 0.55;
-	}
-
-	.essay-title {
-		font-size: 1.05rem;
-		font-weight: 600;
-		color: var(--brand);
-		text-decoration: none;
-	}
-
-	.essay-title:hover {
-		text-decoration: underline;
 	}
 
 	.footer-parallax {

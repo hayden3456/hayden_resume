@@ -136,7 +136,7 @@
 </script>
 
 <div
-	class="left-0 -mt-1 w-full overflow-hidden border-slate-700 bg-slate-800 pb- "
+	class="left-0 -mt-1 w-full overflow-hidden border-slate-700 bg-slate-800 pb-8"
 >
 	<div class="relative mx-auto max-w-7xl px-4 md:px-6">
 		<!-- <div
@@ -161,7 +161,7 @@
 		</a>
 
 		<div
-			class="relative mx-auto space-y-4 overflow-hidden via-90% pb-4 sm:pt-8 sm:before:absolute sm:before:inset-0 sm:before:left-[1px] sm:before:h-full sm:before:w-[1px] sm:before:-translate-x-px sm:before:bg-gradient-to-b sm:before:from-white/25 sm:before:via-white/25 sm:before:to-transparent mt-36"
+			class="relative mx-auto space-y-4 overflow-hidden pb-4 sm:pt-8 sm:before:absolute sm:before:inset-0 sm:before:left-[1px] sm:before:h-full sm:before:w-[1px] sm:before:-translate-x-px sm:before:bg-gradient-to-b sm:before:from-white/25 sm:before:via-white/25 sm:before:to-transparent mt-36"
 		>
 			{#each work as w, i}
 				<div class:mt-[34px]={i === 0}>
